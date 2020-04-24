@@ -1,0 +1,36 @@
+package com.policymanagement.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table
+public class Customer {
+	/*
+	 @SequenceGenerator(name = "elUserSeq",initialValue = 4040, allocationSize = 1, sequenceName = "EL_USER_SEQ")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "elUserSeq")
+	 */
+	@SequenceGenerator(name="customer_seq", initialValue = 1000, allocationSize = 1,sequenceName = "CUSTOMER_SEQ")
+	@Id
+	@GeneratedValue(strategy =GenerationType.SEQUENCE,generator = "customer_seq")
+	private int userId;
+	@Column
+	@NotNull(message = "First Name is required")
+	private String firstName;
+	@Column
+	private String lastName;
+	@Column
+	private String contactNumber;
+	@Column
+	private String password;
+	@Column
+	private String gender;
+
+}

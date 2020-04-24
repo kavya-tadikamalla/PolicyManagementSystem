@@ -1,0 +1,5 @@
+package com.policymanagement.services;
+
+public interface CustomerService {
+	
+}

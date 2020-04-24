@@ -1,0 +1,12 @@
+package com.policymanagement.models;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+public class AdminLogin {
+	@NotNull
+	private int adminId;
+	@NotEmpty(message = "Password is required")
+	private String password;
+	
+}

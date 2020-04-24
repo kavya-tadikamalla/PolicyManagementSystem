@@ -1,0 +1,28 @@
+package com.policymanagement.models;
+
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Admin {
+	@Id
+	@Generated(value="assigned")
+	private int adminId;
+	@Column
+	private String firstName;
+	@Column
+	private String lastName;
+	@Column
+	private String contactNumber;
+	@Column
+	private int Age;
+	@Column
+	private String password;
+	@Column
+	private String gender;
+
+}

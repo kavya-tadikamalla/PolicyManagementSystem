@@ -1,0 +1,85 @@
+package com.policymanagement.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+@Entity
+@Table
+public class Customer {
+	/*
+	 @SequenceGenerator(name = "elUserSeq",initialValue = 4040, allocationSize = 1, sequenceName = "EL_USER_SEQ")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "elUserSeq")
+	 */
+	@SequenceGenerator(name="customer_seq", initialValue = 1000, allocationSize = 1,sequenceName = "CUSTOMER_SEQ")
+	@Id
+	@GeneratedValue(strategy =GenerationType.SEQUENCE,generator = "customer_seq")
+	private int userId;
+	@Column
+	@NotNull(message = "First Name is required")
+	private String firstName;
+	@Column
+	@NotNull(message = "Last Name is required")
+	private String lastName;
+	@Column
+	@NotNull(message = "ContactNumber is required")
+	@Pattern(regexp = "[6789][0-9]{9}",message = "Invalid Mobile")
+	private String contactNumber;
+	@Column
+	@NotEmpty(message = "Password is required")
+	private String password;
+	@Column
+	@NotNull(message = "Select your Gender")
+	private String gender;
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	@Override
+	public String toString() {
+		return "Customer [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber="
+				+ contactNumber + ", password=" + password + ", gender=" + gender + "]";
+	}
+	
+
+}

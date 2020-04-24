@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Policy Management-Customer</title>
+<link rel="stylesheet" type="text/css" href="/style.css">	
+</head>
+<body>
+<div class="header">
+  <h1>Policy Management</h1>
+   </div> 
+<div class="topnav">
+  <a href="#">Admin</a>
+  <a href="#">Customer</a>
+  <a href="#">Policy Vendor</a>
+ </div>
+ 
+<div class="card">
+<div align="center">
+<h5>Login Form</h5>
+
+ <form:form action="/customer/customlogin" method="post" modelAttribute="custml" style="margin-top:50px;margin-left:30px;">
+	<table class="tables">
+		
+		<tr>
+			<td>UserId:</td>
+			<td><form:input path="userId"  required/><br>
+				<form:errors path="userId" ></form:errors></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><form:input path="password" required/><br>
+			<form:errors path="password" ></form:errors>
+			</td>
+		</tr>
+		<tr>
+		<td colspan="2" align="center"><input type="submit" value="Login" />
+		</tr>
+	</table>
+ </form:form>
+ New User<a href="/customer/custregister"> SignUp</a>
+</div>
+</div>
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+</div> 
+</footer>
+
+</body>
+</html>

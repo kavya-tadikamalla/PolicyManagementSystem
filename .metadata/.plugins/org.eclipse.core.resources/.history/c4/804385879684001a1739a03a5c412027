@@ -1,0 +1,11 @@
+package com.policymanagement.models;
+
+import javax.validation.constraints.NotNull;
+
+public class CustomerLogin {
+	@NotNull(message = "UserId is required")
+	private int userId;
+	private String password;
+	
+
+}

@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+ <div class="header">
+  <h1>Policy Management</h1>
+  
+</div> 
+
+<div class="topnav">
+
+  <a href="#">Admin</a>
+  <a href="#">Customer</a>
+  <a href="#">Policy Vendor</a>
+  
+</div>
+
+
+    <div class="card">
+      
+      <h2>Display</h2>
+      <table class="tables" >
+      <tr>
+      <th>Headings</th>
+      <th>Headings</th>
+      <th>Headings</th>
+      <th>Headings</th>
+      </tr>
+      <tr>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      </tr>
+      <tr>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      </tr>
+      <tr>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      </tr>
+      <tr>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      </tr>
+      <tr>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      <td>344</td>
+      </tr>
+      </table>
+     
+    
+  
+</div>
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+
+ 
+</div> </footer>
+
+</body>
+</html>

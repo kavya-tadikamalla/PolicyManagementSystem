@@ -1,0 +1,23 @@
+package com.policymanagement.services;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.policymanagement.models.Customer;
+import com.policymanagement.models.CustomerLogin;
+import com.policymanagement.models.PolicyVendor;
+import com.policymanagement.models.PolicyVendorLogin;
+
+@Service
+@Component
+public interface PolicyVendorService {
+	public boolean vlogin(PolicyVendorLogin policyvendorLogin);
+
+	public int createPolicyVendor(@Valid PolicyVendor policyvendor);
+	
+	public PolicyVendor getPolicyVendor(int vendorId);
+	public boolean addPolicy(Course coures);
+	
+}

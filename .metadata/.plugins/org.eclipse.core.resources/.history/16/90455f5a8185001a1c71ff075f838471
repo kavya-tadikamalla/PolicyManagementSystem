@@ -1,0 +1,11 @@
+function validate(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		textbox.setCustomValidity("Address field should not be emplty")
+		textbox.style.border="2px solid red";
+		} 
+
+}

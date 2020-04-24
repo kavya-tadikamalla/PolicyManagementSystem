@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Policy Management-Admin</title>
+<link rel="stylesheet" type="text/css" href="/style.css">	
+</head>
+<body>
+<div class="header">
+  <h1>Policy Management</h1>
+   </div> 
+<div class="topnav">
+  <a href="/admin/">Admin</a>
+  <a href="#">Customer</a>
+  <a href="#">Policy Vendor</a>
+ </div>
+ <h1>Policy Management Policy Vendor Login</h1>
+${message}
+<div class="card">
+<div align="center">
+<h5>Login Form</h5>
+ <form:form action="/policyvendor/policyvendorlogin" method="post" modelAttribute="policyvendor" style="margin-top:50px;">
+
+<table>
+<tr>
+<td>User ID:</td>
+<td>
+
+<form:input path="vendorId" class="form-control"/>
+<br>
+ <form:errors path="vendorId" cssClass="errors"></form:errors> 
+</td>
+</tr>
+
+<tr>
+<td>Password :</td>
+<td><form:password path="password" class="form-control"/>
+<br>
+<form:errors path="password" cssClass="errors"></form:errors>
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+
+<td colspan="2" align="center"><input type="submit" value="Login" class="formsubmitbutton" />
+
+</tr>
+</table>
+
+
+
+</form:form>
+
+
+New User Policy<a href="/policyvendor/policyvendorreg" style="color:slateblue;"> Register</a>
+</div>
+</div>
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+</div> 
+</footer>
+
+</body>
+</html>

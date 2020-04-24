@@ -1,0 +1,12 @@
+package com.policymanagement.services;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Service
+@Component
+public interface AdminService {
+	public boolean login(AdminLogin adminLogin);
+
+	public int createAdmin(@Valid Admin admin);
+}

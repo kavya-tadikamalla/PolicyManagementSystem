@@ -1,0 +1,10 @@
+package com.policymanagement.models;
+
+import javax.validation.constraints.NotEmpty;
+
+public class PolicyVendorLogin {
+	@NotNull(message = "Not Empty")
+	private int userId;
+	@NotEmpty(message = "Not Empty")
+	private String password;
+}

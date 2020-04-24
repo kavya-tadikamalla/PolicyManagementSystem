@@ -1,0 +1,16 @@
+package com.policymanagement.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Admin {
+	private int adminId;
+	private String firstName;
+	private String lastName;
+	private String contactNumber;
+	private int Age;
+	private String password;
+
+}

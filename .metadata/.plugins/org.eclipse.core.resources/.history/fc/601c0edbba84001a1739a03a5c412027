@@ -1,0 +1,8 @@
+package com.policymanagement.models;
+
+public class PolicyVendorLogin {
+	@NotEmpty(message = "Not Empty")
+	private int userId;
+	@NotEmpty(message = "Not Empty")
+	private String password;
+}
