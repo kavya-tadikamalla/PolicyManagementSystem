@@ -1,0 +1,101 @@
+package com.policymanagement.models;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+@Entity
+@Table
+public class Payments {
+	@SequenceGenerator(name = "paySeq",initialValue = 4001, allocationSize = 1,sequenceName = "PAY_SEQ")
+	@Id()
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paySeq")	
+	private int payid;
+	@Column
+	private int policyId;
+	@Column
+	private int userId;
+	@Column
+	private double amount;
+	@Column
+	private int renewalmonths;
+	@Column
+	private String reminder;
+	@Column
+	@DateTimeFormat
+	private Date lastpaid;
+	@Column
+	private double fineperday;
+	@Column
+	private double fineamount;
+	public int getPayid() {
+		return payid;
+	}
+	public void setPayid(int payid) {
+		this.payid = payid;
+	}
+	public int getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(int policyId) {
+		this.policyId = policyId;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public int getRenewalmonths() {
+		return renewalmonths;
+	}
+	public void setRenewalmonths(int renewalmonths) {
+		this.renewalmonths = renewalmonths;
+	}
+	public String getReminder() {
+		return reminder;
+	}
+	public void setReminder(String reminder) {
+		this.reminder = reminder;
+	}
+	public Date getLastpaid() {
+		return lastpaid;
+	}
+	public void setLastpaid(Date lastpaid) {
+		this.lastpaid = lastpaid;
+	}
+	public double getFineperday() {
+		return fineperday;
+	}
+	public void setFineperday(double fineperday) {
+		this.fineperday = fineperday;
+	}
+	public double getFineamount() {
+		return fineamount;
+	}
+	public void setFineamount(double fineamount) {
+		this.fineamount = fineamount;
+	}
+	@Override
+	public String toString() {
+		return "Payments [payid=" + payid + ", policyId=" + policyId + ", userId=" + userId + ", amount=" + amount
+				+ ", renewalmonths=" + renewalmonths + ", reminder=" + reminder + ", lastpaid=" + lastpaid
+				+ ", fineperday=" + fineperday + ", fineamount=" + fineamount + "]";
+	}
+	
+	
+
+}

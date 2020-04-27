@@ -1,18 +1,38 @@
 package com.policymanagement.services;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.policymanagement.dao.CustomerDao;
+import com.policymanagement.dao.PolicyDao;
 import com.policymanagement.models.Customer;
 import com.policymanagement.models.CustomerLogin;
+import com.policymanagement.models.Policy;
 
 @Service
 @Component
 public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerDao custdao;
+	@Autowired
+	private PolicyDao policydao;
+	
+	 @PostConstruct
+	public void init() {
+		long count=custdao.count();
+		System.out.println(count);
+		if(count==0) {
+			Customer c=new Customer();
+			c.setUserId(2000);
+			custdao.save(c);
+		}
+	}
+	 
 	@Override
 	public int createCustomer(Customer customer) {
 		Customer c=custdao.findByUserId(customer.getUserId());
@@ -45,5 +65,39 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return custdao.findByUserId(custid);
 	}
+
+	@Override
+	public List<Policy> getAll() {
+		
+		return policydao.findAll();
+	}
+
+	@Override
+	public int nextuserId() {
+		
+		return custdao.nextuserId();
+	}
+	@Override
+	public Policy getpolbyname(String polname) {
+		return policydao.findByPolicyName(polname);
+	}
+
+	@Override
+	public Policy getpolbyid(int polbyid) {
+		
+		//return policydao.findByPolicyId(polbyid).get();
+		return policydao.findById(polbyid).get();
+	}
+
+	@Override
+	public boolean updateCustomer(Customer customer) {
+		Customer cu=custdao.save(customer);
+		if(cu!=null) {
+		return true;
+		}
+		return false;
+	}
+
+	
 
 }

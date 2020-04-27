@@ -24,8 +24,11 @@ public class Policy {
 	@Column
 	private double premiumAmount;
 	@Column
-	
 	private int policyvendorId;
+	@Column
+	private String policytype;
+	@Column
+	private double fineperday;
 	
 	public int getPolicyvendorId() {
 		return policyvendorId;
@@ -58,11 +61,26 @@ public class Policy {
 	public void setPremiumAmount(double premiumAmount) {
 		this.premiumAmount = premiumAmount;
 	}
+	public String getPolicytype() {
+		return policytype;
+	}
+	public void setPolicytype(String policytype) {
+		this.policytype = policytype;
+	}
+	public double getFineperday() {
+		return fineperday;
+	}
+	public void setFineperday(double fineperday) {
+		this.fineperday = fineperday;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyName=" + policyName + ", durationOfPolicy=" + durationOfPolicy
-				+ ", premiumAmount=" + premiumAmount + "]";
+				+ ", premiumAmount=" + premiumAmount + ", policyvendorId=" + policyvendorId + ", policytype="
+				+ policytype + ", fineperday=" + fineperday + "]";
 	}
+	
+	
 	
 
 

@@ -30,7 +30,7 @@ public class Admin {
 	//@Pattern(regexp = "[6789][0-9]{9}",message = "Invalid Mobile")
 	private String contactNumber;
 	@Column
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	@Column
 	private String email;

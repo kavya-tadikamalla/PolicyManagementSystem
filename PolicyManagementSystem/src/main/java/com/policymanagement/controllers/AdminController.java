@@ -1,4 +1,6 @@
 package com.policymanagement.controllers;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import javax.validation.Valid;
@@ -10,10 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
 import com.policymanagement.models.Customer;
+import com.policymanagement.models.PolicyVendor;
 import com.policymanagement.services.AdminService;
 @Controller
 @RequestMapping("/admin")
@@ -22,6 +28,8 @@ public class AdminController
 	
 	@Autowired
 	private AdminService adminservice;
+	@Autowired
+	private PolicyVendorDao policyvendordao;
 	@GetMapping("/")
 	public String adminloginform(Model model)
 	{
@@ -61,7 +69,10 @@ public class AdminController
 	@GetMapping("/register")
 	public String adminRegisterForm(Model model)
 	{
-		model.addAttribute("adreg",new Admin());
+		int aid=adminservice.nextadminId();
+		Admin admin=new Admin();
+		admin.setAdminId(aid+1);
+		model.addAttribute("adreg",admin);
 		return "adminRegistration";
 	}
 	@PostMapping("/adminreg")
@@ -74,7 +85,8 @@ public class AdminController
 		
 		else {
 	
-			model.addAttribute("adlogin",new AdminLogin());			
+			model.addAttribute("adlogin",new AdminLogin());	
+			
 			int res = adminservice.createAdmin(admin);
 			
 		if(res==0)
@@ -97,15 +109,75 @@ public class AdminController
 		return "adminLogin";
 		}
 	}
-	
-
+	@GetMapping("/listvendors")
+	public String findAllVendors(HttpSession session,Model model) {
+		List<PolicyVendor> vendor=adminservice.getAll();
+		
+		System.out.println(vendor);
+		model.addAttribute("vendorlist",vendor);
+		return "adminHome";
+	}
+	@GetMapping("/activate")
+	public String activateS(@RequestParam("vendorid")int vid,Model model)
+	{
+		PolicyVendor policyvendor=policyvendordao.findByVendorId(vid);
+		String s=policyvendor.getStatus();
+		
+		if(!s.equals("activate")) {
+		policyvendor.setStatus("activate");
+		PolicyVendor pv=policyvendordao.save(policyvendor);
+		
+			model.addAttribute("message", pv.getPolicyvendorname()+""+vid+"sucesfully activate");
+			return "adminHome";
+		
+			
+		}
+		
+		else {
+			model.addAttribute("message", policyvendor.getPolicyvendorname()+""+vid+" is already activate");
+			return "adminHome";
+		}
+		
+	}
+	@GetMapping("/deactivate")
+	public String deactivateS(@RequestParam("vendorid")int vid,Model model)
+	{
+		PolicyVendor policyvendor=policyvendordao.findByVendorId(vid);
+		String s=policyvendor.getStatus();
+		if(!s.equals("deactivate")) {
+		policyvendor.setStatus("deactivate");
+		PolicyVendor pv=policyvendordao.save(policyvendor);
+		model.addAttribute("message", pv.getPolicyvendorname()+""+vid+"sucesfully deactivated");
+		return "adminHome";
+		}
+		else {
+			model.addAttribute("message", policyvendor.getPolicyvendorname()+""+vid+"is already deactivated");
+		return "adminHome";
+		}
+	}
+	@GetMapping("/sendforcorrection")
+	public String sendforcorrectionS(@RequestParam("vendorid")int vid,Model model)
+	{
+		PolicyVendor policyvendor=policyvendordao.findByVendorId(vid);
+		String s=policyvendor.getStatus();
+		if(!s.equals("makecorrections")) {
+		policyvendor.setStatus("makecorrections");
+		PolicyVendor pv=policyvendordao.save(policyvendor);
+		model.addAttribute("message", pv.getPolicyvendorname()+""+vid+" makecorrections");	
+		return "adminHome";
+	}
+		else {
+			model.addAttribute("message", policyvendor.getPolicyvendorname()+""+vid+"has already sent for scorrection");
+		return "adminHome";
+		}
+	}
 
 	@GetMapping("/logout")
-	@ResponseBody
+	
 	public String logout(HttpSession session)
 	{
 		session.invalidate();
-		return "<h1>Logged Out Successfully <a href='/admin/'>Login Again</a>";
+		return "redirect:/";
 	}
 
 

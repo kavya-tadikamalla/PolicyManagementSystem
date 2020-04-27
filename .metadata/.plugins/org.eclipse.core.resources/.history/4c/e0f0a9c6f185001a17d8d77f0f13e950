@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<title> Home</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<style type="text/css">
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+td {
+  width: 25% ;
+  word-break:break-all; 
+}
+</style>
+</head>
+<body>
+<%
+String username =(String) session.getAttribute("username");
+int userid=(Integer)session.getAttribute("userId");
+if(username==null || userid==0)
+{
+	response.sendRedirect("/policyvendorlogin/");
+}
+%>
+  <div class="topnav">
+  <b class="heading">Policy Management</b>
+  <a href="/admin/logout/" class="fas fa-power-off back">  Logout</a>
+  <a href="/admin/listvendors" class="fas fa-user-plus back"> List PolicyVendors</a>
+  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
+  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
+   </div>
+  <label text-align="left">Welcome <%=username %>(<%=userid %>)</label>
+</div>
+    <div class="card">     
+      <h2>Display</h2>
+      
+       <table align="center" class="tables back" border="1px solid" >
+       <tr>
+       <td>Id</td><td>Name</td>
+       
+       </tr>
+      <!--  JSTL Core Tag -->
+<c:forEach items="${vendorlist}" var="vendors">
+
+    <tr style="font-size: 18px; " >
+      <td>${vendors.vendorId}</td>
+       <td>${vendors.policyvendorname}</td>
+        <td>${vendors.policyvendorregno}</td>
+         <td>${vendors.policytype}</td>
+          <!-- <td>${vendors.address}</td> -->
+          <td>${vendors.state},
+          ${vendors.country},
+          ${vendors.zipcode}</td> 
+           <td>${vendors.dateOfBirth}</td>
+           <td class="a">${vendors.emailaddress}</td>
+           <td>${vendors.contactnumber }</td>
+           <td>${vendors.website }</td>
+           <td>${vendors.certificateissueddate}</td>
+           <td>${vendors.certificatevaliditydate }</td>
+           <td>${vendors.yearofestablishment }</td>
+           <td> <button><a href="#" style="color: black;">Activate</a></button> </td>
+           <td> <button><a href="#" style="color: black;">Deactivate</a></button> </td>
+           <td><button> <a href="#" style="color: black;">Send for Correction</a></button> </td>
+    </tr>
+
+</c:forEach>
+
+
+      </table>
+     
+    
+  
+</div>
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+
+ 
+</div> </footer>
+
+</body>
+</html>

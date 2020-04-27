@@ -21,20 +21,31 @@ function validate(textbox)
 }
 
 </script>
+<style type="text/css">
+tr,td{
+text-align: left;
+}
+</style>
 </head>
 <body>
+<div class="header"><header><b class="heading">Policy Management</b></header></div>
 <div class="topnav">
-  <b class="heading">Policy Management</b>
-  
-  <a href="/policyvendor/" class="fas fa-user-plus back">  Policy Vendor</a>
-  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
-  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
+  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
+ <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
+ <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
+
    </div>
 <div class="card">
-<h2>Registration Form</h2>
+
  <form:form action="/policyvendor/policyvendorreg" method="post" modelAttribute="policyvendorreg" style="margin-top:50px;margin-left:30px;">
 
 <table align="center" class="tables back" >
+<tr>
+<td></td>
+
+<td colspan="2" align="center"><h2>Registration Form</h2></td>
+</tr>
 <tr>
 <td>VendorId<label style="color: red">*</label>:</td>
 <td>
@@ -42,9 +53,6 @@ function validate(textbox)
 <form:input path="vendorId" class="form-control"/>
 
 </td>
-</tr>
-
-<tr>
 <td>Policy Vendor Name<label style="color: red">*</label>:</td>
 <td>
 
@@ -54,20 +62,21 @@ function validate(textbox)
 </tr>
 
 <tr>
+
+</tr>
+
+<tr>
 <td>Policy Vendor Reg. No<label style="color: red">*</label>:</td>
 <td>
 
 <form:input path="policyvendorregno" class="form-control" required="required"/>
 
 </td>
-</tr>
-
-
-<tr>
 <td>Policy Type<label style="color: red">*</label>:</td>
 <td>
 
 <form:select path="policytype" class="form-control">
+<form:option value="" label="--Select Policy Type--"/>
 <form:option value="LifeInsurance" label="LifeInsurance"/>
 <form:option value="MedicalInsurance" label="MedicalInsurance"/>
 <form:option value="VehicleInsurance" label="VehicleInsurance"/>
@@ -76,17 +85,21 @@ function validate(textbox)
 </td>
 </tr>
 
+
+<tr>
+
+</tr>
+
 <tr>
 <td>Address<label style="color: red">*</label>:</td>
 <td>
 
 <form:input path="address" class="form-control" required="required" oninvalid="validate(this)"/>
 </td>
-</tr>
-<tr>
 <td>Country<label style="color: red">*</label>:</td>
 <td>
 <form:select path="country" class="form-control">
+<form:option value="" label="--Select Country--"/>
 <form:option value="US" label="US"/>
 <form:option value="India" label="India"/>
 <form:option value="UK" label="UK"/>
@@ -95,15 +108,18 @@ function validate(textbox)
 </td>
 </tr>
 <tr>
+
+</tr>
+<tr>
 <td>State<label style="color: red">*</label>:</td>
 <td>
 <form:select path="State" class="form-control">
+<form:option value="" label="--Select Policy Type--"/>
 <form:option value="Telangana" label="Telangana"/>
 <form:option value="AP" label="AP"/>
 <form:option value="TN" label="TN"/>
 </form:select>
-</td></tr>
-<tr>
+</td>
 <td>Zipcode<label style="color: red">*</label>:</td>
 <td>
 
@@ -111,15 +127,18 @@ function validate(textbox)
 </td>
 </tr>
 <tr>
-<td>DateOfBirth<label style="color: red">*</label>:</td>
-<td><form:input path="dateOfBirth" /><br>
 
 </tr>
 <tr>
+<td>DateOfBirth<label style="color: red">*</label>:</td>
+<td><form:input path="dateOfBirth" type="date"/><br>
 <td>Email address<label style="color: red">*</label>:</td>
 <td>
 <form:input type="email" path="emailaddress" class="form-control" required="required"  />
 </td>
+</tr>
+<tr>
+
 </tr>
 <tr>
 <td>Contact Number<label style="color: red">*</label>:</td>
@@ -127,8 +146,6 @@ function validate(textbox)
 <form:input path="contactnumber" class="form-control"/>
 
 </td>
-</tr>
-<tr>
 <td>Web Site<label style="color: red">*</label>:</td>
 <td>
 <form:input path="website" class="form-control"/>
@@ -136,18 +153,22 @@ function validate(textbox)
 </td>
 </tr>
 <tr>
+
+</tr>
+<tr>
 <td>Certificate Issued Date<label style="color: red">*</label>:</td>
 <td>
-<form:input path="certificateissueddate" class="form-control"/>
+<form:input path="certificateissueddate" type="date" class="form-control"/>
+
+</td>
+<td>Certificate Validity Date<label style="color: red">*</label>:</td>
+<td>
+<form:input path="certificatevaliditydate" type="date" class="form-control"/>
 
 </td>
 </tr>
 <tr>
-<td>Certificate Validity Date<label style="color: red">*</label>:</td>
-<td>
-<form:input path="certificatevaliditydate" class="form-control"/>
 
-</td>
 </tr>
 <tr>
 <td>Year of Establishment<label style="color: red">*</label>:</td>
@@ -155,21 +176,21 @@ function validate(textbox)
 <form:input path="yearofestablishment" class="form-control"/>
 
 </td>
-</tr>
-<tr>
 <td>Password<label style="color: red">*</label>:</td>
 <td><form:password path="password" class="form-control" />
 
 </td>
 </tr>
-
 <tr>
-<td colspan="2" align="center"><input type="submit" value="Register" class="formsubmitbutton" />
 
 </tr>
+
+<tr><td></td>
+<td colspan="2" align="center"> <input type="submit" value="Register" class="formsubmitbutton" /><!-- </td> -->
+<label style="font-size: 15px;">Existing PolicyVendor?</label><a href="/policyvendor/" style="color:slateblue;"> SignIn</a></td></tr>
 </table>
 </form:form>
-Existing PolicyVendor<a href="/policyvendor/" style="color:slateblue;"> SignIn</a>
+
 </div>
 <footer>
 <div class="footer">

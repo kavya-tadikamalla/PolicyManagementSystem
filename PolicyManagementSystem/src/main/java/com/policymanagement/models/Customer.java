@@ -1,21 +1,21 @@
 package com.policymanagement.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 @Table
 public class Customer {
@@ -33,17 +33,18 @@ public class Customer {
 	//@Pattern(regexp = "[6789][0-9]{9}",message = "Invalid Mobile")
 	private String contactNumber;
 	@Column
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	@Column
 	private String email;
 	@Column
-	//@NotEmpty(message = "Password is required")
 	private String password;
 	@Column
-	//@NotEmpty(message = "Select your Gender")
 	private String gender;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(name = "pay_table",joinColumns = {@JoinColumn(name="userId",referencedColumnName = "userId")},inverseJoinColumns ={@JoinColumn(name="policyId", referencedColumnName ="policyId" )})
+	private List<Policy> policy;
 	public int getUserId() {
 		return userId;
 	}
@@ -84,7 +85,9 @@ public class Customer {
 		return dateOfBirth;
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		
+			this.dateOfBirth =dateOfBirth ;
+		
 	}
 	public String getEmail() {
 		return email;
@@ -92,12 +95,20 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Policy> getPolicy() {
+		return policy;
+	}
+	public void setPolicy(List<Policy> policy) {
+		this.policy = policy;
+	}
 	@Override
 	public String toString() {
 		return "Customer [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber="
 				+ contactNumber + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", password=" + password
-				+ ", gender=" + gender + "]";
+				+ ", gender=" + gender + ", policy=" + policy + "]";
 	}
+	
 	
 	
 	

@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title> Home</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+<body>
+<%
+String username =(String) session.getAttribute("username");
+int userid=(Integer)session.getAttribute("userId");
+if(username==null || userid==0)
+{
+	response.sendRedirect("/policyvendorlogin/");
+}
+%>
+ <div class="topnav">
+  <b class="heading">Policy Management</b>
+  <a href="/customer/logout/" class="fas fa-power-off back">  Logout</a>
+  <a href="/customer/listofpolicies" class="fas fa-user-plus back">  List of Policies</a>
+  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
+  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
+   </div>
+    <div class="card">     
+      <h2>Display</h2>
+      <table align="center" class="tables back" border="1px solid" >
+       <tr>
+       <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td><td>PolicyVendorId</td>
+       <td>Premium_Amount</td>
+       </tr>
+       ${policylist}
+      <!--  JSTL Core Tag -
+      
+-->
+
+    <tr style="font-size: 18px; " >
+      <td><c:out value="${policylist.policyId}"></c:out></td>
+       <!-- <td>${policies.policyName}</td>
+        <td>${policies.durationOfPolicy}</td>
+         <td>${polices.policyvendorId}</td>
+           <td>${policies.premiumAmount}</td>
+           
+           <td><button> <a href="#" style="color: black;">Get policy</a></button> </td> -->
+    </tr>
+
+
+
+
+      </table>
+
+    
+  
+</div>
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+
+ 
+</div> </footer>
+
+</body>
+</html>

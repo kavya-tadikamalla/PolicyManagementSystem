@@ -1,5 +1,6 @@
 package com.policymanagement.models;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,9 +42,9 @@ public class PolicyVendor {
 	    private int zipcode;
 	    @Column
 	   // @NotEmpty(message="required")
-	    private String State;
+	    private String state;
 	    @Column
-	    @DateTimeFormat(pattern = "dd/MM/yyyy")
+	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    private Date dateOfBirth;
 	    @Column
 	    //@NotEmpty(message="required")
@@ -56,11 +57,11 @@ public class PolicyVendor {
 	    //@NotEmpty(message="required")
 	    private String website;
 	    @Column
-	    @DateTimeFormat(pattern = "dd/MM/yyyy")
+	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    //@NotEmpty(message="required")
 		private  Date certificateissueddate;
 	    @Column
-	    @DateTimeFormat(pattern = "dd/MM/yyyy")
+	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    //@NotEmpty(message="required")
 		private  Date certificatevaliditydate;
 	    @Column
@@ -69,6 +70,8 @@ public class PolicyVendor {
 	    @Column
 	    //@NotEmpty(message="required")
 	    private String password;
+	    @Column
+	    private String status;
 		public int getVendorId() {
 			return vendorId;
 		}
@@ -105,11 +108,12 @@ public class PolicyVendor {
 		public void setCountry(String country) {
 			this.country = country;
 		}
+		
 		public String getState() {
-			return State;
+			return state;
 		}
 		public void setState(String state) {
-			State = state;
+			this.state = state;
 		}
 		public String getEmailaddress() {
 			return emailaddress;
@@ -162,23 +166,30 @@ public class PolicyVendor {
 		public void setZipcode(int zipcode) {
 			this.zipcode = zipcode;
 		}
-		public Date getDateOfBirth() {
+		public Date getDateOfBirth(){
 			return dateOfBirth;
 		}
 		public void setDateOfBirth(Date dateOfBirth) {
 			this.dateOfBirth = dateOfBirth;
 		}
+		
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
 		@Override
 		public String toString() {
 			return "PolicyVendor [vendorId=" + vendorId + ", policyvendorname=" + policyvendorname
 					+ ", policyvendorregno=" + policyvendorregno + ", policytype=" + policytype + ", address=" + address
-					+ ", country=" + country + ", zipcode=" + zipcode + ", State=" + State + ", dateOfBirth="
+					+ ", country=" + country + ", zipcode=" + zipcode + ", state=" + state + ", dateOfBirth="
 					+ dateOfBirth + ", emailaddress=" + emailaddress + ", contactnumber=" + contactnumber + ", website="
 					+ website + ", certificateissueddate=" + certificateissueddate + ", certificatevaliditydate="
 					+ certificatevaliditydate + ", yearofestablishment=" + yearofestablishment + ", password="
-					+ password + "]";
+					+ password + ", status=" + status + "]";
 		}
-		
+				
 		
 
 }

@@ -1,0 +1,6 @@
+package com.policymanagement.models;
+
+public class SearchP {
+	private String category;
+	private String text;
+}

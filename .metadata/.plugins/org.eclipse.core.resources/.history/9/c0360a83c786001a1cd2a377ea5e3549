@@ -1,0 +1,112 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
+* {
+  box-sizing: border-box;
+  font-family:Times New Roman;
+}
+body {
+  font-family: Arial;
+  padding: 10px;
+  background-image: url("projecbackground.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-blend-mode:screen;
+  /*filter: blur(8px);
+  -webkit-filter: blur(8px);*/
+  
+
+}
+
+/* Header/Blog Title */
+.header {
+  text-align:center;
+}
+
+.heading
+{
+    font-size:  25px;
+    margin-right:50px;
+	margin-left:50px;
+	color:black;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  font-family: 'Sofadi One', cursive;
+  overflow: hidden;
+  background-color: none;
+  background:rgb(255, 255, 255);
+  opacity:0.7;
+  
+  
+}
+
+/* Style the topnav links */
+.back
+{
+	 background:rgb(255, 255, 255);
+	 
+	 opacity:0.25;
+}
+.topnav a 
+{
+  font-size:25px;
+  float: right;
+  display: block;
+  color:black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-weight:bold;
+  
+}
+.fas fa-power-off
+{
+	font-size:24px;
+	
+}
+.fas fa-user-circle
+{
+	font-size:24px;
+	
+}
+.fas fa-user-plus
+{
+	font-size:24px;
+}
+.fas fa-user-alt
+{
+	font-size:24px;
+}
+/* Change color on hover */
+.topnav a:hover {
+  background-color: black;
+  color: white;
+}
+.tables{
+	font-family: sans-serif;
+  align-content: center;
+  align-items: center;
+  font-weight:bold;
+  border:dashed;
+  border-color: #f3dabe;
+  font-size: 20px;
+  
+}
+
+.card {
+  padding: 0 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer {
+  position: fixed;
+  text-align: right;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  
+  font-weight:bold;
+}
+

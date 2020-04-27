@@ -1,5 +1,7 @@
 package com.policymanagement.services;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
@@ -20,5 +22,8 @@ public interface PolicyVendorService {
 	public PolicyVendor getPolicyVendor(int vendorId);
 	public boolean addPolicy(Policy policy);
 	public int nextvendotId();
+	public List<Policy> getAllpolicies();
+	public Policy getpolbyid(int policyid);
+	public List<PolicyVendor> getAll();
 	
 }

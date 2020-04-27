@@ -1,5 +1,6 @@
 package com.policymanagement.controllers;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.policymanagement.dao.PolicyDao;
 import com.policymanagement.models.Policy;
 import com.policymanagement.models.PolicyVendor;
 import com.policymanagement.models.PolicyVendorLogin;
@@ -24,8 +27,8 @@ import com.policymanagement.services.PolicyVendorService;
 
 public class PolicyVendorController {
 	
-	
-	
+		@Autowired
+		private PolicyDao policydao;
 		@Autowired
 		private PolicyVendorService policyvendorService;
 		@GetMapping("/")
@@ -52,7 +55,8 @@ public class PolicyVendorController {
 					
 					PolicyVendor p1=policyvendorService.getPolicyVendor(policyvendorLogin.getVendorId());
 					String pname=p1.getPolicyvendorname();
-					session.setAttribute("username", pname);;
+					session.setAttribute("username", pname);
+					session.setAttribute("ptype", p1.getPolicytype());
 					session.setAttribute("userId", policyvendorLogin.getVendorId());
 					return "policyvendorHome";
 				}
@@ -69,10 +73,10 @@ public class PolicyVendorController {
 		@GetMapping("/policyvendorreg")
 		public String userpolicyRegisterForm(Model model)
 		{
-			//int pid=policyvendorService.nextvendotId();
+			int pid=policyvendorService.nextvendotId();
 			PolicyVendor policyvendor = new PolicyVendor();
 			
-			//policyvendor.setVendorId(pid+1);
+			policyvendor.setVendorId(pid+1);
 			model.addAttribute("policyvendorreg", policyvendor);
 			
 			return "policyvendorRegistration";
@@ -90,19 +94,12 @@ public class PolicyVendorController {
 			else {
 				PolicyVendorLogin policyvendorlogin = new PolicyVendorLogin();
 				model.addAttribute("policyvendor",policyvendorlogin);
-				//Date date = new Date();
-				
-			//policyvendor.setCertificatevaliditydate(date);
-			
-			
-				
+				policyvendor.setStatus("not yet activated");
 				int res = policyvendorService.createPolicyVendor(policyvendor);
 				
 			if(res==0)
 			{
-				model.addAttribute("message", policyvendor.getPolicyvendorname().toUpperCase()+" You are already registered");
-			
-			
+				model.addAttribute("message", policyvendor.getPolicyvendorname().toUpperCase()+" You are already registered");		
 			}
 			else if(res==1)
 			{
@@ -146,8 +143,42 @@ public class PolicyVendorController {
 				return "policyvendorHome";
 			}
 		}
-
-
+		
+		@GetMapping("/listpolicies")
+		public String listmypolicies(HttpSession session,Model model) {
+			List<Policy> policy=policyvendorService.getAllpolicies();
+			int id=(Integer)session.getAttribute("userId");
+			for(Policy p3:policy) {
+				if(p3.getPolicyvendorId()==id)
+				{
+					model.addAttribute("policyl",p3);
+				}
+			}
+			return "policyvendorHome";
+		}
+		
+		@GetMapping("/editpolicy")
+		public String editpolicydetails(@RequestParam("policyid")int pid,Model model,HttpSession session)
+		{
+			session.setAttribute("polid", pid);
+			Policy p=policyvendorService.getpolbyid(pid);
+			model.addAttribute("policy",p);
+			return "editPolicy";
+		}
+		@PostMapping("/addeditpolicy")
+		public String editedPolicy(@ModelAttribute("policy")Policy pol,Model model) {
+			
+			boolean status=policyvendorService.addPolicy(pol);
+			if(status) {
+				model.addAttribute("message","Policy edited Created");
+				return "policyvendorHome";
+			}
+			else {
+				model.addAttribute("message","Policy not Created, something went wrong");
+				return "policyvendorHome";
+			}
+			
+		}
 		@GetMapping("/logout")
 		
 		public String logout(HttpSession session)
