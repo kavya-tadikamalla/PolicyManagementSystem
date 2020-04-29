@@ -21,9 +21,8 @@ if(username==null || userid==0)
 %>
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
  <div class="topnav">
-  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back" >Home</a>
   <a href="/customer/listofpolicies" class="fas fa-user-plus back">  List of Policies</a>
-  
   <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
   <a href="/customer/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
    <a href="/customer/searchp" class="fas fa fa-search" style="float: right;"></a>

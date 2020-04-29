@@ -12,7 +12,7 @@
 <body>
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
 <div class="topnav">
-  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back" >Home</a>
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
@@ -20,28 +20,29 @@
    </div>
  
 <div class="card">
-<h2>Login Form</h2>
-
  <form:form action="/customer/customlogin" method="post" modelAttribute="custml" style="margin-top:50px;margin-left:30px;">
 	<table align="center" class="tables back" >
-		
+		<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Login Form</td></tr>
 		<tr>
-			<td>UserId<label style="color: red">*</label>:</td>
-			<td><form:input path="userId" required="required"/><br>
+			<td><i class="fas fa fa-user back" title="UserId" style="border-spacing:10px;"> UserId</i></td>
+			<td><form:input path="userId" required="required" placeholder="Enter your userId" title="Enter UserId"/><br>
+				
 				<form:errors path="userId" ></form:errors></td>
 		</tr>
 		<tr>
-			<td>Password<label style="color: red">*</label>:</td>
-			<td><form:password path="password"/><br>
+			<td><i class="fa fa-key" title="Password"> Password</i> </td>
+			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password"/><br>
 			<form:errors path="password" style="color:red"></form:errors>
+			
 			</td>
 		</tr>
-		<tr>
-		<td colspan="2" align="center"><input type="submit" value="Login" />
+		<tr align="center">
+		<td colspan="2" style="text-align: center;"><input type="submit" value="Login" class="formsubmitbutton" /></td></tr>
+		<tr><td colspan="2" style="text-align: center;"><label style="font-size: 15px;">New Customer?<a href="/customer/custregister" style="color:white;"> Register</a></label></td>
 		</tr>
 	</table>
  </form:form>
- New User<a href="/customer/custregister"> SignUp</a>
+ 
 </div>
 <footer>
 <div class="footer">

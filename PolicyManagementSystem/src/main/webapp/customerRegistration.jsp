@@ -17,66 +17,66 @@ text-align: left;
 <body>
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
 <div class="topnav">
-  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back" >Home</a>
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
 
    </div>
 <div class="card">
-<h2>Registration Form</h2>
-
  <form:form action="/customer/customerregistration" method="post" modelAttribute="customerreg" style="margin-top:50px;margin-left:30px;">
 	<table align="center" class="tables back">
+	<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;text-decoration-style:double ">Registration Form</td></tr>
 		<tr>
 			<td>UserId<label style="color: red">*</label>:</td>
-			<td><form:input path="userId" class="form-control" /><br>
+			<td><form:input path="userId" class="form-control" required="required"/><br>
 				<form:errors path="userId" ></form:errors></td>
 		</tr>
 		<tr>
 			<td>First Name<label style="color: red">*</label>:</td>
-			<td><form:input path="firstName"/><br>
+			<td><form:input path="firstName" required="required"/><br>
 				<form:errors path="firstName" ></form:errors></td>
 		</tr>
 		<tr>
 			<td>Last Name<label style="color: red">*</label>:</td>
-			<td><form:input path="lastName"/><br>
+			<td><form:input path="lastName" required="required"/><br>
 				<form:errors path="lastName" ></form:errors></td>
 		</tr>
 		<tr>
 			<td>Contact Number<label style="color: red">*</label>:</td>
-			<td><form:input path="contactNumber"/><br>
+			<td><form:input path="contactNumber" required="required"/><br>
 				<form:errors path="contactNumber" ></form:errors></td>
 		</tr>
 		<tr>
 			<td>DateOfBirth<label style="color: red">*</label>:</td>
-			<td><form:input path="dateOfBirth" type="date"/><br>
+			<td><form:input path="dateOfBirth" type="date" required="required"/><br>
 				<form:errors path="dateOfBirth" ></form:errors></td>
 		</tr>
 		<tr>
 			<td>Email<label style="color: red">*</label>:</td>
-			<td><form:input path="email" /><br>
+			<td><form:input path="email" required="required" /><br>
 				<form:errors path="email" ></form:errors></td>
 		</tr>
 		<tr>
 			<td>Password<label style="color: red">*</label>:</td>
-			<td><form:password path="password"/><br>
+			<td><form:password path="password" required="required"/><br>
 				<form:errors path="password" ></form:errors></td>
 		</tr>
 		
 		
 		<tr>
 			<td>Gender<label style="color: red">*</label>:</td>
-			<td>Male <form:radiobutton path="gender" value="Male"/>  
-				Female <form:radiobutton path="gender" value="Female"/><br></td>
+			<td> <form:radiobutton path="gender" value="Male" required="required"/>Male  
+				<form:radiobutton path="gender" value="Female"/>Female<br></td>
 		</tr>
 		
-		<tr>
-		<td colspan="3" align="center"><input type="submit" value="Register" />
+		<tr align="center">
+		<td colspan="2" style="text-align: center;"><input type="submit" value="Register" />
+		<label style="font-size: 15px;">Existing Customer?</label><a href="/customer/" style="color:slateblue;"> SignIn</a></td>
 		</tr>
 	</table>
  </form:form>
- Existing User<a href="/customer/"> SignIn</a>
+ 
 </div>
 <footer>
 <div class="footer">

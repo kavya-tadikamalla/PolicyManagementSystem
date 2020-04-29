@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.policymanagement.dao.PolicyDao;
 import com.policymanagement.models.Policy;
@@ -54,11 +55,17 @@ public class PolicyVendorController {
 				{
 					
 					PolicyVendor p1=policyvendorService.getPolicyVendor(policyvendorLogin.getVendorId());
+					if(p1.getStatus().equals("activate")) {
 					String pname=p1.getPolicyvendorname();
 					session.setAttribute("username", pname);
 					session.setAttribute("ptype", p1.getPolicytype());
 					session.setAttribute("userId", policyvendorLogin.getVendorId());
-					return "policyvendorHome";
+					return "policyvendorHome";}
+					else {
+						
+						model.addAttribute("message","You are not yet activated by the admin,please wait for Activation");
+						return "policyvendorLogin";
+					}
 				}
 			else
 			{

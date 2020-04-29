@@ -10,7 +10,7 @@
 <body class="bgimage">
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
   <div class="topnav">
-  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back" >Home</a>
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
@@ -18,12 +18,7 @@
   
    </div>
 	<div class="card">
-      <h2>Insurance</h2>
-      <table align="center" class="tables back" >
-      <tr><td>Insurance is a means of protection from financial loss.</td></tr>
-      <tr><td>It is a form of risk management,primarily used to hedge against the risk of a contingent or uncertain loss.</td></tr> 
-      <tr><td>An entity which provides insurance is known as an insurer,insurance company, insurance carrier or underwriter.</td></tr>
-      </table>
+      
  </div>
 <footer>
 <div class="footer">

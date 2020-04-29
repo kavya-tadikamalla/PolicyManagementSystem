@@ -12,46 +12,45 @@
 <body>
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
 <div class="topnav">
-  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back" >Home</a>
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
 
    </div>
-${message}
+   
+
 <div class="card">
-<h2>Login Form</h2>
+
+${message}
  <form:form action="/policyvendor/policyvendorlogin" method="post" modelAttribute="policyvendor" style="margin-top:50px;">
 
-<table align="center" class="tables back" >
+<table align="center" class="tables back"  >
+<row style="width:40%">
+<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Login Form</td></tr>
 <tr>
-<td>User ID<label style="color: red">*</label>:</td>
+<td><i class="fas fa fa-user back" title="UserId" style="border-spacing:10px;"> UserId</i></td>
 <td>
-
-<form:input path="vendorId" class="form-control" />
-<br>
+<form:input path="vendorId" class="form-control" required="required" placeholder="Enter your userId" title="Enter UserId"/><br>
+</td>
  <form:errors path="vendorId" cssClass="errors"></form:errors> 
-</td>
+
 </tr>
 
 <tr>
-<td>Password<label style="color: red">*</label>:</td>
-<td><form:password path="password" class="form-control"/>
+<td><i class="fa fa-key" title="Password"> Password</i> </td>
+<td colspan="3"><form:password path="password" class="form-control" required="required" placeholder="Enter your Password" title="Enter Password"/>
 <br>
+
 <form:errors path="password" cssClass="errors"></form:errors>
-</td>
+</td><td></td><td></td>
+</tr>
+<tr align="center">
+
+<td colspan="2" style="text-align:center;"><input type="submit" value="Login" class="formsubmitbutton" /></td></tr>
+		<tr><td colspan="2" style="text-align: center;"><label style="font-size: 15px;">NewPolicyVendor?<a href="/policyvendor/policyvendorreg" style="color:white;"> Register</a></label></td>
 </tr>
 
-
-
-
-
-
-<tr>
-
-<td colspan="2" align="center"><input type="submit" value="Login" class="formsubmitbutton" />
-
-</tr>
 </table>
 
 
@@ -59,7 +58,7 @@ ${message}
 </form:form>
 
 
-New User Policy<a href="/policyvendor/policyvendorreg" style="color:slateblue;"> Register</a>
+
 </div>
 <footer>
 <div class="footer">

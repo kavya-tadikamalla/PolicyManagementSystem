@@ -7,20 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Policy Management-Admin</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
-<script type="text/javascript" src='https://kit.fontawesome.com/a076d05399.js'>
-function validate(textbox)
-{
-
-	if(textbox.value=='')
-		{
-		
-		textbox.setCustomValidity("Address field should not be emplty")
-		textbox.style.border="2px solid red";
-		} 
-
-}
-
-</script>
+<script type="text/javascript" src='https://kit.fontawesome.com/a076d05399.js'></script>
 <style type="text/css">
 tr,td{
 text-align: left;
@@ -30,7 +17,7 @@ text-align: left;
 <body>
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
 <div class="topnav">
-  <a href="/home/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back" >Home</a>
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
@@ -44,7 +31,9 @@ text-align: left;
 <tr>
 <td></td>
 
-<td colspan="2" align="center"><h2>Registration Form</h2></td>
+<tr align="center">
+<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline;text-decoration-style:double ">
+Registration Form</td></tr>
 </tr>
 <tr>
 <td>VendorId<label style="color: red">*</label>:</td>
@@ -56,7 +45,7 @@ text-align: left;
 <td>Policy Vendor Name<label style="color: red">*</label>:</td>
 <td>
 
-<form:input path="policyvendorname" class="form-control" required="required" oninvalid="setCustomValidity('Name should not be empty');"/>
+<form:input path="policyvendorname" class="form-control" required="required" />
 
 </td>
 </tr>
@@ -69,13 +58,13 @@ text-align: left;
 <td>Policy Vendor Reg. No<label style="color: red">*</label>:</td>
 <td>
 
-<form:input path="policyvendorregno" class="form-control" required="required"/>
+<form:input path="policyvendorregno" class="form-control" required="required" />
 
 </td>
 <td>Policy Type<label style="color: red">*</label>:</td>
 <td>
 
-<form:select path="policytype" class="form-control">
+<form:select path="policytype" class="form-control" required="required">
 <form:option value="" label="--Select Policy Type--"/>
 <form:option value="LifeInsurance" label="LifeInsurance"/>
 <form:option value="MedicalInsurance" label="MedicalInsurance"/>
@@ -94,11 +83,11 @@ text-align: left;
 <td>Address<label style="color: red">*</label>:</td>
 <td>
 
-<form:input path="address" class="form-control" required="required" oninvalid="validate(this)"/>
+<form:input path="address" class="form-control" required="required" />
 </td>
 <td>Country<label style="color: red">*</label>:</td>
 <td>
-<form:select path="country" class="form-control">
+<form:select path="country" class="form-control" required="required">
 <form:option value="" label="--Select Country--"/>
 <form:option value="US" label="US"/>
 <form:option value="India" label="India"/>
@@ -113,7 +102,7 @@ text-align: left;
 <tr>
 <td>State<label style="color: red">*</label>:</td>
 <td>
-<form:select path="State" class="form-control">
+<form:select path="State" class="form-control" required="required">
 <form:option value="" label="--Select Policy Type--"/>
 <form:option value="Telangana" label="Telangana"/>
 <form:option value="AP" label="AP"/>
@@ -123,7 +112,7 @@ text-align: left;
 <td>Zipcode<label style="color: red">*</label>:</td>
 <td>
 
-<form:input path="zipcode" class="form-control"/>
+<form:input path="zipcode" class="form-control" required="required"/>
 </td>
 </tr>
 <tr>
@@ -134,7 +123,7 @@ text-align: left;
 <td><form:input path="dateOfBirth" type="date"/><br>
 <td>Email address<label style="color: red">*</label>:</td>
 <td>
-<form:input type="email" path="emailaddress" class="form-control" required="required"  />
+<form:input type="email" path="emailaddress" class="form-control" required="required" />
 </td>
 </tr>
 <tr>
@@ -143,12 +132,12 @@ text-align: left;
 <tr>
 <td>Contact Number<label style="color: red">*</label>:</td>
 <td>
-<form:input path="contactnumber" class="form-control"/>
+<form:input path="contactnumber" class="form-control" required="required" />
 
 </td>
 <td>Web Site<label style="color: red">*</label>:</td>
 <td>
-<form:input path="website" class="form-control"/>
+<form:input path="website" class="form-control" required="required" />
 
 </td>
 </tr>
@@ -158,12 +147,12 @@ text-align: left;
 <tr>
 <td>Certificate Issued Date<label style="color: red">*</label>:</td>
 <td>
-<form:input path="certificateissueddate" type="date" class="form-control"/>
+<form:input path="certificateissueddate" type="date" class="form-control" required="required" />
 
 </td>
 <td>Certificate Validity Date<label style="color: red">*</label>:</td>
 <td>
-<form:input path="certificatevaliditydate" type="date" class="form-control"/>
+<form:input path="certificatevaliditydate" type="date" class="form-control" required="required" />
 
 </td>
 </tr>
@@ -173,11 +162,11 @@ text-align: left;
 <tr>
 <td>Year of Establishment<label style="color: red">*</label>:</td>
 <td>
-<form:input path="yearofestablishment" class="form-control"/>
+<form:input path="yearofestablishment" class="form-control" required="required" />
 
 </td>
 <td>Password<label style="color: red">*</label>:</td>
-<td><form:password path="password" class="form-control" />
+<td><form:password path="password" class="form-control" required="required" />
 
 </td>
 </tr>
