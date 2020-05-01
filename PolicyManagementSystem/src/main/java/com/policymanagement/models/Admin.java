@@ -38,6 +38,18 @@ public class Admin {
 	private String password;
 	@Column
 	private String gender;
+	@Column
+	private String secretquestion1;
+	@Column
+	private String answer1;
+	@Column
+	private String secretquestion2;
+	@Column
+	private String answer2;
+	@Column
+	private String secretquestion3;
+	@Column
+	private String answer3;
 
 	/*
 	 * @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -104,6 +116,41 @@ public class Admin {
 	 * ", password=" + password + ", gender=" + gender + ", security=" + security +
 	 * "]"; }
 	 */
-	
+	public String getSecretquestion1() {
+		return secretquestion1;
+	}
+	public void setSecretquestion1(String secretquestion1) {
+		this.secretquestion1 = secretquestion1;
+	}
+	public String getAnswer1() {
+		return answer1;
+	}
+	public void setAnswer1(String answer1) {
+		this.answer1 = answer1;
+	}
+	public String getSecretquestion2() {
+		return secretquestion2;
+	}
+	public void setSecretquestion2(String secretquestion2) {
+		this.secretquestion2 = secretquestion2;
+	}
+	public String getAnswer2() {
+		return answer2;
+	}
+	public void setAnswer2(String answer2) {
+		this.answer2 = answer2;
+	}
+	public String getSecretquestion3() {
+		return secretquestion3;
+	}
+	public void setSecretquestion3(String secretquestion3) {
+		this.secretquestion3 = secretquestion3;
+	}
+	public String getAnswer3() {
+		return answer3;
+	}
+	public void setAnswer3(String answer3) {
+		this.answer3 = answer3;
+	}
 
 }

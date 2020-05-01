@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.policymanagement.dao.AdminDao;
 import com.policymanagement.dao.HelpDao;
 import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
-
+import com.policymanagement.models.ForgotUid;
 import com.policymanagement.models.Help;
 import com.policymanagement.models.PolicyVendor;
 
@@ -30,7 +30,9 @@ import com.policymanagement.services.AdminService;
 @RequestMapping("/admin")
 public class AdminController
 {
-	
+
+	@Autowired
+	private AdminDao admindao;
 	@Autowired
 	private AdminService adminservice;
 	@Autowired
@@ -204,7 +206,54 @@ public class AdminController
 		return "adminHome";
 	}
 	
-
+	@GetMapping("/forgotuid")
+	public String fid(Model model){
+		model.addAttribute("name",new ForgotUid());
+		return "forgotid";
+	}
+	@PostMapping("/forgotuid1")
+	public int fid1(@ModelAttribute("name") ForgotUid fid,Model model)
+	{
+		int b=adminservice.fid(fid);
+		if(b!=0)
+		{
+	  	model.addAttribute("message",b+" is your id");
+		}
+		else
+		{
+			model.addAttribute("message", "Incorrect credentials");
+		}
+		return b;
+	
+	}
+	@GetMapping("/forgotpswd")
+	public String fpwd(Model model){
+		model.addAttribute("name1",new ForgotUid());
+		return "forgotpwd";
+	}
+	@PostMapping("/forgotpwd1")
+	public String fpwd1(@ModelAttribute("name1") ForgotUid fid,Model model)
+	{
+		boolean b=adminservice.fpwd(fid);
+		if(b==true)
+		{
+	  	  return "resetPwd";
+		}
+		else
+		{
+			model.addAttribute("message", "Incorrect credentials");
+			return "resetPwd";
+		}
+	}
+	@PostMapping("/updatepwd")
+	public String updatePassword(@ModelAttribute("name1") ForgotUid forgetUID,Model model)
+	{
+		Admin ad =admindao.findByadminId(forgetUID.getUid());
+		ad.setPassword(forgetUID.getPwd());
+		admindao.save(ad);
+		model.addAttribute("message","your password has been updated");
+		return "resetPwd";
+	}
 	@GetMapping("/logout")
 	public String logout(HttpSession session)
 	{
