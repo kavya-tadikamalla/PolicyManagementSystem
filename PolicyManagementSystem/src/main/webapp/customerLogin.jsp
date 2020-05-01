@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,13 @@
    </div>
  
 <div class="card">
- <form:form action="/customer/customlogin" method="post" modelAttribute="custml" style="margin-top:50px;margin-left:30px;">
+<c:if test="${message!=null }">  
+   <script>alert('<c:out value="${message}"/>');
+	            
+				</script>  
+				</c:if>
+
+ <form:form action="/customer/customlogin" method="post" modelAttribute="custml" style="margin-top:50px;">
 	<table align="center" class="tables back" >
 		<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Login Form</td></tr>
 		<tr>

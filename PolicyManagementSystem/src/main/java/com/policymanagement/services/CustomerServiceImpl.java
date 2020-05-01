@@ -9,9 +9,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.policymanagement.dao.CustomerDao;
+import com.policymanagement.dao.HelpDao;
+import com.policymanagement.dao.PaymentsDao;
 import com.policymanagement.dao.PolicyDao;
 import com.policymanagement.models.Customer;
 import com.policymanagement.models.CustomerLogin;
+import com.policymanagement.models.Help;
+import com.policymanagement.models.Payments;
 import com.policymanagement.models.Policy;
 
 @Service
@@ -21,7 +25,10 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao custdao;
 	@Autowired
 	private PolicyDao policydao;
-	
+	@Autowired
+	private PaymentsDao paydao;
+	@Autowired
+	private HelpDao helpdao;
 	 @PostConstruct
 	public void init() {
 		long count=custdao.count();
@@ -96,6 +103,27 @@ public class CustomerServiceImpl implements CustomerService {
 		return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean buypolicy(Payments payment) {
+		Payments pay=paydao.save(payment);
+		if(pay!=null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public int help(Help h) {
+		Help h1= helpdao.save(h);
+		if(h!=null) {
+			return 1;
+		}
+		else {
+			return 2;
+		}
+	
 	}
 
 	

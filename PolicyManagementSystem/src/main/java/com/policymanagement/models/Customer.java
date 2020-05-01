@@ -19,21 +19,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table
 public class Customer {
-		@Id
+	@Id
 	@Generated(value="assigned")
 	private int userId;
 	@Column
-	//@NotEmpty(message = "First Name is required")
 	private String firstName;
 	@Column
-	//@NotEmpty(message = "Last Name is required")
 	private String lastName;
 	@Column
-	//@NotEmpty(message = "ContactNumber is required")
-	//@Pattern(regexp = "[6789][0-9]{9}",message = "Invalid Mobile")
 	private String contactNumber;
 	@Column
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	@Column
@@ -42,6 +37,8 @@ public class Customer {
 	private String password;
 	@Column
 	private String gender;
+	@Column
+	private double balance;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(name = "pay_table",joinColumns = {@JoinColumn(name="userId",referencedColumnName = "userId")},inverseJoinColumns ={@JoinColumn(name="policyId", referencedColumnName ="policyId" )})
 	private List<Policy> policy;
@@ -102,12 +99,20 @@ public class Customer {
 	public void setPolicy(List<Policy> policy) {
 		this.policy = policy;
 	}
+	
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 	@Override
 	public String toString() {
 		return "Customer [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber="
 				+ contactNumber + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", password=" + password
-				+ ", gender=" + gender + ", policy=" + policy + "]";
+				+ ", gender=" + gender + ", balance=" + balance + ", policy=" + policy + "]";
 	}
+	
 	
 	
 	

@@ -30,19 +30,17 @@ if(username==null || userid==0)
 }
 %><div class="header"><header><b class="heading">Policy Management</b></header></div>
   <div class="topnav">
-  <a href="/" class="fas fa fa-home back" >Home</a>
+  <a href="/adminHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/admin/listvendors" class="fas fa-user-plus back"> List PolicyVendors</a>
-  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
-  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
-  <a href="/admin/logout/" class="fas fa-power-off back" >  Logout</a>
-  
+  <a href="/admin/helpreq" class="fas fa-user-alt back">  Help</a>
+  <a href="/admin/logout/" class="fas fa-power-off back" style="float: right;" >  Logout</a>
+  <a href="/adminHome.jsp" style="float: right;">Welcome <%=username %>(<%=userid %>)</a>
    </div>
-  <label text-align="left">Welcome <%=username %>(<%=userid %>)</label>
+  
 </div>
     <div class="card">     
-      <h2>Display</h2>
-      
-       <table align="center" class="tables back" border="1px solid" >
+      <table align="center" class="tables back" border="1px solid" >
+       <c:if test="${vendorlist!=null}">
        <tr>
        <td>Id</td><td>Name</td><td>Reg_No.</td><td>PolicyType</td>
        <td>email</td><td>Mobile</td>
@@ -70,12 +68,43 @@ if(username==null || userid==0)
     </tr>
 
 </c:forEach>
+</c:if>
+<c:if test="${helpList!=null }">
+<tr>
+<td>UserId</td>
+<td>Issue</td>
+<td>Description</td>
+<td>Status</td>
+<td>Action</td>
+</tr>
+<c:forEach items="${helpList}" var="u">
+<tr>
+<td>${u.userId}</td>
+<td>${u.issue}</td>
+<td>${u.description}</td>
+<td>${u.status}</td>
+<td>
+<c:choose>
+<c:when test="${u.status =='solved' }">
 
+<button><a  style="color:black;" disabled="disabled" title="link disabled">Respond</a></button>
+</c:when>
+<c:otherwise>
+<button><a href="/admin/respondhelp?helpid=${u.hid}" style="color:black;">Respond</a></button>
+</c:otherwise>
+</c:choose>
+</td>
+</tr>
+</c:forEach>
+</c:if>
       </table>
   <script type="text/javascript"></script>
-  ${message}  
+  <label style="color:white;font-size:large;"><c:out value="${message}"></c:out></label>  
     
-  
+ <c:if test="${message!=null }">  
+   <script>alert('<c:out value="${message}"/>');
+	            
+				</script> </c:if>
 </div>
 <footer>
 <div class="footer">

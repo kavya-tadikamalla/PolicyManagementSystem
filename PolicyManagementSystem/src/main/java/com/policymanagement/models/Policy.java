@@ -1,10 +1,17 @@
 package com.policymanagement.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.servlet.http.HttpSession;
@@ -13,7 +20,7 @@ import javax.websocket.Session;
 @Entity
 @Table
 public class Policy {
-	@SequenceGenerator(name = "elPolicySeq",initialValue = 3030, allocationSize = 1, sequenceName = "EL_POLICY_SEQ")
+	@SequenceGenerator(name = "elPolicySeq",initialValue = 4000, allocationSize = 1, sequenceName = "EL_POLICY_SEQ")
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "elPolicySeq")
 	private int  policyId;
@@ -29,6 +36,9 @@ public class Policy {
 	private String policytype;
 	@Column
 	private double fineperday;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(name = "policy_pay_table",joinColumns = {@JoinColumn(name="policyId",referencedColumnName = "policyId")},inverseJoinColumns ={@JoinColumn(name="payId", referencedColumnName ="payId" )})
+	private List<Payments> payment;
 	
 	public int getPolicyvendorId() {
 		return policyvendorId;
@@ -73,13 +83,24 @@ public class Policy {
 	public void setFineperday(double fineperday) {
 		this.fineperday = fineperday;
 	}
+	public List<Payments> getPayment() {
+		return payment;
+	}
+	public void setPayment(List<Payments> payment) {
+		this.payment = payment;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyName=" + policyName + ", durationOfPolicy=" + durationOfPolicy
 				+ ", premiumAmount=" + premiumAmount + ", policyvendorId=" + policyvendorId + ", policytype="
-				+ policytype + ", fineperday=" + fineperday + "]";
+				+ policytype + ", fineperday=" + fineperday + ", payment=" + payment + "]";
 	}
-	
+	/*
+	 * @Override public String toString() { return "Policy [policyId=" + policyId +
+	 * ", policyName=" + policyName + ", durationOfPolicy=" + durationOfPolicy +
+	 * ", premiumAmount=" + premiumAmount + ", policyvendorId=" + policyvendorId +
+	 * ", policytype=" + policytype + ", fineperday=" + fineperday + "]"; }
+	 */
 	
 	
 

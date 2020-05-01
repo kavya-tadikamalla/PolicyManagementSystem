@@ -1,6 +1,7 @@
 package com.policymanagement.controllers;
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import javax.validation.Valid;
@@ -13,14 +14,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import com.policymanagement.dao.HelpDao;
 import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
-import com.policymanagement.models.Customer;
+
+import com.policymanagement.models.Help;
 import com.policymanagement.models.PolicyVendor;
+
 import com.policymanagement.services.AdminService;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController
@@ -30,6 +35,8 @@ public class AdminController
 	private AdminService adminservice;
 	@Autowired
 	private PolicyVendorDao policyvendordao;
+	@Autowired
+	private HelpDao helpdao;
 	@GetMapping("/")
 	public String adminloginform(Model model)
 	{
@@ -67,16 +74,19 @@ public class AdminController
 		}
 	}
 	@GetMapping("/register")
-	public String adminRegisterForm(Model model)
+	public String adminRegisterForm(Model model,Model secmodel)
 	{
 		int aid=adminservice.nextadminId();
 		Admin admin=new Admin();
 		admin.setAdminId(aid+1);
 		model.addAttribute("adreg",admin);
+		//Security secure = new Security();
+		//secmodel.addAttribute("securityque", secure);
 		return "adminRegistration";
 	}
 	@PostMapping("/adminreg")
-	public String adminRegister(@Valid @ModelAttribute("adreg") Admin admin,BindingResult result,Model model)
+	public String adminRegister(
+			@Valid @ModelAttribute("adreg") Admin admin/* ,@ModelAttribute("securityque") SecurityQ sec */,BindingResult result,Model model)
 	{
 		if(result.hasErrors())
 		{
@@ -84,6 +94,8 @@ public class AdminController
 		}
 		
 		else {
+			//sec.setUserId(admin.getAdminId());
+			//admin.setSecurity(sec);
 	
 			model.addAttribute("adlogin",new AdminLogin());	
 			
@@ -171,9 +183,29 @@ public class AdminController
 		return "adminHome";
 		}
 	}
+	@GetMapping("/helpreq")
+	public String listofHelpReq(HttpSession session,Model model)
+	{
+		List<Help> helpL=adminservice.getAllh();
+		model.addAttribute("helpList", helpL);
+		return "adminHome";
+	}
+	@GetMapping("/respondhelp")
+	public String reponsehelp(@RequestParam("helpid")int hId,Model model)
+	{
+		Help help=helpdao.findByHid(hId);
+		String s=help.getStatus();
+		if(!s.equals("solved")) {
+			help.setStatus("solved");
+			helpdao.save(help);
+			model.addAttribute("message", "Issue Resolved");
+			
+		}
+		return "adminHome";
+	}
+	
 
 	@GetMapping("/logout")
-	
 	public String logout(HttpSession session)
 	{
 		session.invalidate();

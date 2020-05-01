@@ -1,0 +1,96 @@
+package com.policymanagement.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class SecurityQ {
+	@SequenceGenerator(name = "securitySeq",initialValue = 8000, allocationSize = 1, sequenceName = "SEC_SEQ")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "securitySeq")
+	private int sid;
+	@Column
+	private int userId;
+	@Column
+	private String contactNumber;
+	@Column
+	private String questio1;
+	@Column
+	private String question2;
+	@Column
+	private String question3;
+	@Column
+	private String answer1;
+	@Column
+	private String answer2;
+	@Column
+	private String answer3;
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getContactNumber() {
+		return contactNumber;
+	}
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+	public String getQuestio1() {
+		return questio1;
+	}
+	public void setQuestio1(String questio1) {
+		this.questio1 = questio1;
+	}
+	public String getQuestion2() {
+		return question2;
+	}
+	public void setQuestion2(String question2) {
+		this.question2 = question2;
+	}
+	public String getQuestion3() {
+		return question3;
+	}
+	public void setQuestion3(String question3) {
+		this.question3 = question3;
+	}
+	public String getAnswer1() {
+		return answer1;
+	}
+	public void setAnswer1(String answer1) {
+		this.answer1 = answer1;
+	}
+	public String getAnswer2() {
+		return answer2;
+	}
+	public void setAnswer2(String answer2) {
+		this.answer2 = answer2;
+	}
+	public String getAnswer3() {
+		return answer3;
+	}
+	public void setAnswer3(String answer3) {
+		this.answer3 = answer3;
+	}
+	@Override
+	public String toString() {
+		return "SecurityQ [sid=" + sid + ", userId=" + userId + ", contactNumber=" + contactNumber + ", questio1="
+				+ questio1 + ", question2=" + question2 + ", question3=" + question3 + ", answer1=" + answer1
+				+ ", answer2=" + answer2 + ", answer3=" + answer3 + "]";
+	}
+	
+
+}

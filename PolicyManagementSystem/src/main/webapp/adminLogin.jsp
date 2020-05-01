@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,24 +21,22 @@
    </div>
 <div class="card ">
 
- <form:form action="/admin/adminlogin" method="post" modelAttribute="adlogin" style="margin-top:50px;margin-left:30px;">
+
+ <form:form action="/admin/adminlogin" method="post" modelAttribute="adlogin" style="margin-top:50px;">
 	<table align="center" class="tables back" >
 	<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Login Form</td></tr>
 		
 		<tr>
 			<td><i class="fas fa fa-user back" title="UserId" style="border-spacing:10px;"> UserId</i></td>
 			<td ><form:input path="adminId" required="required" placeholder="Enter your userId" title="Enter UserId"/><br>
-			
-			<form:errors path="adminId" ></form:errors>
 			</td>
 		</tr>
 		<tr>
 			<td><i class="fa fa-key" title="Password"> Password</i> </td>
 			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password"/><br>
-			<i class="fa fa-key tablealign" title="Password"> Password</i> </td>
-			<form:errors path="password" ></form:errors>
 			</td>
 		</tr>
+		
 		<tr align="center">
 		<td colspan="2" style="text-align: center;"><input type="submit" value="Login" class="formsubmitbutton"/></td></tr>
 		<tr><td colspan="2" style="text-align: center;"><label style="font-size: 15px;">New Admin?<a href="/admin/register/" style="color:white;"> Register</a></label></td>
@@ -46,6 +45,11 @@
  </form:form>
  
 		
+<c:if test="${message!=null }">  
+   <script>alert('<c:out value="${message}"/>');
+	            
+				</script>  
+				</c:if>
 
 </div>
 <footer>

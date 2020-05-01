@@ -1,0 +1,26 @@
+package com.policymanagement.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class SecurityQ {
+	@SequenceGenerator(name = "securitySeq",initialValue = 8000, allocationSize = 1, sequenceName = "HELP_SEQ")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "securitySeq")
+	private int sid;
+	private int userId;
+	private String contactNumber;
+	private String questio1;
+	private String question2;
+	private String question3;
+	private String answer1;
+	private String answer2;
+	private String answer3;
+
+}

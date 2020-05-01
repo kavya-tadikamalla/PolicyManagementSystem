@@ -1,0 +1,7 @@
+package com.policymanagement.services;
+import java.util.List;
+
+import com.policymanagement.models.Help;
+public interface HelpService {
+	public List<Help> helplist();
+}

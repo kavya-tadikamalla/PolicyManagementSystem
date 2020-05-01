@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,12 @@
    
 
 <div class="card">
+<c:if test="${message!=null }">  
+   <script>alert('<c:out value="${message}"/>');
+	            
+				</script>  
+				</c:if>
 
-${message}
  <form:form action="/policyvendor/policyvendorlogin" method="post" modelAttribute="policyvendor" style="margin-top:50px;">
 
 <table align="center" class="tables back"  >
@@ -49,12 +54,10 @@ ${message}
 
 <td colspan="2" style="text-align:center;"><input type="submit" value="Login" class="formsubmitbutton" /></td></tr>
 		<tr><td colspan="2" style="text-align: center;"><label style="font-size: 15px;">NewPolicyVendor?<a href="/policyvendor/policyvendorreg" style="color:white;"> Register</a></label></td>
+
 </tr>
 
 </table>
-
-
-
 </form:form>
 
 

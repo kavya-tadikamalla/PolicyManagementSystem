@@ -32,7 +32,7 @@ text-align: left;
 <td></td>
 
 <tr align="center">
-<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline;text-decoration-style:double ">
+<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
 Registration Form</td></tr>
 </tr>
 <tr>
@@ -123,7 +123,7 @@ Registration Form</td></tr>
 <td><form:input path="dateOfBirth" type="date"/><br>
 <td>Email address<label style="color: red">*</label>:</td>
 <td>
-<form:input type="email" path="emailaddress" class="form-control" required="required" />
+<form:input  path="emailaddress" class="form-control" required="required" />
 </td>
 </tr>
 <tr>
@@ -176,7 +176,7 @@ Registration Form</td></tr>
 
 <tr><td></td>
 <td colspan="2" align="center"> <input type="submit" value="Register" class="formsubmitbutton" /><!-- </td> -->
-<label style="font-size: 15px;">Existing PolicyVendor?</label><a href="/policyvendor/" style="color:slateblue;"> SignIn</a></td></tr>
+<label style="font-size: 15px;">Existing PolicyVendor?</label><a href="/policyvendor/" style="color:white;"> SignIn</a></td></tr>
 </table>
 </form:form>
 

@@ -1,0 +1,104 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Policy Management-PolicyVendor</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+
+<body>
+  <%
+int pid=Integer.parseInt(request.getParameter("policyId"));
+int uid=Integer.parseInt(request.getParameter("userId"));
+double amt=Double.parseDouble(request.getParameter("amount"));
+int rmnts=Integer.parseInt(request.getParameter("renewalmonths"));
+double finepd=Double.parseDouble(request.getParameter("fineperday"));
+double finea=Double.parseDouble(request.getParameter("fineamount"));
+%>
+<div class="card">
+<h2>Policy Payment Form</h2>
+ <form:form action="#" name="payform" method="post" modelAttribute="payment" style="margin-top:50px;margin-left:30px;">
+
+<table align="center" class="tables back" >
+
+<tr>
+<td>PolicyId  :</td><%=pid %>
+<td>
+
+<form:input path="policyId"  class="form-control"/>
+<br>
+ <form:errors path="policyId" cssClass="errors"></form:errors> 
+</td>
+</tr>
+<tr>
+<td>My Id  :</td><%=uid %>
+<td>
+
+<form:input path="userId" class="form-control"/>
+<br>
+ <form:errors path="userId" cssClass="errors"></form:errors> 
+</td>
+</tr>
+<tr>
+<td>Amount:</td><%=amt %>
+<td>
+
+<form:input path="amount" class="form-control"/>
+<br>
+ <form:errors path="amount" cssClass="errors"></form:errors> 
+</td>
+</tr>
+
+<tr>
+<td>renewalmonths :</td><%=rmnts %>
+<td>
+
+<form:input path="renewalmonths" class="form-control"/>
+<br>
+ <form:errors path="renewalmonths" cssClass="errors"></form:errors> 
+</td>
+</tr>
+<tr>
+<td>finePerday:</td><%=finepd %>
+<td>
+
+<form:input path="fineperday" class="form-control"/>
+<br>
+ <form:errors path="fineperday" cssClass="errors"></form:errors> 
+</td>
+</tr>
+<tr>
+<td>fineamount:</td>
+<td>
+
+<form:input path="fineamount"  class="form-control"/>
+<br>
+ <form:errors path="fineamount" cssClass="errors"></form:errors> 
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center"><input type="submit" value="SelectPaymentMethod" class="formsubmitbutton" />
+</tr>
+</table>
+</form:form>
+</div>
+<%
+
+RequestDispatcher rd = request.getRequestDispatcher("customerHome.jsp");
+rd.include(request, response);
+
+%>
+
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+</div> 
+</footer>
+</body>
+</html>

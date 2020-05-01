@@ -1,0 +1,12 @@
+package com.policymanagement.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.Auto_Identication.Auto.Identication.Models.BankEmployee;
+import com.Auto_Identication.Auto.Identication.Models.Security;
+
+public interface SecurityQDao extends JpaRepository<Security, String> {
+	
+	public Security findByUserId(String userId);
+
+}

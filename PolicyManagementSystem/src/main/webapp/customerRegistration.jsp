@@ -26,7 +26,7 @@ text-align: left;
 <div class="card">
  <form:form action="/customer/customerregistration" method="post" modelAttribute="customerreg" style="margin-top:50px;margin-left:30px;">
 	<table align="center" class="tables back">
-	<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;text-decoration-style:double ">Registration Form</td></tr>
+	<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Registration Form</td></tr>
 		<tr>
 			<td>UserId<label style="color: red">*</label>:</td>
 			<td><form:input path="userId" class="form-control" required="required"/><br>
@@ -72,7 +72,7 @@ text-align: left;
 		
 		<tr align="center">
 		<td colspan="2" style="text-align: center;"><input type="submit" value="Register" />
-		<label style="font-size: 15px;">Existing Customer?</label><a href="/customer/" style="color:slateblue;"> SignIn</a></td>
+		<label style="font-size: 15px;">Existing Customer?</label><a href="/customer/" style="color:white;"> SignIn</a></td>
 		</tr>
 	</table>
  </form:form>

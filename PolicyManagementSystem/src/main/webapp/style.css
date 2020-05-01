@@ -2,15 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
 * {
   box-sizing: border-box;
-  font-family:Times New Roman;
+  font-family:Times New Roman; 
+  
 }
 body {
   font-family: Times New Roman;
   padding: 10px;
-  background-image: url("poli.jpg");
+  background-image: url("projectbg.jpg");
   background-repeat: no-repeat;
   background-size:cover;
   background-blend-mode: luminosity;
+  
   
    
 }
@@ -21,9 +23,10 @@ body {
   background-color: none;
   /*background:rgb(255, 255, 255);*/
   background:black;
-  opacity:0.7;
+  opacity:0.8;
   text-align:center;
   padding-top: 2px;
+  
 }
 
 .heading
@@ -31,6 +34,7 @@ body {
     font-size:  25px;
     text-align:center;
     color:white;
+    
 	
 }
 
@@ -39,9 +43,10 @@ body {
   font-family: Times New Roman;
   overflow: hidden;
   background-color: none;
-  /*background:rgb(255, 255, 255);*/
+  position:fixed;
   background:black;
-  opacity:0.7;
+  width:97.35%;
+  opacity:0.8;
   
   
   
@@ -50,7 +55,7 @@ body {
 /* Style the topnav links */
 .topnav a 
 {
-  font-size:25px;
+  font-size:20px;
   float:left;
   display: block;
   color:white;
@@ -64,25 +69,28 @@ body {
 
 .fas fa-power-off
 {
-	font-size:24px;
+	font-size:20px;
 	
 }
 .fas fa-user-circle
 {
-	font-size:24px;
+	font-size:20px;
 	
 }
 .fas fa-user-plus
 {
-	font-size:24px;
+	font-size:20px;
 }
 .fas fa-user-alt
 {
-	font-size:24px;
+	font-size:20px;
 }
 .fas fa fa-home
 {
-	font-size:24px;
+	font-size:20px;
+}
+.far fa fa-bell{
+	font-size:20px;
 }
 /* Change color on hover */
 .topnav a:hover {
@@ -99,7 +107,7 @@ body {
   font-size: 20px;
   /*background-color: #ebebeb;*/
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  background-color: rgba(0,0,0, 0.9); /* Black w/opacity/see-through */
   color: #e6e6e6;
   height: 50%;
    
@@ -112,7 +120,7 @@ i{
 }
 .card {
   padding: 0 20px;
-  margin-top: 20px;
+  margin-top: 100px;
   text-align: center;
   
 }
@@ -134,7 +142,7 @@ text-align: left;
   width: 100%;  
   font-weight:bold;
 }
-input[type=text],[type=date],[type=password]{
+input[type=text],[type=date],[type=password],[type=number]{
 	background: transparent;
     border: none;
     border-bottom: 1px solid  #ebebeb;
@@ -143,14 +151,19 @@ input[type=text],[type=date],[type=password]{
     padding : 8px;
 }
 input[type=submit] {
-  background-color: #121212;
+  background-color: #0a0a0a;
   color: white;
   padding: 5px 10px;
-  border: none;
+  border: 3px;
+  border-color:black;
   border-radius: 4px;
   cursor: pointer;
+  font-size: large;
   
 }
 radiobutton{
 	display:inline;
 }
+
+
+

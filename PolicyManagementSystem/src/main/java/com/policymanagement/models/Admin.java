@@ -3,9 +3,13 @@ package com.policymanagement.models;
 import java.util.Date;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -20,14 +24,10 @@ public class Admin {
 	@Generated(value="assigned")
 	private int adminId;
 	@Column
-	//@NotEmpty(message = "First Name is required")
 	private String firstName;
 	@Column
-	//@NotEmpty(message = "Last Name is required")
 	private String lastName;
 	@Column
-	//@NotEmpty(message = "Contact Number is required")
-	//@Pattern(regexp = "[6789][0-9]{9}",message = "Invalid Mobile")
 	private String contactNumber;
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -35,11 +35,19 @@ public class Admin {
 	@Column
 	private String email;
 	@Column
-	//@NotEmpty(message = "Password is required")
 	private String password;
 	@Column
-	//@NotEmpty(message = "Gender is required")
 	private String gender;
+
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	 * 
+	 * @JoinColumn(name="s_no",referencedColumnName ="id") private Security
+	 * security;
+	 * 
+	 * public Security getSecurity() { return security; } public void
+	 * setSecurity(Security security) { this.security = security; }
+	 */
 	public int getAdminId() {
 		return adminId;
 	}
@@ -89,13 +97,13 @@ public class Admin {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	@Override
-	public String toString() {
-		return "Admin [adminId=" + adminId + ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber="
-				+ contactNumber + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", password=" + password
-				+ ", gender=" + gender + "]";
-	}
-	
+	/*
+	 * @Override public String toString() { return "Admin [adminId=" + adminId +
+	 * ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber=" +
+	 * contactNumber + ", dateOfBirth=" + dateOfBirth + ", email=" + email +
+	 * ", password=" + password + ", gender=" + gender + ", security=" + security +
+	 * "]"; }
+	 */
 	
 
 }

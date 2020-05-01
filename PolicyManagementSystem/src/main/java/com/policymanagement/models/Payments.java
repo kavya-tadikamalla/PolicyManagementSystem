@@ -10,11 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table
 public class Payments {
-	@SequenceGenerator(name = "paySeq",initialValue = 4001, allocationSize = 1,sequenceName = "PAY_SEQ")
+	@SequenceGenerator(name = "paySeq",initialValue = 5000, allocationSize = 1,sequenceName = "PAY_SEQ")
 	@Id()
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paySeq")	
 	private int payid;
@@ -25,16 +26,33 @@ public class Payments {
 	@Column
 	private double amount;
 	@Column
-	private int renewalmonths;
+	//@DateTimeFormat(style = "dd-mm-yyyy")
+	private Date nextpayDate;
 	@Column
 	private String reminder;
 	@Column
-	@DateTimeFormat
+	@CreationTimestamp
 	private Date lastpaid;
+	@Column
+	@CreationTimestamp
+	private Date policyboughtdate;
 	@Column
 	private double fineperday;
 	@Column
 	private double fineamount;
+	@Column
+	private double totalamount;
+	@Column
+	private int paymentperiod;
+	@Column
+	private String paystatus;
+	
+	public String getPaystatus() {
+		return paystatus;
+	}
+	public void setPaystatus(String paystatus) {
+		this.paystatus = paystatus;
+	}
 	public int getPayid() {
 		return payid;
 	}
@@ -59,12 +77,7 @@ public class Payments {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public int getRenewalmonths() {
-		return renewalmonths;
-	}
-	public void setRenewalmonths(int renewalmonths) {
-		this.renewalmonths = renewalmonths;
-	}
+	
 	public String getReminder() {
 		return reminder;
 	}
@@ -89,13 +102,24 @@ public class Payments {
 	public void setFineamount(double fineamount) {
 		this.fineamount = fineamount;
 	}
-	@Override
-	public String toString() {
-		return "Payments [payid=" + payid + ", policyId=" + policyId + ", userId=" + userId + ", amount=" + amount
-				+ ", renewalmonths=" + renewalmonths + ", reminder=" + reminder + ", lastpaid=" + lastpaid
-				+ ", fineperday=" + fineperday + ", fineamount=" + fineamount + "]";
+	public double getTotalamount() {
+		return totalamount;
 	}
-	
+	public void setTotalamount(double totalamount) {
+		this.totalamount = totalamount;
+	}
+	public int getPaymentperiod() {
+		return paymentperiod;
+	}
+	public void setPaymentperiod(int paymentperiod) {
+		this.paymentperiod = paymentperiod;
+	}
+	public Date getNextpayDate() {
+		return nextpayDate;
+	}
+	public void setNextpayDate(Date nextpayDate) {
+		this.nextpayDate = nextpayDate;
+	}
 	
 
 }

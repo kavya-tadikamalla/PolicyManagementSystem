@@ -1,0 +1,14 @@
+package com.policymanagement.models;
+@Entity
+@Table(name=&quot;help&quot;)
+public class Help {
+@Id
+@Column
+private String userId;
+@Column
+private String issue;
+@Column
+private String description;
+@Column
+private String status="new";
+}

@@ -27,13 +27,13 @@ if(username==null || userid==0)
 
 </div>
  <div class="topnav">
-  <a href="/" class="fas fa fa-home back" >Home</a>
+  <a href="/policyvendorHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/policyvendor/addpolicy1" class="fas fa fa-plus-square back"> Add Policy</a>
-  <!-- <a href="/policyvendor/listpolicies" class="fas fa-user-alt back">  MyPolicies</a>-->
-  <a href="#" class="fas fa fa-check-square back">  MyPolicies</a>
-  <a href="/policyvendor/" class="fas fa-home back">  My Home</a>
-  <a href="/policyvendor/logout/" class="fas fa-power-off back"style="float: right;">  Logout</a>
- <a style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
+  <a href="/policyvendor/listpolicies" class="fas fa-user-alt back">  MyPolicies</a>
+  
+  
+  <a href="/policyvendor/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
+ <a href="/policyvendorHome.jsp" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
    </div>
   
     <div class="card">
@@ -54,7 +54,7 @@ if(username==null || userid==0)
 </c:if>
       </table>
  </div>
-${message}
+<label style="color:white;font-size:large;"><c:out value="${message}"></c:out></label>
 <footer>
 <div class="footer">
 &copy; Copyright 2020, All Rights Reserved

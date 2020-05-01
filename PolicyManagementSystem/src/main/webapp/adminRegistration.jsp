@@ -21,7 +21,7 @@
 <div class="card">
  <form:form action="/admin/adminreg" method="post" modelAttribute="adreg" style="margin-top:50px;margin-left:30px;">
 	<table align="center" class="tables back" >
-	<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;text-decoration-style:double ">Registration Form</td></tr>
+	<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Registration Form</td></tr>
 		<tr>
 			<td>Admin Id<label style="color: red">*</label>:</td>
 			<td><form:input path="adminId" required="required"/><br>
@@ -65,9 +65,9 @@
 		<form:radiobutton path="gender" value="female" label="Female"/>
 		</td> 
 		</tr>		
-		<tr align="center">
+				<tr align="center">
 		<td colspan="2" style="text-align: center;"><input type="submit" value="Register" />
-		<label style="font-size: 15px;">Existing Admin?</label><a href="/admin/" style="color:slateblue;"> SignIn</a></td>
+		<label style="font-size: 15px;">Existing Admin?</label><a href="/admin/" style="color:white;"> SignIn</a></td>
 		</tr>
 	</table>
  </form:form>

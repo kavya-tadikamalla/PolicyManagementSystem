@@ -2,6 +2,7 @@ package com.policymanagement.services;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
+import com.policymanagement.models.Help;
 import com.policymanagement.models.PolicyVendor;
+
 
 @Service
 @Component
@@ -20,4 +23,13 @@ public interface AdminService {
 	public Admin getAdmin(int adminId);
 	public List<PolicyVendor> getAll();
 	public int nextadminId();
+	public List<Help> getAllh();
+
+	/*
+	 * public Security getSecurity(String contactNumber); public Security
+	 * getSecuritypwd(int userId);
+	 
+	public boolean updatePassword(Admin admin);
+	public Admin getuserdata(int userId);
+	*/
 }

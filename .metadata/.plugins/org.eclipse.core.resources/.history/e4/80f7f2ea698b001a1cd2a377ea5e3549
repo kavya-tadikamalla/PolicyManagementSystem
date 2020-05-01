@@ -1,0 +1,23 @@
+package com.policymanagement.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.policymanagement.models.Admin;
+import com.policymanagement.models.SecurityQ;
+
+@Repository
+public interface AdminDao extends JpaRepository<Admin, Integer> {
+	public Admin findByAdminId(int adminId);
+	@Query("select max(adminId) from Admin")
+	public int nextadminId();
+	@Query("select s from Security s where s.contactNumber=:cnumber ")
+	public SecurityQ getSecurityCredentials(@Param("cnumber")String contactNumber);
+	@Query("select s from Security s where s.userId=:uid ")
+	public SecurityQ getSecuritypassword(@Param("uid")int userId);
+	@Query("select s from Admin s where s.userId=:uid ")
+	public Admin getAdmin(@Param("uid")int userId);
+
+}

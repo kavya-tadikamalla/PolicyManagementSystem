@@ -102,6 +102,7 @@ public class PolicyVendorController {
 				PolicyVendorLogin policyvendorlogin = new PolicyVendorLogin();
 				model.addAttribute("policyvendor",policyvendorlogin);
 				policyvendor.setStatus("not yet activated");
+				policyvendor.setBalance(200000);
 				int res = policyvendorService.createPolicyVendor(policyvendor);
 				
 			if(res==0)

@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.policymanagement.dao.AdminDao;
+import com.policymanagement.dao.HelpDao;
 import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
 import com.policymanagement.models.Customer;
+import com.policymanagement.models.Help;
 import com.policymanagement.models.PolicyVendor;
+
 @Service
 @Component
 public class AdminServiceImpl implements AdminService
@@ -22,7 +25,8 @@ public class AdminServiceImpl implements AdminService
 	private AdminDao admindao;
 	@Autowired
 	private PolicyVendorDao policyvendordao;
-	
+	@Autowired
+	private HelpDao helpdao;
 	@PostConstruct
 	public void init() {
 		long count=admindao.count();
@@ -83,6 +87,14 @@ public class AdminServiceImpl implements AdminService
 		return admindao.nextadminId();
 	}
 
-	
+
+	@Override
+	public List<Help> getAllh() {
+		
+		return helpdao.findAll();
+	}
+
+
+		
 
 }

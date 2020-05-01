@@ -1,0 +1,11 @@
+package com.policymanagement.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.policymanagement.models.SecurityQ;
+
+public interface SecurityQDao extends JpaRepository<SecurityQ, Integer> {
+	
+	public SecurityQ findByUserId(int userId);
+
+}

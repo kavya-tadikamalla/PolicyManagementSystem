@@ -6,6 +6,7 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 </head>
 <body class="bgimage">
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
@@ -14,12 +15,7 @@
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
-  
-  
-   </div>
-	<div class="card">
-      
- </div>
+  </div>
 <footer>
 <div class="footer">
 &copy; Copyright 2020, All Rights Reserved

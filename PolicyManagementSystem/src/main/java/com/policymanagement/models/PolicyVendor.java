@@ -24,54 +24,42 @@ public class PolicyVendor {
 		@Generated(value="assigned")
 		private int vendorId;
 	    @Column
-	    //@NotEmpty(message="required")
 		private String policyvendorname;
 	    @Column
-	    //@NotEmpty(message="required")
 	    private String policyvendorregno;
 	    @Column
-	    //@NotEmpty(message="required")
 		private String policytype;
 	    @Column
-	    //@NotEmpty(message="required")
 	    private String address;
 	    @Column
-	    //@NotEmpty(message="required")
 	    private String country;
 	    @Column
 	    private int zipcode;
 	    @Column
-	   // @NotEmpty(message="required")
 	    private String state;
 	    @Column
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    private Date dateOfBirth;
 	    @Column
-	    //@NotEmpty(message="required")
 		private String  emailaddress;
 	    @Column
-	    //@NotEmpty(message="required")
-	    //@Pattern(regexp = "(\\6|7|8|9)[0-9]{9})",message="Invalid Mobile")
 		private String contactnumber;
 	    @Column
-	    //@NotEmpty(message="required")
 	    private String website;
 	    @Column
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	    //@NotEmpty(message="required")
 		private  Date certificateissueddate;
 	    @Column
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
-	    //@NotEmpty(message="required")
 		private  Date certificatevaliditydate;
 	    @Column
-	    //@NotEmpty(message="required")
 	    private String yearofestablishment;
 	    @Column
-	    //@NotEmpty(message="required")
 	    private String password;
 	    @Column
 	    private String status;
+	    @Column
+	    private double balance;
 		public int getVendorId() {
 			return vendorId;
 		}
@@ -179,6 +167,12 @@ public class PolicyVendor {
 		public void setStatus(String status) {
 			this.status = status;
 		}
+		public double getBalance() {
+			return balance;
+		}
+		public void setBalance(double balance) {
+			this.balance = balance;
+		}
 		@Override
 		public String toString() {
 			return "PolicyVendor [vendorId=" + vendorId + ", policyvendorname=" + policyvendorname
@@ -187,8 +181,9 @@ public class PolicyVendor {
 					+ dateOfBirth + ", emailaddress=" + emailaddress + ", contactnumber=" + contactnumber + ", website="
 					+ website + ", certificateissueddate=" + certificateissueddate + ", certificatevaliditydate="
 					+ certificatevaliditydate + ", yearofestablishment=" + yearofestablishment + ", password="
-					+ password + ", status=" + status + "]";
+					+ password + ", status=" + status + ", balance=" + balance + "]";
 		}
+		
 				
 		
 
