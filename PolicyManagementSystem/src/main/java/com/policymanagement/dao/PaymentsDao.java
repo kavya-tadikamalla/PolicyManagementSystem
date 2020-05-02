@@ -7,5 +7,5 @@ import com.policymanagement.models.Payments;
 
 @Repository
 public interface PaymentsDao extends JpaRepository<Payments, Integer> {
-
+	public Payments findByPayid(int payid);
 }

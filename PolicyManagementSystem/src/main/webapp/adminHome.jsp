@@ -32,6 +32,15 @@ if(username==null || userid==0)
   <div class="topnav">
   <a href="/adminHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/admin/listvendors" class="fas fa-user-plus back"> List PolicyVendors</a>
+  <div class="dropdown">
+  <button class="dropbtn "style="size: 20px;">Generate Report <i class="fas fa-caret-down"></i></button>
+  <div class="dropdown-content">
+    <a href="/admin/grpurchased" class="fas fa-user-circle" >No. of Policies Purchased</a>
+    <a href="/admin/grclaims" class="fas fa-user-plus" >No. of claims Submitted</a>
+    <a href="/admin/grclaima" class="fas fa-user-alt" >No. of claims approved</a>
+    <a href="/admin/grclaimr" class="fas fa-user-alt" >No. of claims rejected</a>
+  </div>
+  </div> 
   <a href="/admin/helpreq" class="fas fa-user-alt back">  Help</a>
   <a href="/admin/logout/" class="fas fa-power-off back" style="float: right;" >  Logout</a>
   <a href="/adminHome.jsp" style="float: right;">Welcome <%=username %>(<%=userid %>)</a>
@@ -96,6 +105,96 @@ if(username==null || userid==0)
 </td>
 </tr>
 </c:forEach>
+</c:if>
+<c:if test="${paym!=null }">
+<tr>
+<td>PaymentId</td>
+<td>Policy Type</td>
+<td>Policy Name</td>
+<td>PolicyVendor Name</td>
+<td>CustomerId(who bought)</td>
+<td>DurationOfPolicy</td>
+</tr>
+<tr>
+<c:forEach items="${paym}" var="pay">
+<c:forEach items="${poli}" var="pol">
+<c:forEach items="${vend }" var="ven">
+<td><c:out value="${pay.payid}"></c:out></td>
+<td><c:out value="${pol.policytype }"></c:out></td>
+<td><c:out value="${pol.policyName }"></c:out></td>
+<td><c:out value="${ven.policyvendorname }"></c:out></td>
+<td><c:out value="${pay.userId }"></c:out></td>
+<td><c:out value="${pol.durationOfPolicy }"></c:out></td>
+</tr>
+</c:forEach>
+</c:forEach>
+</c:forEach>
+</c:if>
+
+<c:if test="${claimp!=null }">
+<tr><b style="font-size: x-large;">Claims Submitted</b></tr>
+<tr>
+<td>ClaimId</td>
+<td>CustomerId</td>
+<td>PolicyId</td>
+<td>PolicyName</td>
+<td>PolicyVendorId</td>
+<td>PolicyVendorName</td>
+</tr>
+<tr>
+<td>${claimp.claimid }</td>
+<td>${claimp.userid }</td>
+<td>${payme.policyId }</td>
+<td>${policy.policyName }</td>
+<td>${policy.policyvendorId }</td>
+<td>${polve.policyvendorname }</td>
+</tr>
+
+</c:if>
+<c:if test="${claimp1!=null }">
+<tr><b style="font-size: x-large;">Claims Rejected</b></tr>
+<tr>
+<td>ClaimId</td>
+<td>CustomerId</td>
+<td>ClaimStatus</td>
+<td>PolicyId</td>
+<td>PolicyName</td>
+<td>PolicyVendorId</td>
+<td>PolicyVendorName</td>
+</tr>
+<tr>
+<td>${claimp1.claimid }</td>
+<td>${claimp1.userid }</td>
+<td>${claimp1.cstatus }</td>
+<td>${payme1.policyId }</td>
+<td>${policy1.policyName }</td>
+<td>${policy1.policyvendorId }</td>
+<td>${polve1.policyvendorname }</td>
+</tr>
+</c:if>
+
+
+<c:if test="${claimp2!=null }">
+<tr><b style="font-size: x-large;">Claims Approved</b></tr>
+<tr>
+<td>ClaimId</td>
+<td>CustomerId</td>
+<td>ClaimStatus</td>
+<td>PolicyId</td>
+<td>PolicyName</td>
+<td>PolicyVendorId</td>
+<td>PolicyVendorName</td>
+</tr>
+<tr>
+<td>${claimp2.claimid }</td>
+<td>${claimp2.userid }</td>
+<td>${claimp2.cstatus }</td>
+<td>${payme2.policyId }</td>
+<td>${policy2.policyName }</td>
+<td>${policy2.policyvendorId }</td>
+<td>${polve2.policyvendorname }</td>
+</tr>
+
 </c:if>
       </table>
   <script type="text/javascript"></script>

@@ -11,10 +11,11 @@
 <body class="bgimage">
 <div class="header"><header><b class="heading">Policy Management</b></header></div>
   <div class="topnav">
-  <a href="/" class="fas fa fa-home back" >Home</a>
+  <a href="/" class="fas fa fa-home back1" style="size: 30px;">Home</a>
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
+ 
   </div>
 <footer>
 <div class="footer">

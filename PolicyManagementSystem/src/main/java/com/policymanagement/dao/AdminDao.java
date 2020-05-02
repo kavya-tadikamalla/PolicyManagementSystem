@@ -14,6 +14,7 @@ public interface AdminDao extends JpaRepository<Admin, Integer> {
 	public Admin findByAdminId(int adminId);
 	@Query("select max(adminId) from Admin")
 	public int nextadminId();
+	public Admin findBycontactNumber(String phno);
 	
 
 }

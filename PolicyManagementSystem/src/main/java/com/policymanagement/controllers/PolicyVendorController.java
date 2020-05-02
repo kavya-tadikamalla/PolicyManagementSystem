@@ -17,7 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.policymanagement.dao.ClaimPolicyDao;
+import com.policymanagement.dao.PaymentsDao;
 import com.policymanagement.dao.PolicyDao;
+import com.policymanagement.dao.PolicyVendorDao;
+import com.policymanagement.models.ClaimPolicy;
+import com.policymanagement.models.Customer;
+import com.policymanagement.models.ForgotUid;
+import com.policymanagement.models.Payments;
 import com.policymanagement.models.Policy;
 import com.policymanagement.models.PolicyVendor;
 import com.policymanagement.models.PolicyVendorLogin;
@@ -27,11 +34,17 @@ import com.policymanagement.services.PolicyVendorService;
 
 
 public class PolicyVendorController {
-	
+		
 		@Autowired
 		private PolicyDao policydao;
 		@Autowired
 		private PolicyVendorService policyvendorService;
+		@Autowired
+		private PaymentsDao paydao;
+		@Autowired
+		private ClaimPolicyDao cldao;
+		@Autowired
+		private PolicyVendorDao pvdao;
 		@GetMapping("/")
 		public String policyvendorHome(Model model)
 		{
@@ -187,8 +200,157 @@ public class PolicyVendorController {
 			}
 			
 		}
+		@GetMapping("/claims")
+		public String seeclaims(HttpSession session,Model model)
+		{
+			int id=(Integer)session.getAttribute("userId");
+			List<Policy> policy=policyvendorService.getAllpolicies();
+			List<Payments> pay=paydao.findAll();
+			List<ClaimPolicy> cl=cldao.findAll();
+			for(ClaimPolicy cp:cl)
+			{
+				for(Payments p:pay)
+				{
+					if(cp.getPayid()==p.getPayid()) {
+					for(Policy po:policy)
+					{
+						if(p.getPolicyId()==po.getPolicyId() && po.getPolicyvendorId()==id)
+						{
+							model.addAttribute("claimlist", cp);
+						}
+					}
+					}
+				}
+			}
+			
+			return "policyvendorHome";
+			
+		}
+	
+	  @GetMapping("/acceptclaim") 
+	  public String claimstatus1(@RequestParam("cid")int id,Model model) { 
+		  ClaimPolicy claim=cldao.findByclaimid(id); 
+		  
+	  ClaimPolicy claimp=new ClaimPolicy();
+	  claimp.setClaimid(claim.getClaimid());
+	  claimp.setPayid(claim.getPayid());
+	  claimp.setPolicyname(claim.getPolicyname());
+	  claimp.setUserid(claim.getUserid());
+	  claimp.setReasonbyc(claim.getReasonbyc());
+	  model.addAttribute("reason", claimp);
+	  return "claimformp";
+	  
+	  }
+	 @PostMapping("/claimp")
+	 public String climstatus2(@ModelAttribute("reason")ClaimPolicy claim1,Model model)
+	 {
+		 Payments p;
+		 
+		 if(claim1.getCstatus()!="approved") {
+			 System.out.println("in if");
+			 claim1.setCstatus("approved");
+			 System.out.println("after aprove");
+			 cldao.save(claim1);
+			 System.out.println("after aprove1");
+			 int payid=claim1.getPayid();
+			 System.out.println("after aprove2");
+			 p=paydao.findByPayid(payid);
+			 System.out.println(p);
+			p.setPaystatus("claimed");
+			paydao.save(p);
+			 System.out.println("rtyui");
+			 model.addAttribute("message", "claim response Successfull");
+		 }
+		 
+		 return "policyvendorHome";
+	 }
+	 @GetMapping("/rejectclaim") 
+	  public String claimstatus3(@RequestParam("cid")int id,Model model) { 
+		  ClaimPolicy claim=cldao.findByclaimid(id); 
+		  
+	  ClaimPolicy claimp=new ClaimPolicy();
+	  claimp.setClaimid(claim.getClaimid());
+	  claimp.setPayid(claim.getPayid());
+	  claimp.setPolicyname(claim.getPolicyname());
+	  claimp.setUserid(claim.getUserid());
+	  claimp.setReasonbyc(claim.getReasonbyc());
+	  model.addAttribute("reason1", claimp);
+	  return "claimformpr";
+	  
+	  }
+	 @PostMapping("/claimp1")
+	 public String climstatus4(@ModelAttribute("reason1")ClaimPolicy claim1,Model model)
+	 {
+		 Payments p;
+		 
+		 if(claim1.getCstatus()!="rejected") {
+			 System.out.println("in if");
+			 claim1.setCstatus("rejected");
+			 System.out.println("after aprove");
+			 cldao.save(claim1);
+			 System.out.println("after aprove1");
+			 int payid=claim1.getPayid();
+			 System.out.println("after aprove2");
+			 p=paydao.findByPayid(payid);
+			 System.out.println(p);
+			p.setPaystatus("claim rejected");
+			paydao.save(p);
+			 System.out.println("rtyui");
+			 model.addAttribute("message", "claim response Successfull");
+		 }
+		 
+		 return "policyvendorHome";
+	 }
+	 @GetMapping("/pforgotuid")
+		public String fid(Model model){
+			model.addAttribute("name",new ForgotUid());
+			return "PvForgotid";
+		}
+		@PostMapping("/pforgotuid1")
+		public String fid1(@ModelAttribute("name") ForgotUid fid,PolicyVendor policyvendor,Model model)
+		{
+			int b=policyvendorService.fid(fid);
+			if(b!=0)
+			{
+		  	model.addAttribute("message",b+" is your id");
+			}
+			else
+			{
+				model.addAttribute("message", "Incorrect credentials");
+			}
+			return "PvForgotid";
+		}
+		@GetMapping("/pforgotpswd")
+		public String fpwd(Model model){
+			model.addAttribute("name1",new ForgotUid());
+			return "PvForgotPwd";
+		}
+		@PostMapping("/pforgotpwd1")
+		public String fpwd1(@ModelAttribute("name1") ForgotUid fid,Model model)
+		{
+			boolean b=policyvendorService.fpwd(fid);
+			if(b==true)
+			{
+				
+		  	  return "PvResetPwd";
+			}
+			else
+			{
+				model.addAttribute("message", "Incorrect credentials");
+				return "CusResetPwd";
+			}
+		}
+		@PostMapping("/pupdatepwd")
+		public String updatePassword(@ModelAttribute("name1") ForgotUid forgetUID,Model model)
+		{
+			PolicyVendor pv =pvdao.findByVendorId(forgetUID.getUid());
+			pv.setPassword(forgetUID.getPwd());
+			pvdao.save(pv);
+			model.addAttribute("message","your password has been updated");
+			return "CusResetPwd";
+		}
+	
 		@GetMapping("/logout")
-		
 		public String logout(HttpSession session)
 		{
 			session.invalidate();

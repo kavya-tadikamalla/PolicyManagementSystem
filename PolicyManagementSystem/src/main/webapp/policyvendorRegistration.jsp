@@ -25,7 +25,7 @@ text-align: left;
    </div>
 <div class="card">
 
- <form:form action="/policyvendor/policyvendorreg" method="post" modelAttribute="policyvendorreg" style="margin-top:50px;margin-left:30px;">
+ <form:form action="/policyvendor/policyvendorreg" method="post" modelAttribute="policyvendorreg" style="margin-top:50px;margin-left:30px;" onsubmit="return validate();">
 
 <table align="center" class="tables back" >
 <tr>
@@ -164,14 +164,55 @@ Registration Form</td></tr>
 <td>
 <form:input path="yearofestablishment" class="form-control" required="required" />
 
-</td>
+</td></tr>
+<tr>
 <td>Password<label style="color: red">*</label>:</td>
-<td><form:password path="password" class="form-control" required="required" />
+<td><form:password path="password" class="form-control" required="required" id="pwd"/>
+<td>Confirm Password<label style="color: red">*</label>:</td>
+			<td><input type="password" id="cpwd"></td>
+</td>
+</tr>
+<td>Secret Question 1:</td>
+<td>
+<form:select path="secretquestion1" id="secretquestion1" class="select-box" >
+<option  selected="selected" value="What is your Birthdate?">What is your Birthdate?</option>
+  <option value="In which school you have studied first?">In which school have you studied first?</option>
+  <option value="What is your favourite color?">What is your favourite color?</option>
+</form:select>
 
+</td>
+<td colspan="2" align="right">
+<form:input path="answer1" id="answer1" placeholder="Answer" width="170px" /></td>
+</tr>
+
+<tr>
+<td>Secret Question 2:</td>
+<td>
+<form:select path="secretquestion2" id="secretquestion2" class="select-box" >
+<option  selected="selected" value="What is your favourite place?">What is your favourite place?</option>
+  <option value="What is your parent's anniversary?">What is your parent's anniversary?</option>
+  <option value="What is your highest education?">What is your highest education?</option>
+</form:select>
+</td>
+<td colspan="2" align="right">
+<form:input path="answer2" id="answer2" placeholder="Answer" width="170px" />
 </td>
 </tr>
 <tr>
 
+</tr>
+<tr>
+<td>Secret Question 3:</td>
+<td>
+<form:select path="secretquestion3" id="secretquestion3" class="select-box" >
+<option  selected="selected" value="What is your favourite comic?">What is your favourite comic?</option>
+  <option value="What is your hometown?">What is your hometown?</option>
+  <option value="In what town or city did you meet your spouse/partner?">In what town or city did you meet your spouse/partner?</option>
+</form:select>
+</td>
+<td colspan="2" align="right">
+<form:input path="answer3" id="answer3" placeholder="Answer" width="170px" />
+</td>
 </tr>
 
 <tr><td></td>
@@ -181,6 +222,17 @@ Registration Form</td></tr>
 </form:form>
 
 </div>
+<script type="text/javascript">
+function validate(){
+	var c=document.getElementById("cpwd").value;
+	var p=document.getElementById("pwd").value;
+	if(p!=c)
+		{
+			alert("Password and Confirm Password are not same");
+			return false;
+		}
+}
+</script>
 <footer>
 <div class="footer">
 &copy; Copyright 2020, All Rights Reserved

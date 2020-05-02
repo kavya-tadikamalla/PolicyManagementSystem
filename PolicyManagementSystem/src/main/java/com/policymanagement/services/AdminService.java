@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
+import com.policymanagement.models.ForgotUid;
 import com.policymanagement.models.Help;
 import com.policymanagement.models.PolicyVendor;
 
@@ -24,12 +25,6 @@ public interface AdminService {
 	public List<PolicyVendor> getAll();
 	public int nextadminId();
 	public List<Help> getAllh();
-
-	/*
-	 * public Security getSecurity(String contactNumber); public Security
-	 * getSecuritypwd(int userId);
-	 
-	public boolean updatePassword(Admin admin);
-	public Admin getuserdata(int userId);
-	*/
+	public boolean fpwd(ForgotUid fuid);
+	public int fid(ForgotUid fuid);
 }

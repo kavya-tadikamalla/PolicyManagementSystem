@@ -1,0 +1,18 @@
+package com.policymanagement.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class ClaimPolicy {
+	/*@SequenceGenerator(name = "claimSeq",initialValue = 4000, allocationSize = 1, sequenceName = "CLAIM_SEQ")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "claimSeq")
+	private int  claimid;*/
+
+}

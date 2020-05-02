@@ -29,7 +29,7 @@ public class Policy {
 	@Column
 	private int durationOfPolicy;
 	@Column
-	private double premiumAmount;
+	private double sumassured;
 	@Column
 	private int policyvendorId;
 	@Column
@@ -65,11 +65,12 @@ public class Policy {
 	public void setDurationOfPolicy(int durationOfPolicy) {
 		this.durationOfPolicy = durationOfPolicy;
 	}
-	public double getPremiumAmount() {
-		return premiumAmount;
+	
+	public double getSumassured() {
+		return sumassured;
 	}
-	public void setPremiumAmount(double premiumAmount) {
-		this.premiumAmount = premiumAmount;
+	public void setSumassured(double sumassured) {
+		this.sumassured = sumassured;
 	}
 	public String getPolicytype() {
 		return policytype;
@@ -92,15 +93,9 @@ public class Policy {
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyName=" + policyName + ", durationOfPolicy=" + durationOfPolicy
-				+ ", premiumAmount=" + premiumAmount + ", policyvendorId=" + policyvendorId + ", policytype="
-				+ policytype + ", fineperday=" + fineperday + ", payment=" + payment + "]";
+				+ ", sumassured=" + sumassured + ", policyvendorId=" + policyvendorId + ", policytype=" + policytype
+				+ ", fineperday=" + fineperday + ", payment=" + payment + "]";
 	}
-	/*
-	 * @Override public String toString() { return "Policy [policyId=" + policyId +
-	 * ", policyName=" + policyName + ", durationOfPolicy=" + durationOfPolicy +
-	 * ", premiumAmount=" + premiumAmount + ", policyvendorId=" + policyvendorId +
-	 * ", policytype=" + policytype + ", fineperday=" + fineperday + "]"; }
-	 */
 	
 	
 

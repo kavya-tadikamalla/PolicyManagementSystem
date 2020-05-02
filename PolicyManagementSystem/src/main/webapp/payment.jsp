@@ -12,16 +12,10 @@
 </head>
 
 <body>
-  <!-- <div class="topnav">
-  <b class="heading">Policy Management</b>
-  <a href="/logout/" class="fas fa-power-off back">  Logout</a>
-  <a href="/policyvendor/" class="fas fa-user-plus back">  Policy Vendor</a>
-  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
-  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
-   </div> -->
-<div class="card">
-<h2>Policy Payment Form</h2>
- <form:form action="/cardpayments.jsp" name="payform" method="post" modelAttribute="payment" style="margin-top:50px;margin-left:30px;">
+  
+<!-- <div class="card"> -->
+
+ <form:form action="/cardpayments.jsp" name="payform" method="post" modelAttribute="payment" style="margin-top:5px;margin-left:30px;" >
 
 <table align="center" class="tables back" >
 <tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Policy Payment Form</td></tr>
@@ -44,12 +38,21 @@
 </td>
 </tr>
 <tr>
-<td>Amount:</td>
+<td>SumAssured:</td>
 <td>
 
-<form:input path="amount" class="form-control"/>
+<form:input path="sumassured" class="form-control"/>
 <br>
- <form:errors path="amount" cssClass="errors"></form:errors> 
+ <form:errors path="sumassured" cssClass="errors"></form:errors> 
+</td>
+</tr>
+<tr>
+<td>DurationOfPolicy:</td>
+<td>
+
+<form:input path="durationOfPolicy" class="form-control"/>
+<br>
+ <form:errors path="durationOfPolicy" cssClass="errors"></form:errors> 
 </td>
 </tr>
 
@@ -84,13 +87,13 @@
 <form:radiobutton path="paymentperiod" value="180" label="HalfYearly"/>
 <form:radiobutton path="paymentperiod" value="360" label="Yearly"/></td> 
 </tr>
+<tr align="center">
+		<td colspan="2" style="text-align: center;"><input type="submit" value="Enter Card Details" />
+		</tr>
 
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Enter Card Details" class="formsubmitbutton" />
-</tr>
 </table>
 </form:form>
-</div>
+<!-- </div> -->
 <%
 
 RequestDispatcher rd = request.getRequestDispatcher("customerHome.jsp");

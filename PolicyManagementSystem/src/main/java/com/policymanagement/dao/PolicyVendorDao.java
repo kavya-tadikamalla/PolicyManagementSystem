@@ -14,6 +14,8 @@ public interface PolicyVendorDao extends JpaRepository<PolicyVendor, Integer>{
 	@Query("select max(vendorId) from PolicyVendor")
 	public int nextvendoId();
 	public List<PolicyVendor> findAll();
+
+	public PolicyVendor findBycontactnumber(String contactnumber);
 	
 	
 	

@@ -39,12 +39,12 @@
 </tr>
 
 <tr>
-<td>Premium Amount :</td>
+<td>Sum Assured :</td>
 <td>
 
-<form:input path="premiumAmount" class="form-control"/>
+<form:input path="aumassured" class="form-control"/>
 <br>
- <form:errors path="premiumAmount" cssClass="errors"></form:errors> 
+ <form:errors path="aumassured" cssClass="errors"></form:errors> 
 </td>
 </tr>
 <tr>

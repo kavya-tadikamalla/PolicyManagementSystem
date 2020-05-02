@@ -36,11 +36,15 @@
 			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password"/><br>
 			</td>
 		</tr>
-		
 		<tr align="center">
 		<td colspan="2" style="text-align: center;"><input type="submit" value="Login" class="formsubmitbutton"/></td></tr>
 		<tr><td colspan="2" style="text-align: center;"><label style="font-size: 15px;">New Admin?<a href="/admin/register/" style="color:white;"> Register</a></label></td>
 		</tr>
+		<tr>
+<td colspan="2" style="text-align: center;"><a href="forgotuid" style="font-size: 15px;color:white;">Forgot Userid?</a>
+<a href="forgotpswd" style="font-size: 15px;color:white;">Forgot Password?</a> </td>
+</tr>
+		
 	</table>
  </form:form>
  

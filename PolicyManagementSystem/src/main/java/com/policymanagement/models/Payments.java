@@ -26,6 +26,10 @@ public class Payments {
 	@Column
 	private double amount;
 	@Column
+	private double sumassured;
+	@Column
+	private int durationOfPolicy;
+	@Column
 	//@DateTimeFormat(style = "dd-mm-yyyy")
 	private Date nextpayDate;
 	@Column
@@ -119,6 +123,32 @@ public class Payments {
 	}
 	public void setNextpayDate(Date nextpayDate) {
 		this.nextpayDate = nextpayDate;
+	}
+	public double getSumassured() {
+		return sumassured;
+	}
+	public void setSumassured(double sumassured) {
+		this.sumassured = sumassured;
+	}
+	public Date getPolicyboughtdate() {
+		return policyboughtdate;
+	}
+	public void setPolicyboughtdate(Date policyboughtdate) {
+		this.policyboughtdate = policyboughtdate;
+	}
+	public int getDurationOfPolicy() {
+		return durationOfPolicy;
+	}
+	public void setDurationOfPolicy(int durationOfPolicy) {
+		this.durationOfPolicy = durationOfPolicy;
+	}
+	@Override
+	public String toString() {
+		return "Payments [payid=" + payid + ", policyId=" + policyId + ", userId=" + userId + ", amount=" + amount
+				+ ", sumassured=" + sumassured + ", durationOfPolicy=" + durationOfPolicy + ", nextpayDate="
+				+ nextpayDate + ", reminder=" + reminder + ", lastpaid=" + lastpaid + ", policyboughtdate="
+				+ policyboughtdate + ", fineperday=" + fineperday + ", fineamount=" + fineamount + ", totalamount="
+				+ totalamount + ", paymentperiod=" + paymentperiod + ", paystatus=" + paystatus + "]";
 	}
 	
 

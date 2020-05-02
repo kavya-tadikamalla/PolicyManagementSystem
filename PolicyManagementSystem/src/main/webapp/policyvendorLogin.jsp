@@ -48,7 +48,7 @@
 <br>
 
 <form:errors path="password" cssClass="errors"></form:errors>
-</td><td></td><td></td>
+</td>
 </tr>
 <tr align="center">
 
@@ -56,6 +56,11 @@
 		<tr><td colspan="2" style="text-align: center;"><label style="font-size: 15px;">NewPolicyVendor?<a href="/policyvendor/policyvendorreg" style="color:white;"> Register</a></label></td>
 
 </tr>
+<tr>
+<td colspan="2" style="text-align: center;"><a href="pforgotuid" style="font-size: 15px;color:white;">Forgot Userid?</a>
+<a href="pforgotpswd" style="font-size: 15px;color:white;">Forgot Password?</a> </td>
+</tr>
+
 
 </table>
 </form:form>

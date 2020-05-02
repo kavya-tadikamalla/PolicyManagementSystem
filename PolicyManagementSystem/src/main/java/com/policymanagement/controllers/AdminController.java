@@ -1,4 +1,5 @@
 package com.policymanagement.controllers;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,13 +16,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.policymanagement.dao.AdminDao;
+import com.policymanagement.dao.ClaimPolicyDao;
 import com.policymanagement.dao.HelpDao;
+import com.policymanagement.dao.PaymentsDao;
+import com.policymanagement.dao.PolicyDao;
 import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.Admin;
 import com.policymanagement.models.AdminLogin;
-
+import com.policymanagement.models.ClaimPolicy;
+import com.policymanagement.models.ForgotUid;
 import com.policymanagement.models.Help;
+import com.policymanagement.models.Payments;
+import com.policymanagement.models.Policy;
 import com.policymanagement.models.PolicyVendor;
 
 import com.policymanagement.services.AdminService;
@@ -30,13 +37,20 @@ import com.policymanagement.services.AdminService;
 @RequestMapping("/admin")
 public class AdminController
 {
-	
+	@Autowired
+	private AdminDao admindao;
 	@Autowired
 	private AdminService adminservice;
 	@Autowired
 	private PolicyVendorDao policyvendordao;
 	@Autowired
 	private HelpDao helpdao;
+	@Autowired
+	private PaymentsDao paydao;
+	@Autowired
+	private PolicyDao poldao;
+	@Autowired
+	private ClaimPolicyDao cpdao;
 	@GetMapping("/")
 	public String adminloginform(Model model)
 	{
@@ -85,8 +99,7 @@ public class AdminController
 		return "adminRegistration";
 	}
 	@PostMapping("/adminreg")
-	public String adminRegister(
-			@Valid @ModelAttribute("adreg") Admin admin/* ,@ModelAttribute("securityque") SecurityQ sec */,BindingResult result,Model model)
+	public String adminRegister(@Valid @ModelAttribute("adreg") Admin admin,BindingResult result,Model model)
 	{
 		if(result.hasErrors())
 		{
@@ -109,7 +122,8 @@ public class AdminController
 		}
 		else if(res==1)
 		{
-			model.addAttribute("message", admin.getFirstName().toUpperCase()+"Congrats your registration is successfull");
+			model.addAttribute("message", admin.getFirstName().toUpperCase()+
+					" Congrats your registration is successfull\n Your UserId is " +admin.getAdminId());
 		
 		
 		}
@@ -203,8 +217,162 @@ public class AdminController
 		}
 		return "adminHome";
 	}
+	@GetMapping("/grpurchased")
+	public String reportpurchased(Model model,HttpSession session)
+	{
+		List<Payments> pay=paydao.findAll();
+		List<Policy> p=poldao.findAll();
+		List<PolicyVendor> pv=policyvendordao.findAll();
+		
+					model.addAttribute("paym", pay);
+					model.addAttribute("poli", p);
+					model.addAttribute("vend", pv);
+			
+		
+		return "adminHome";
+	}
+	@GetMapping("/grclaims")
+	public String reportclaims(Model model,HttpSession session)
+	{
+		List<ClaimPolicy> cp=cpdao.findAll();
+		List<Payments> paym=paydao.findAll();
+		List<PolicyVendor> pov=policyvendordao.findAll();
+		List<Policy> p=poldao.findAll();
+		for(ClaimPolicy cop:cp) {
+			for(Payments pym:paym) {
+				if(cop.getPayid()==pym.getPayid()) {
+					model.addAttribute("payme", pym);
+					for(Policy po:p) {
+						if(po.getPolicyId()==pym.getPolicyId()) {
+							model.addAttribute("policy", po);
+							for(PolicyVendor pve:pov) {
+								if(pve.getVendorId()==po.getPolicyvendorId()) {
+									System.out.println(pve);
+									model.addAttribute("polve", pve);
+								}
+							}
+						}
+					}
+				}
+			}model.addAttribute("claimp", cop);
+		}
+		
+		
+		
+		
+		
+		return "adminHome";
+	}
+	@GetMapping("/grclaimr")
+	public String reportclaimr(Model model,HttpSession session)
+	{
+		List<ClaimPolicy> cp=cpdao.findAll();
+		List<Payments> paym=paydao.findAll();
+		List<PolicyVendor> pov=policyvendordao.findAll();
+		List<Policy> p=poldao.findAll();
+		for(ClaimPolicy cop:cp) {
+			System.out.println(cop.getCstatus());
+			if(cop.getCstatus().equals("rejected") ){
+				System.out.println(cop.getCstatus());
+				model.addAttribute("claimp1", cop);
+			for(Payments pym:paym) {
+				if(cop.getPayid()==pym.getPayid()) {
+					model.addAttribute("payme1", pym);
+					for(Policy po:p) {
+						if(po.getPolicyId()==pym.getPolicyId()) {
+							model.addAttribute("policy1", po);
+							for(PolicyVendor pve:pov) {
+								if(pve.getVendorId()==po.getPolicyvendorId()) {
+									model.addAttribute("polve1", pve);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		}
+		return "adminHome";
+	}
+	@GetMapping("/grclaima")
+	public String reportclaima(Model model,HttpSession session)
+	{
+		List<ClaimPolicy> cp=cpdao.findAll();
+		List<Payments> paym=paydao.findAll();
+		List<PolicyVendor> pov=policyvendordao.findAll();
+		List<Policy> p=poldao.findAll();
+		for(ClaimPolicy cop:cp) {
+			System.out.println(cop.getCstatus());
+			if(cop.getCstatus().equals("approved") ){
+				System.out.println(cop.getCstatus());
+				model.addAttribute("claimp2", cop);
+			for(Payments pym:paym) {
+				if(cop.getPayid()==pym.getPayid()) {
+					model.addAttribute("payme2", pym);
+					for(Policy po:p) {
+						if(po.getPolicyId()==pym.getPolicyId()) {
+							model.addAttribute("policy2", po);
+							for(PolicyVendor pve:pov) {
+								if(pve.getVendorId()==po.getPolicyvendorId()) {
+									model.addAttribute("polve2", pve);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		}
+		return "adminHome";
+	}
+	@GetMapping("/forgotuid")
+	public String fid(Model model){
+		model.addAttribute("name",new ForgotUid());
+		return "forgotid";
+	}
+	@PostMapping("/forgotuid1")
+	public String fid1(@ModelAttribute("name") ForgotUid fid,Model model)
+	{
+		int b=adminservice.fid(fid);
+		if(b!=0)
+		{
+	  	model.addAttribute("message",b+" is your id");
+		}
+		else
+		{
+			model.addAttribute("message", "Incorrect credentials");
+		}
+		return "forgotid";
 	
-
+	}
+	@GetMapping("/forgotpswd")
+	public String fpwd(Model model){
+		model.addAttribute("name1",new ForgotUid());
+		return "forgotpwd";
+	}
+	@PostMapping("/forgotpwd1")
+	public String fpwd1(@ModelAttribute("name1") ForgotUid fid,Model model)
+	{
+		boolean b=adminservice.fpwd(fid);
+		if(b==true)
+		{
+	  	  return "resetPwd";
+		}
+		else
+		{
+			model.addAttribute("message", "Incorrect credentials");
+			return "resetPwd";
+		}
+	}
+	@PostMapping("/updatepwd")
+	public String updatePassword(@ModelAttribute("name1") ForgotUid forgetUID,Model model)
+	{
+		Admin ad =admindao.findByAdminId(forgetUID.getUid());
+		ad.setPassword(forgetUID.getPwd());
+		admindao.save(ad);
+		model.addAttribute("message","your password has been updated");
+		return "resetPwd";
+	}
 	@GetMapping("/logout")
 	public String logout(HttpSession session)
 	{

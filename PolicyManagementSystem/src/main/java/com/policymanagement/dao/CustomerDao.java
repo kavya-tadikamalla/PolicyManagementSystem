@@ -10,5 +10,6 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	public Customer findByUserId(int customerId);
 	@Query("select max(userId) from Customer")
 	public int nextuserId();
+	public Customer findBycontactNumber(String contactNumber);
 
 }

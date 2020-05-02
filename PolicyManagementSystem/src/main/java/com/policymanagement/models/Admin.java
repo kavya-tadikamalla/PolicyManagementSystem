@@ -38,16 +38,18 @@ public class Admin {
 	private String password;
 	@Column
 	private String gender;
-
-	/*
-	 * @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	 * 
-	 * @JoinColumn(name="s_no",referencedColumnName ="id") private Security
-	 * security;
-	 * 
-	 * public Security getSecurity() { return security; } public void
-	 * setSecurity(Security security) { this.security = security; }
-	 */
+	@Column
+	private String secretquestion1;
+	@Column
+	private String secretquestion2;
+	@Column
+	private String secretquestion3;
+	@Column
+	private String answer1;
+	@Column
+	private String answer2;
+	@Column
+	private String answer3;
 	public int getAdminId() {
 		return adminId;
 	}
@@ -97,13 +99,50 @@ public class Admin {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	/*
-	 * @Override public String toString() { return "Admin [adminId=" + adminId +
-	 * ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber=" +
-	 * contactNumber + ", dateOfBirth=" + dateOfBirth + ", email=" + email +
-	 * ", password=" + password + ", gender=" + gender + ", security=" + security +
-	 * "]"; }
-	 */
+	public String getSecretquestion1() {
+		return secretquestion1;
+	}
+	public void setSecretquestion1(String secretquestion1) {
+		this.secretquestion1 = secretquestion1;
+	}
+	public String getAnswer1() {
+		return answer1;
+	}
+	public void setAnswer1(String answer1) {
+		this.answer1 = answer1;
+	}
+	public String getSecretquestion2() {
+		return secretquestion2;
+	}
+	public void setSecretquestion2(String secretquestion2) {
+		this.secretquestion2 = secretquestion2;
+	}
+	public String getAnswer2() {
+		return answer2;
+	}
+	public void setAnswer2(String answer2) {
+		this.answer2 = answer2;
+	}
+	public String getSecretquestion3() {
+		return secretquestion3;
+	}
+	public void setSecretquestion3(String secretquestion3) {
+		this.secretquestion3 = secretquestion3;
+	}
+	public String getAnswer3() {
+		return answer3;
+	}
+	public void setAnswer3(String answer3) {
+		this.answer3 = answer3;
+	}
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber="
+				+ contactNumber + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", password=" + password
+				+ ", gender=" + gender + ", secretquestion1=" + secretquestion1 + ", secretquestion2=" + secretquestion2
+				+ ", secretquestion3=" + secretquestion3 + ", answer1=" + answer1 + ", answer2=" + answer2
+				+ ", answer3=" + answer3 + "]";
+	}
 	
 
 }

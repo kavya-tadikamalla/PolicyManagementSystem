@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.policymanagement.models.Customer;
 import com.policymanagement.models.CustomerLogin;
+import com.policymanagement.models.ForgotUid;
 import com.policymanagement.models.Help;
 import com.policymanagement.models.Payments;
 import com.policymanagement.models.Policy;
@@ -20,5 +21,6 @@ public interface CustomerService {
 	public boolean updateCustomer(Customer customer);
 	public boolean buypolicy(Payments payment);
 	public int help(Help h);
-	
+	public int fid(ForgotUid fuid);
+	public boolean fpwd(ForgotUid fuid);
 }

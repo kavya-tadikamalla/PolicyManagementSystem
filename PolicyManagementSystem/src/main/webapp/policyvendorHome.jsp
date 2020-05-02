@@ -30,7 +30,7 @@ if(username==null || userid==0)
   <a href="/policyvendorHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/policyvendor/addpolicy1" class="fas fa fa-plus-square back"> Add Policy</a>
   <a href="/policyvendor/listpolicies" class="fas fa-user-alt back">  MyPolicies</a>
-  
+  <a href="/policyvendor/claims" class="fas fa-user-alt back">  SeeClaims</a>
   
   <a href="/policyvendor/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
  <a href="/policyvendorHome.jsp" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
@@ -52,9 +52,32 @@ if(username==null || userid==0)
        <td> <button><a href="/policyvendor/editpolicy?policyid=${policyl.policyId}" style="color: black;">Edit Policy</a></button> </td>
     </tr>
 </c:if>
+
+<c:if test="${claimlist!=null}">
+<tr>
+<td>PaymentId</td>
+<td>CustomerId</td>
+<td>PolicyName</td>
+<td>Reason for Claim</td>
+<td>Status</td>
+</tr>
+<tr>
+<td><c:out value="${claimlist.payid}"></c:out></td>
+<td><c:out value="${claimlist.userid}"></c:out></td>
+<td><c:out value="${claimlist.policyname}"></c:out></td>
+<td><c:out value="${claimlist.reasonbyc}"></c:out></td>
+<td> <button><a href="/policyvendor/acceptclaim?cid=${claimlist.claimid }" style="color: black;">Approve</a></button>
+<button><a href="/policyvendor/rejectclaim?cid=${claimlist.claimid }" style="color: black;">Reject</a></button> </td>
+</tr>
+ 
+</c:if>
       </table>
  </div>
-<label style="color:white;font-size:large;"><c:out value="${message}"></c:out></label>
+<c:if test="${message!=null }">  
+   <script>alert('<c:out value="${message}"/>');
+	            
+				</script>  
+				</c:if>
 <footer>
 <div class="footer">
 &copy; Copyright 2020, All Rights Reserved

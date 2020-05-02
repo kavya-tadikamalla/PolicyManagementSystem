@@ -19,12 +19,16 @@ if(username==null || userid==0)
 	response.sendRedirect("/policyvendorlogin/");
 }
 %>
-<div class="header"><header><b class="heading">Policy Management</b></header></div>
+<div class="header"><header><b class="heading">Policy Management</b>
+
+</header>
+</div>
  <div class="topnav">
   <a href="/customerHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/customer/listofpolicies" class="fas fa-user-plus back">  List of Policies</a>
   <a href="/customer/listofmypolicies" class="fas fa-user-circle back"> MyPolicies</a>
-  <a href="/customer/notify" class="far fa-bell back">PaymentNotification </a>
+  <a href="/customer/notify" class="far fa-bell back">Payments </a>
+  <a href="/customer/rminders" class="far fa-bell back">Check Notifications </a>
   <a href="/customer/beforehelp" class="fas fa-user-alt back">Help</a>
   <a href="/customer/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
   <a href="/customerHome.jsp" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
@@ -39,14 +43,14 @@ if(username==null || userid==0)
 	
 	<tr>
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
-       <td>Premium_Amount</td><td>PolicyType</td><td>Buy Policy</td>
+       <td>Sumassured</td><td>PolicyType</td><td>Buy Policy</td>
        </tr>
      <c:forEach items="${policylist}" var="policylist1">
     <tr style="font-size: 18px; " >
       <td><c:out value="${policylist1.policyId}"></c:out></td>
        <td><c:out value="${policylist1.policyName }"></c:out></td>
        <td><c:out value="${policylist1.durationOfPolicy }"></c:out></td>
-       <td><c:out value="${policylist1.premiumAmount }"></c:out></td>
+       <td><c:out value="${policylist1.sumassured }"></c:out></td>
        <td><c:out value="${policylist1.policytype }"></c:out></td>
        <td style="text-align: center;"> <button><a href="/customer/buypolicy?policyid=${policylist1.policyId}" style="color: black;">Buy Policy</a></button> </td>
     </tr>
@@ -55,16 +59,16 @@ if(username==null || userid==0)
     <c:if test="${searchlist!=null}">
     <tr>
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
-       <td>Premium_Amount</td><td>PolicyType</td><td>Buy Policy</td>
+       <td>Sumassured</td><td>PolicyType</td><td>Buy Policy</td>
        </tr>
        <c:forEach items="${searchlist}" var="searchlist1">
 <tr style="font-size: 18px; " >
       <td><c:out value="${searchlist1.policyId}"></c:out></td>
        <td><c:out value="${searchlist1.policyName }"></c:out></td>
        <td><c:out value="${searchlist1.durationOfPolicy }"></c:out></td>
-       <td><c:out value="${searchlist1.premiumAmount }"></c:out></td>
+       <td><c:out value="${searchlist1.sumassured }"></c:out></td>
        <td><c:out value="${searchlist1.policytype }"></c:out></td>
-       <td> <button><a href="#" style="color: black;">Buy Policy</a></button> </td>
+       <td> <button><a href="/customer/buypolicy?policyid=${searchlist1.policyId}" style="color: black;">Buy Policy</a></button> </td>
     </tr>
     </c:forEach>
  </c:if>
@@ -72,25 +76,38 @@ if(username==null || userid==0)
  <c:if test="${mypol1!=null }">
  <tr>
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
-       <td>Premium_Amount</td><td>PolicyType</td><td>lastpaid date</td>
-       <td>fine amount</td><td>Total Bill Amount</td><td>PayBill</td>
+       <td>PolicyType</td><td>Premium_Amount</td><td>NextPay date</td>
+       <td>Status</td><td>Claim? just press</td>
        </tr>
  <c:forEach items="${ mypol}" var="mypolicy">
  <td>${mypolicy.policyId}</td>
  <td>${mypolicy.policyName}</td>
  <td>${mypolicy.durationOfPolicy}</td>
- <td>${mypolicy.premiumAmount}</td>
+ 
  <td>${mypolicy.policytype}</td>
+ 
   </c:forEach>
  <c:forEach items="${mypol1}" var="mypolicy1">
-
- <td>${mypolicy1.lastpaid}</td>
- <td>${mypolicy1.fineamount}</td>
- <td>${mypolicy1.fineamount+mypolicy1.amount}</td>
+<td>${mypolicy1.amount}</td>
+ <td>${mypolicy1.nextpayDate}</td>
+ <td>${mypolicy1.paystatus}</td>
+ <c:choose >
+ <c:when test="${mypolicy1.paystatus=='paid' || mypolicy1.paystatus=='pending'}">
+ <td><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button></td>
+ </c:when>
+ <c:otherwise>
+<%--  <td><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button></td> --%>
+ <td>Claimed</td>
+ </c:otherwise>
+ </c:choose>
+ <tr><marquee style="font-size: x-large;">Check payments to pay dues</marquee></tr>
  
  </c:forEach>
- <td> <button><a href="#" style="color: black;">Pay Bill</a></button> </td>
- </c:if>
+ <!-- <button ><a href="/customer/listofmypolicies?days=30" class="far fa-bell back" style="color: black;text-decoration: none;">MonthlyPayments</a></button>&nbsp
+  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> QuaterlyPayments</a></button>&nbsp
+  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> HalfyearlyPayments</a></button>&nbsp
+  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> YealyrPayments</a></button>
+ --> </c:if>
  </c:if>
  
  <c:if test="${noofdays1!=null }">  
@@ -101,12 +118,12 @@ if(username==null || userid==0)
  
 <c:if test="${notify!=null }">
  <c:if test="${notify1!=null }">
- 
+ ${noofdays}
   
  <tr>
        <td>PolicyId</td><td>PolicyName</td>
        <td>PolicyType</td><td>lastpaid date</td><td>nextpay date</td>
-       <td>Total Bill Amount</td><td>PayBill</td>
+       <td>Total Bill Amount</td><td>Status</td><td>PayBill</td>
        </tr>
  <c:forEach items="${ notify1}" var="notf1">
  <td>${notf1.policyId}</td>
@@ -118,18 +135,18 @@ if(username==null || userid==0)
  <td>${notf.lastpaid}</td>
  <td>${notf.nextpayDate}</td>
  <td>${notf.fineamount+notf.amount}</td>
- 
+ <td>${notf.paystatus }</td>
+ <td> <button><a href="/customer/duebill?pid=${notf.payid}" style="color: black;">Pay Bill</a></button>  </td>
  </c:forEach>
- <td> <button><a href="#" style="color: black;">Pay Bill</a></button> </td>
+ 
 
- <button ><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;">MonthlyPayments</a></button>&nbsp
-  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> QuaterlyPayments</a></button>&nbsp
-  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> HalfyearlyPayments</a></button>&nbsp
-  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> YealyrPayments</a></button>
+ 
  </c:if>
  </c:if>
-
-
+<c:if test="${rem!=null }">
+<tr>
+<td>${rem }</td>
+</tr></c:if>
       </table>
     <c:if test="${message!=null }">  
    <script>alert('<c:out value="${message}"/>');

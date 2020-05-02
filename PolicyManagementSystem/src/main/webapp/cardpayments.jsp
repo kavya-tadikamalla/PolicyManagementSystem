@@ -10,59 +10,61 @@
 <link rel="stylesheet" type="text/css" href="/style.css">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
-
+<!--   pay.setAmount((pay.getPaymentperiod()*pol.getSumassured())/(pol.getDurationOfPolicy()*360));
+			 pay.setTotalamount(pay.getAmount()+pay.getFineamount());
+			 System.out.println(pay); -->
 <body>
   <%
 int pid=Integer.parseInt(request.getParameter("policyId"));
 int uid=Integer.parseInt(request.getParameter("userId"));
-double amt=Double.parseDouble(request.getParameter("amount"));
+double sumassured=Double.parseDouble(request.getParameter("sumassured"));
 double finepd=Double.parseDouble(request.getParameter("fineperday"));
 double finea=Double.parseDouble(request.getParameter("fineamount"));
 String rem=request.getParameter("reminder");
 int payperiod=Integer.parseInt(request.getParameter("paymentperiod"));
+int dop=Integer.parseInt(request.getParameter("durationOfPolicy"));
+double amt=(payperiod*sumassured)/(dop*360);
 %>
-<div class="card" >
-
 
  <form:form action="/customer/cardpayment" name="cardform" method="post" modelAttribute="payment" style="margin-top:50px;margin-left:30px;" onsubmit="return validate()">
 
-<table align="center" class="tables back" style="display: inline-block;float:inherit;margin-bottom: 15%;">
+<table align="center" class="tables back" style="display: inline-block;float: left;margin-left: 25%;">
 <tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Policy Payment Form</td></tr>
 <tr>
 <td>PolicyId  :</td>
-<td><input type="number" value=<%= pid %> name="policyId"></td>
+<td><input type="number" value=<%= pid %> name="policyId" readonly="readonly"></td>
 </tr>
 <tr>
 <td>My Id  :</td>
-<td><input type="number" value=<%=uid %> name="userId" ></td>
+<td><input type="number" value=<%=uid %> name="userId" readonly="readonly"></td>
 </tr>
 <tr>
 <td>Amount:</td>
-<td><input type="number" value=<%=amt %> name="amount"></td>
+<td><input type="number" value=<%=amt %> name="amount" readonly="readonly"></td>
 </tr>
 <tr>
 <td>finePerday:</td>
-<td><input type="number" value=<%=finepd %> name="fineperday" ></td>
+<td><input type="number" value=<%=finepd%> name="fineperday" readonly="readonly"></td>
 </tr>
 <tr>
 <td>fineamount:</td>
-<td><input type="number" value=<%=finea %> name="fineamount"></td>
+<td><input type="number" value=<%=finea%> name="fineamount" readonly="readonly"></td>
 </tr>
 <tr>
 <td>totalamount:</td>
-<td><input type="number" value=<%=finea+amt %> name="totalamount"></td>
+<td><input type="number" value=<%=finea+amt%> name="totalamount" readonly="readonly"></td>
 </tr>
 <tr>
 <td>Opted for Reminders?</td>
-<td><input type="text" value=<%=rem %> name="reminder"></td>
+<td><input type="text" value=<%=rem%> name="reminder" readonly="readonly"></td>
 </tr>
 <tr>
 <td>Opted Period(in Days)</td>
-<td><input type="text" value=<%=payperiod %> name="paymentperiod"></td>
+<td><input type="text" value=<%=payperiod %> name="paymentperiod" readonly="readonly"></td>
 </tr>
 </table>
 
-<table align="center" class="tables back" style="display: inline-block;float:inherit;margin-bottom: 22%;">
+<table align="center" class="tables back" style="display: inline-block;float:right;margin-right: 15%;margin-top: 5%">
 <tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Card Details Form</td></tr>
 <tr>
 <td>Card No:</td>
@@ -85,7 +87,7 @@ int payperiod=Integer.parseInt(request.getParameter("paymentperiod"));
 </tr>
 </table>
 </form:form>
-</div>
+
 <script type="text/javascript">
 function validate(){
 	var Regex='/^[^a-zA-Z]*$/';
