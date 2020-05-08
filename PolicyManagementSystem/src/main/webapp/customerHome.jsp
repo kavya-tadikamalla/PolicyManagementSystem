@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +29,7 @@ if(username==null || userid==0)
   <a href="/customerHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/customer/listofpolicies" class="fas fa-user-plus back">  List of Policies</a>
   <a href="/customer/listofmypolicies" class="fas fa-user-circle back"> MyPolicies</a>
-  <a href="/customer/notify" class="far fa-bell back">Payments </a>
+ <!--  <a href="/customer/notify" class="far fa-bell back">Payments </a> -->
   <a href="/customer/rminders" class="far fa-bell back">Check Notifications </a>
   <a href="/customer/beforehelp" class="fas fa-user-alt back">Help</a>
   <a href="/customer/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
@@ -72,42 +74,65 @@ if(username==null || userid==0)
     </tr>
     </c:forEach>
  </c:if>
+ 
  <c:if test="${mypol!=null }">
  <c:if test="${mypol1!=null }">
+ 
+ <label style="background-color: rgba(0,0,0, 0.9);color: #e6e6e6;font-size: x-large;border:1px solid ;">TotalAmount=PremiumAmount*fineAmount</label>
  <tr>
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
-       <td>PolicyType</td><td>Premium_Amount</td><td>NextPay date</td>
-       <td>Status</td><td>Claim? just press</td>
+       <td>PolicyType</td><td>PremiumAmount</td><td>NextPay date</td>
+       <td>TotalAmount</td><td>Status</td>
+       <td>Payment</td><td>Claim? just press</td>
        </tr>
- <c:forEach items="${ mypol}" var="mypolicy">
+       
+ <c:forEach items="${mypol1}" var="mypolicy1">
+ <c:forEach items="${ mypol}" var="mypolicy" >
+ <c:if test="${mypolicy.policyId== mypolicy1.policyId}">
+ <tr>
  <td>${mypolicy.policyId}</td>
  <td>${mypolicy.policyName}</td>
  <td>${mypolicy.durationOfPolicy}</td>
- 
  <td>${mypolicy.policytype}</td>
  
-  </c:forEach>
- <c:forEach items="${mypol1}" var="mypolicy1">
-<td>${mypolicy1.amount}</td>
+ <td><fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${mypolicy1.amount}" /></td>
  <td>${mypolicy1.nextpayDate}</td>
- <td>${mypolicy1.paystatus}</td>
+ <td><fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${mypolicy1.totalamount}" /></td>
+ 
+ <c:if test="${noofdays<1 && mypolicy1.paystatus!='claimed'}">
+ <td style="text-transform: capitalize;">${mypolicy1.paystatus} (delayed by <fmt:formatNumber type="number" value="${noofdays < 0 ? -noofdays:noofdays}" /> days)</td>
+ </c:if>
+  <c:if test="${noofdays>=1 && mypolicy1.paystatus!='claimed' }">
+ <td style="text-transform: capitalize;">${mypolicy1.paystatus} (due in ${noofdays} days)</td>
+ </c:if>
+ <c:if test="${mypolicy1.paystatus=='claimed' }">
+ <td style="text-transform:uppercase;">${mypolicy1.paystatus}</td>
+ </c:if>
+ <c:choose>
+ <c:when test="${mypolicy1.paystatus=='claimed' || mypolicy1.paystatus=='requested for claim' }">
+ <td> <button title="this link is disabled">Pay Bill</button>  </td>
+ </c:when>
+ <c:otherwise>
+ <td> <button><a href="/customer/duebill?pid=${mypolicy1.payid}" style="color: black;">Pay Bill</a></button>  </td>
+ </c:otherwise>
+ </c:choose>
  <c:choose >
  <c:when test="${mypolicy1.paystatus=='paid' || mypolicy1.paystatus=='pending'}">
  <td><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button></td>
  </c:when>
+ <c:when test="${mypolicy1.paystatus=='requested for claim'  }">
+ <td><button title="this link is disabled" >${mypolicy1.paystatus}</button></td>
+ </c:when>
  <c:otherwise>
-<%--  <td><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button></td> --%>
- <td>Claimed</td>
+ <td><button title="this link is disabled" >Claimed</button></td>
  </c:otherwise>
  </c:choose>
- <tr><marquee style="font-size: x-large;">Check payments to pay dues</marquee></tr>
- 
+ </tr>
+ </c:if>
  </c:forEach>
- <!-- <button ><a href="/customer/listofmypolicies?days=30" class="far fa-bell back" style="color: black;text-decoration: none;">MonthlyPayments</a></button>&nbsp
-  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> QuaterlyPayments</a></button>&nbsp
-  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> HalfyearlyPayments</a></button>&nbsp
-  <button style="color: black;"><a href="#" class="far fa-bell back" style="color: black;text-decoration: none;"> YealyrPayments</a></button>
- --> </c:if>
+ </c:forEach>
+ 
+  </c:if>
  </c:if>
  
  <c:if test="${noofdays1!=null }">  
@@ -149,7 +174,7 @@ if(username==null || userid==0)
 </tr></c:if>
       </table>
     <c:if test="${message!=null }">  
-   <script>alert('<c:out value="${message}"/>');
+   <script type="text/javascript">alert('<c:out value="${message}"/>');
 	            
 				</script>  
 				</c:if>

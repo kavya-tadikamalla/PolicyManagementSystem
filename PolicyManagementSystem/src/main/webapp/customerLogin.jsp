@@ -21,24 +21,20 @@
    </div>
  
 <div class="card">
-<c:if test="${message!=null }">  
-   <script>alert('<c:out value="${message}"/>');
-	            
-				</script>  
-				</c:if>
+<b style="color:white; background-color: black;">${message}</b>
 
  <form:form action="/customer/customlogin" method="post" modelAttribute="custml" style="margin-top:50px;">
 	<table align="center" class="tables back" >
 		<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Login Form</td></tr>
 		<tr>
 			<td><i class="fas fa fa-user back" title="UserId" style="border-spacing:10px;"> UserId</i></td>
-			<td><form:input path="userId" required="required" placeholder="Enter your userId" title="Enter UserId"/><br>
+			<td><form:input path="userId" required="required" placeholder="Enter your userId" title="Enter UserId" oninvalid="return useridv(this)"/><br>
 				
 				<form:errors path="userId" ></form:errors></td>
 		</tr>
 		<tr>
 			<td><i class="fa fa-key" title="Password"> Password</i> </td>
-			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password"/><br>
+			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password" oninvalid="return passwordv(this)"/><br>
 			<form:errors path="password" style="color:red"></form:errors>
 			
 			</td>
@@ -54,7 +50,38 @@
 		
 	</table>
  </form:form>
- 
+ <script type="text/javascript">
+	function passwordv(textbox)
+	{
+
+		if(textbox.value=='')
+			{
+			
+			/* textbox.setCustomValidity("Contact Number should not be emplty") */
+			textbox.style.border="3px solid red";
+			}
+		else {  
+	        textbox.setCustomValidity(""); 
+	        textbox.style.border=""; 
+	    } 
+			
+	}
+	function useridv(textbox)
+	{
+
+		if(textbox.value=='')
+			{
+			
+			/* textbox.setCustomValidity("Contact Number should not be emplty") */
+			textbox.style.border="3px solid red";
+			}
+		else {  
+	        textbox.setCustomValidity(""); 
+	        textbox.style.border=""; 
+	    } 
+			
+	}
+	</script>
 </div>
 <footer>
 <div class="footer">

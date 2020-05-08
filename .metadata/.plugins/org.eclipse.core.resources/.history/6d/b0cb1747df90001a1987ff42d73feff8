@@ -1,0 +1,327 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Policy Management-Admin</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script type="text/javascript" src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<style type="text/css">
+tr,td{
+text-align: left;
+}
+
+</style>
+</head>
+<body>
+<div class="header"><header><b class="heading">Policy Management</b></header></div>
+<div class="topnav">
+  <a href="/" class="fas fa fa-home back" >Home</a>
+  <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
+ <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
+ <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
+
+   </div>
+<div class="card">
+
+ <form:form action="/policyvendor/policyvendorreg" method="post" modelAttribute="policyvendorreg"  onsubmit="return validate()">
+
+<table align="center" class="tables back" >
+<tr>
+<td></td>
+
+<tr align="center">
+<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
+Registration Form</td></tr>
+</tr>
+<tr>
+<td>VendorId<label style="color: red">*</label>:</td>
+<td>
+
+<form:input path="vendorId" id="id" class="form-control"  />
+
+</td>
+<td>Policy Vendor Name<label style="color: red">*</label>:</td>
+<td>
+
+<form:input path="policyvendorname" id="policyvendorname" class="form-control"   />
+
+</td>
+</tr>
+
+<tr>
+
+</tr>
+
+<tr>
+<td>Policy Vendor Reg. No<label style="color: red">*</label>:</td>
+<td>
+
+<form:input path="policyvendorregno" id="policyvendorregno" class="form-control"  />
+
+</td>
+<td>Policy Type<label style="color: red">*</label>:</td>
+<td>
+
+<form:select path="policytype" class="form-control" id="policytype"  >
+<form:option value="" label="--Select Policy Type--"/>
+<form:option value="LifeInsurance" label="LifeInsurance"/>
+<form:option value="MedicalInsurance" label="MedicalInsurance"/>
+<form:option value="VehicleInsurance" label="VehicleInsurance"/>
+</form:select>
+
+</td>
+</tr>
+
+
+<tr>
+
+</tr>
+
+<tr>
+<td>Address:</td>
+<td>
+
+<form:input path="address" class="form-control"  />
+</td>
+<td>Country:</td>
+<td>
+<form:select path="country" class="form-control" >
+<form:option value="" label="--Select Country--"/>
+<form:option value="US" label="US"/>
+<form:option value="India" label="India"/>
+<form:option value="UK" label="UK"/>
+</form:select>
+
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>State:</td>
+<td>
+<form:select path="State" class="form-control" >
+<form:option value="" label="--Select Policy Type--"/>
+<form:option value="Telangana" label="Telangana"/>
+<form:option value="AP" label="AP"/>
+<form:option value="TN" label="TN"/>
+</form:select>
+</td>
+<td>Zipcode:</td>
+<td>
+
+<form:input path="zipcode" class="form-control" />
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>DateOfBirth<label style="color: red">*</label>:</td>
+<td><form:input path="dateOfBirth" id="dateOfBirth" type="date"  /><br>
+<td>Email address<label style="color: red">*</label>:</td>
+<td>
+<form:input  path="emailaddress" id="emailaddress" class="form-control" />
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>Contact Number<label style="color: red">*</label>:</td>
+<td>
+<form:input path="contactnumber" id="contactnumber" class="form-control"  pattern="[6-9]{1}[0-9]{9}"  />
+
+</td>
+<td>Web Site<label style="color: red">*</label>:</td>
+<td>
+<form:input path="website" class="form-control"/>
+
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>Certificate Issued Date<label style="color: red">*</label>:</td>
+<td>
+<form:input path="certificateissueddate" id="certificateissueddate" type="date" class="form-control"  />
+
+</td>
+<td>Certificate Validity Date<label style="color: red">*</label>:</td>
+<td>
+<form:input path="certificatevaliditydate" id="certificatevaliditydate" type="date" class="form-control"  />
+
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>Year of Establishment<label style="color: red">*</label>:</td>
+<td>
+<form:input path="yearofestablishment" class="form-control"  />
+
+</td></tr>
+<tr>
+<td>Password<label style="color: red">*</label>:</td>
+<td><form:password path="password" class="form-control" id="password"  />
+<td>Confirm Password<label style="color: red">*</label>:</td>
+			<td><input type="password" id="cpassword"  ></td>
+</td>
+</tr>
+<td>Secret Question 1:</td>
+<td>
+<form:select path="secretquestion1" id="secretquestion1" class="select-box" >
+<option  selected="selected" value="What is your Birthdate?">What is your Birthdate?</option>
+  <option value="In which school you have studied first?">In which school have you studied first?</option>
+  <option value="What is your favourite color?">What is your favourite color?</option>
+</form:select>
+
+</td>
+<td colspan="2" align="right">
+<form:input path="answer1" id="answer1" placeholder="Answer" width="170px" /></td>
+</tr>
+
+<tr>
+<td>Secret Question 2:</td>
+<td>
+<form:select path="secretquestion2" id="secretquestion2" class="select-box" >
+<option  selected="selected" value="What is your favourite place?">What is your favourite place?</option>
+  <option value="What is your parent's anniversary?">What is your parent's anniversary?</option>
+  <option value="What is your highest education?">What is your highest education?</option>
+</form:select>
+</td>
+<td colspan="2" align="right">
+<form:input path="answer2" id="answer2" placeholder="Answer" width="170px" />
+</td>
+</tr>
+<tr>
+
+</tr>
+<tr>
+<td>Secret Question 3:</td>
+<td>
+<form:select path="secretquestion3" id="secretquestion3" class="select-box" >
+<option  selected="selected" value="What is your favourite comic?">What is your favourite comic?</option>
+  <option value="What is your hometown?">What is your hometown?</option>
+  <option value="In what town or city did you meet your spouse/partner?">In what town or city did you meet your spouse/partner?</option>
+</form:select>
+</td>
+<td colspan="2" align="right">
+<form:input path="answer3" id="answer3" placeholder="Answer" width="170px" />
+</td>
+</tr>
+
+<tr><td></td>
+<td colspan="2" align="center"> <input type="submit" value="Register" class="formsubmitbutton" /><!-- </td> -->
+<label style="font-size: 15px;">Existing PolicyVendor?</label><a href="/policyvendor/" style="color:white;"> SignIn</a></td></tr>
+</table>
+</form:form>
+
+</div>
+<script type="text/javascript">
+function validate()
+{
+	var id=document.getElementById("vendorId").value;
+	var pname=document.getElementById("policyvendorname").value;
+	var regno=document.getElementById("policyvendorregno").value;
+	var dob=document.getElementById("dateOfBirth").value;
+    var email=document.getElementById("emailaddress").value;
+    var phno=document.getElementById("contactnumber").value;
+    var cfissue=document.getElementById("certificateissueddate").value;
+    var cfvalid=document.getElementById("certificatevaliditydate").value;
+	var pwd=document.getElementById("password").value;
+	var cpwd=document.getElementById("cpassword").value;
+	
+	if(id=="")
+	{
+		alert("please update manadatory fields(VendorId)");
+		document.getElementById("vendorId").style.border = " red";
+		
+		return false;
+		}
+		else if(pname=="")
+		{
+			alert("please update the mandatory fields(policyvendorname)");
+			document.getElementById("policyvendorname").style.border = "red";
+			
+			return false;
+		}
+		else if(regno=="")
+		{
+			alert("please update mandatory fields(policy vendor regno)");
+			document.getElementById("policyvendorregno").style.border = "red";
+			
+			return false;
+		}
+		else if(dob=="")
+		{
+			alert("please update mandatory fields(date of Birth)");
+			document.getElementById("dateOfBirth").style.border = "red";
+			
+			return false;
+		}
+		else if(phno=="")
+		{
+			alert("please update mandatory fields(contactNumber)");
+			document.getElementById("contactnumber").style.border = "red";
+			
+			return false;
+		}
+		else if(email=="")
+		{
+			alert("please update mandatory fields(email)");
+			document.getElementById("emailaddress").style.border = "red";
+			
+			return false;
+		}
+		else if(cfissue=="")
+		{
+			alert("please update mandatory fields(certificate issue date)");
+			document.getElementById("certificateissueddate").style.border = "red";
+			
+			return false;
+		}
+		else if(cfvalid=="")
+		{
+			alert("please update mandatory fields(certificate valid date)");
+			document.getElementById("certificatevaliditydate").style.border = "red";
+			
+			return false;
+		}
+		else if(pwd=="")
+		{
+			alert("please update mandatory fields(password)");
+			document.getElementById("password").style.border = "red";
+			
+			return false;
+		}
+		else if(cpwd=="")
+		{
+			alert("please update mandatory fields(Confirm password)");
+			document.getElementById("cpassword").style.border = "red";
+			
+			return false;
+		}
+		else if(pwd!=cpwd)
+		{
+			alert("password and confirm password should be same");
+			document.getElementById("password").style.border = "2px solid red";
+			document.getElementById("cpassword").style.border = "2px solid red";
+			return false;
+		}	
+}
+</script>
+
+<footer>
+<div class="footer">
+&copy; Copyright 2020, All Rights Reserved
+</div> 
+</footer>
+</body>
+</html>

@@ -1,0 +1,5 @@
+var pvn=document.getElementById("fname").value;
+if(pvn==""){
+	document.getElementById("fname").style.border = "2px solid red";
+	document.getElementById("fname").setCustomValidity("Name shld not be empty");
+	} 

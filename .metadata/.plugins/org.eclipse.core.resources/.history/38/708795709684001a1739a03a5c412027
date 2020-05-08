@@ -1,7 +1,0 @@
-package com.policymanagement.models;
-
-public class CustomerLogin {
-	private int userId;
-	private String password;
-
-}

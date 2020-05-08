@@ -28,33 +28,36 @@ Registration Form</td></tr>
 			<td><form:input path="adminId" required="required"/></td>
 				
 				<td>First Name<label style="color: red">*</label>:</td>
-			<td><form:input path="firstName" required="required"/></td>
+			<td><form:input path="firstName" required="required" oninvalid="namevalidate(this)"/></td>
 		</tr>
 		
 		<tr>
 			<td>Last Name<label style="color: red">*</label>:</td>
-			<td><form:input path="lastName" required="required"/></td>
+			<td><form:input path="lastName" required="required" oninvalid="lnamevalidate(this)"/></td>
 			<td>Contact Number<label style="color: red">*</label>:</td>
-			<td><form:input path="contactNumber" required="required"/>
+			<td><form:input path="contactNumber" type="tel"  pattern="[6-9]{1}[0-9]{9}" required="required"  title="Enter a 10 digit contact number starting with [6 or 7 or 8 or 9]. e.g. 7895236419" oninvalid="contactnum(this)" />
+			<%-- <form:errors path="contactNumber" cssClass="errors" >${error }</form:errors></td> --%>
+			<span></span></td>
 		</tr>
 		
 		<tr>
 			<td>DateOfBirth<label style="color: red">*</label>:</td>
-			<td><form:input path="dateOfBirth" type="date" required="required"/></td>
+			<td><form:input path="dateOfBirth" type="date" required="required" oninvalid="return dob(this)"/></td>
 			<td>Email<label style="color: red">*</label>:</td>
-			<td><form:input path="email" required="required"/></td>
+			<td><form:input path="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="email should contain '@' and '.' eg. abcd@xyz.com" required="required" oninvalid="return emailid(this)"/>
+			<form:errors path="email" cssClass="errors">Email Already Exists</form:errors></td>
 		</tr>
 		
 		<tr>
 			<td>Password<label style="color: red">*</label>:</td>
-			<td><form:password path="password"  id="pwd" required="required"/></td>
-			<td>Confirm Password:</td>
-			<td><input type="password" id="cpwd"></td>
+			<td><form:password path="password"  id="pwd" required="required" oninvalid="return passwordv(this)"/></td>
+			<td>Confirm Password<label style="color: red">*</label>:</td>
+			<td><input type="password" id="cpwd" required="required" oninvalid="return cpasswordv(this)"></td>
 		</tr>
-		<tr><td >Gender:</td>
+		<tr><td >Gender<label style="color: red">*</label>:</td>
 		<td>
-		<form:radiobutton path="gender" value="male" label="Male" />
-		<form:radiobutton path="gender" value="female" label="Female"/>
+		<form:radiobutton path="gender" value="male" label="Male" required="required" oninvalid="return genderv(this)"/>
+		<form:radiobutton path="gender" value="female" label="Female" required="required" oninvalid="return genderv(this)"/>
 		</td> </tr>
 		<tr>
 <td>Secret Question 1:</td>
@@ -117,7 +120,139 @@ function validate(){
 			alert("Password and Confirm Password are not same");
 			return false;
 		}
+	
 }
+function namevalidate(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		textbox.setCustomValidity("Name field should not be emplty") 
+		textbox.style.border="3px solid red";
+		
+		
+		}
+	else { 
+		textbox.style.border="white"; 
+        textbox.setCustomValidity(""); 
+        
+    } 
+	
+}
+function lnamevalidate(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		textbox.setCustomValidity("Name field should not be emplty")
+		textbox.style.border="3px solid red";
+		}
+	else {  
+         
+        textbox.style.border="white";
+        textbox.setCustomValidity(""); 
+    } 
+	
+}
+function contactnum(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		/* textbox.setCustomValidity("Contact Number should not be emplty") */
+		textbox.style.border="3px solid red";
+		}
+	else {  
+         
+        textbox.style.border="white";
+        textbox.setCustomValidity(""); 
+    } 
+		
+}
+function dob(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		/* textbox.setCustomValidity("Contact Number should not be emplty") */
+		textbox.style.border="3px solid red";
+		}
+	else {  
+         
+        textbox.style.borderBottom="white";
+        textbox.setCustomValidity("");
+    } 
+		
+}
+function emailid(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		/* textbox.setCustomValidity("Contact Number should not be emplty") */
+		textbox.style.border="3px solid red";
+		}
+	else {  
+         
+        textbox.style.border="white";
+        textbox.setCustomValidity(""); 
+    } 
+		
+}
+function passwordv(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		/* textbox.setCustomValidity("Contact Number should not be emplty") */
+		textbox.style.border="3px solid red";
+		}
+	else {  
+         
+        textbox.style.border="white";
+        textbox.setCustomValidity(""); 
+    } 
+		
+}
+function cpasswordv(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		/* textbox.setCustomValidity("Contact Number should not be emplty") */
+		textbox.style.border="3px solid red";
+		}
+	else {  
+        
+        textbox.style.border="white";
+        textbox.setCustomValidity(""); 
+    } 
+		
+}
+function genderv(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		/* textbox.setCustomValidity("Contact Number should not be emplty") */
+		textbox.style.border="3px solid red";
+		}
+	else {  
+        
+        textbox.style.border="white";
+        textbox.setCustomValidity(""); 
+    } 
+		
+}
+
 </script>
 <footer>
 <div class="footer">

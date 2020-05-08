@@ -12,11 +12,8 @@
 </head>
 
 <body>
- 
-<div class="card" >
 
-
- <form:form action="/customer/cardpayment1" name="cardform" method="post" modelAttribute="payment" style="margin-top:50px;margin-left:30px;" onsubmit="return validate()">
+ <form:form action="/customer/cardpayment1" name="cardform" method="post" modelAttribute="payment" style="margin-top:50px;margin-left:30px;" align="center" onsubmit="return validate()">
 
 <table align="center" class="tables back" style="display: inline-block;float:inherit;margin-bottom: 30%;">
 <tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Card Details Form</td></tr>
@@ -42,7 +39,7 @@
 </tr>
 </table>
 </form:form>
-</div>
+
 <script type="text/javascript">
 function validate(){
 	var Regex='/^[^a-zA-Z]*$/';

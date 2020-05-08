@@ -16,6 +16,7 @@ body {
   
    
 }
+
 /* Header/Blog Title */
 .header {
 	font-family: Times New Roman;
@@ -27,6 +28,12 @@ body {
   text-align:center;
   padding-top: 2px;
   
+  
+}
+.errors
+{
+	color:red;
+	font-size: 15px;
 }
 
 .heading
@@ -73,7 +80,8 @@ body {
   text-align: left;
   padding: 14px 16px;
   text-decoration: none;
-  font-weight:bold; 
+  font-weight:bold;
+   
 }
 /*drop down*/
 .dropdown {
@@ -204,13 +212,24 @@ text-align: left;
   width: 100%;  
   font-weight:bold;
 }
-input[type=text],[type=date],[type=password],[type=number]{
+input[type=text],[type=date],[type=password],[type=number],[type=tel],[type=email]{
 	background: transparent;
     border: none;
     border-bottom: 1px solid  #ebebeb;
     width: 90%;
     color: white;
     padding : 8px;
+}
+select{
+	background: transparent;
+    border: none;
+    border-bottom: 1px solid  #ebebeb;
+    width: 90%;
+    color: white;
+    padding : 8px;
+}
+option{
+	background:black ;
 }
 input[type=submit] {
   background-color: #0a0a0a;
@@ -226,6 +245,12 @@ input[type=submit] {
 radiobutton{
 	display:inline;
 }
+input:required:onsubmit:invalid{
+	
+	border: 5px solid red !important;
+
+}
+
 
 
 

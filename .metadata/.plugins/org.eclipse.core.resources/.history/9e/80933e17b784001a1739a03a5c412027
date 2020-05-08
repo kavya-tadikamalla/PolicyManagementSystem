@@ -1,7 +1,0 @@
-package com.policymanagement.models;
-
-public class AdminLogin {
-
-	private int adminId;
-	private String password;
-}

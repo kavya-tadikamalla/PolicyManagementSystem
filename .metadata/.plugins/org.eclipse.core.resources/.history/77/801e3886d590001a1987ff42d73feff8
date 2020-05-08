@@ -1,0 +1,22 @@
+function namevalidate(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		textbox.setCustomValidity("Name field should not be emplty")
+		textbox.style.border="2px solid red";
+		}
+	
+}
+function lnamevalidate(textbox)
+{
+
+	if(textbox.value=='')
+		{
+		
+		textbox.setCustomValidity("Name field should not be emplty")
+		textbox.style.border="2px solid red";
+		}
+	
+} 

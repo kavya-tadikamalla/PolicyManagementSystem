@@ -1,6 +1,0 @@
-package com.policymanagement.models;
-@Entity
-@Table
-public class Admin {
-
-}

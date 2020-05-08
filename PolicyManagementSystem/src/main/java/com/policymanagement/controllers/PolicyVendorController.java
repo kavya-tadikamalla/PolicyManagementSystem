@@ -73,7 +73,19 @@ public class PolicyVendorController {
 					session.setAttribute("username", pname);
 					session.setAttribute("ptype", p1.getPolicytype());
 					session.setAttribute("userId", policyvendorLogin.getVendorId());
-					return "policyvendorHome";}
+					return "policyvendorHome";
+					}
+				/*
+				 * else if(p1.getStatus().equals("makecorrections")) { String
+				 * pname=p1.getPolicyvendorname(); session.setAttribute("username", pname);
+				 * session.setAttribute("ptype", p1.getPolicytype());
+				 * session.setAttribute("userId", policyvendorLogin.getVendorId());
+				 * model.addAttribute(
+				 * "message1","You need to update your details as admin asked to make corrections"
+				 * ); return "policyvendorHome"; }
+				 */
+					
+					
 					else {
 						
 						model.addAttribute("message","You are not yet activated by the admin,please wait for Activation");
@@ -124,7 +136,7 @@ public class PolicyVendorController {
 			}
 			else if(res==1)
 			{
-				model.addAttribute("message", policyvendor.getPolicyvendorname().toUpperCase()+"Congrats your registration is successfull");
+				model.addAttribute("message", policyvendor.getPolicyvendorname().toUpperCase()+"Congrats your registration is successfull\n"+policyvendor.getVendorId()+" this is your login userId \n PLEASE NOTE IT");
 			
 			
 			}
@@ -257,6 +269,7 @@ public class PolicyVendorController {
 			 p=paydao.findByPayid(payid);
 			 System.out.println(p);
 			p.setPaystatus("claimed");
+			p.setReminder("no");
 			paydao.save(p);
 			 System.out.println("rtyui");
 			 model.addAttribute("message", "claim response Successfull");
@@ -348,6 +361,146 @@ public class PolicyVendorController {
 			pvdao.save(pv);
 			model.addAttribute("message","your password has been updated");
 			return "CusResetPwd";
+		}
+		@GetMapping("/editprofile")
+		public String editDetails(@RequestParam("userid")int id,Model model,HttpSession session) {
+			session.setAttribute("vid", id);
+			PolicyVendor pv=policyvendorService.getPolicyVendor(id);
+			model.addAttribute("pvn",pv);
+			return "editProfile";
+		}
+		@PostMapping("/updateprofile")
+		public String updateeditP(@ModelAttribute("pvn")PolicyVendor pov,Model model) {
+		PolicyVendor status=pvdao.save(pov);
+		
+			model.addAttribute("message1","Updates Successfully");
+			return "policyvendorHome";
+		
+}
+		@GetMapping("/grpurchased")
+		public String reportpurchased(Model model,HttpSession session)
+		{
+			int id=(Integer)session.getAttribute("userId");
+			List<Payments> pay1=paydao.findAll();
+			List<Policy> p1=policydao.findAll();
+			PolicyVendor pv1=pvdao.findByVendorId(id);
+			//List<PolicyVendor> pv1=pvdao.findAll();
+			for(Payments pay:pay1) {
+				for(Policy p:p1) {
+					if(pay.getPolicyId()==p.getPolicyId()) {
+						
+							if(pv1.getVendorId()==p.getPolicyvendorId()) {
+								model.addAttribute("paym", pay);
+								model.addAttribute("poli", p);
+								model.addAttribute("vend", pv1);
+								
+							}
+						}
+					}
+				}
+			
+						
+				
+			
+			return "policyvendorHome";
+		}
+		@GetMapping("/grclaims")
+		public String reportclaims(Model model,HttpSession session)
+		{
+			int id=(Integer)session.getAttribute("userId");
+			System.out.println(id);
+			List<ClaimPolicy> cp=cldao.findAll();
+			List<Payments> paym=paydao.findAll();
+			PolicyVendor pve=pvdao.findByVendorId(id);
+			System.out.println(pve);
+			List<Policy> p=policydao.findAll();
+			for(ClaimPolicy cop:cp) {
+				for(Payments pym:paym) {
+					if(cop.getPayid()==pym.getPayid()) {
+						model.addAttribute("payme", pym);
+						for(Policy po:p) {
+							if(po.getPolicyId()==pym.getPolicyId() && pve.getVendorId()==po.getPolicyvendorId()) {
+								model.addAttribute("policy", po);
+								
+								model.addAttribute("claimp", cop);
+										System.out.println(pve);
+										model.addAttribute("polve", pve);
+									
+								
+							}
+						}
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			return "policyvendorHome";
+		}
+		@GetMapping("/grclaimr")
+		public String reportclaimr(Model model,HttpSession session)
+		{
+			int id=(Integer)session.getAttribute("userId");
+			PolicyVendor pve=pvdao.findByVendorId(id);
+			List<ClaimPolicy> cp=cldao.findAll();
+			List<Payments> paym=paydao.findAll();
+			
+			
+			List<Policy> p=policydao.findAll();
+			for(ClaimPolicy cop:cp) {
+				
+				if(cop.getCstatus().equals("rejected") ){
+					
+					
+				for(Payments pym:paym) {
+					if(cop.getPayid()==pym.getPayid()) {
+						
+						for(Policy po:p) {
+							if(po.getPolicyId()==pym.getPolicyId()&& pve.getVendorId()==po.getPolicyvendorId()) {
+								model.addAttribute("policy1", po);
+								model.addAttribute("payme1", pym);
+								model.addAttribute("claimp1", cop);
+										model.addAttribute("polve1", pve);
+									
+								
+							}
+						}
+					}
+				}
+			}
+			}
+			return "policyvendorHome";
+		}
+		@GetMapping("/grclaima")
+		public String reportclaima(Model model,HttpSession session)
+		{
+			int id=(Integer)session.getAttribute("userId");
+			PolicyVendor pve=pvdao.findByVendorId(id);
+			List<ClaimPolicy> cp=cldao.findAll();
+			List<Payments> paym=paydao.findAll();
+			List<Policy> p=policydao.findAll();
+			for(ClaimPolicy cop:cp) {
+				if(cop.getCstatus().equals("approved") ){
+					
+					
+				for(Payments pym:paym) {
+					if(cop.getPayid()==pym.getPayid()) {
+						
+						for(Policy po:p) {
+							if(po.getPolicyId()==pym.getPolicyId()&& pve.getVendorId()==po.getPolicyvendorId())  {
+								model.addAttribute("policy2", po);
+								model.addAttribute("claimp2", cop);
+										model.addAttribute("polve2", pve);
+										model.addAttribute("payme2", pym);
+							}
+						}
+					}
+				}
+			}
+			}
+			return "policyvendorHome";
 		}
 	
 		@GetMapping("/logout")

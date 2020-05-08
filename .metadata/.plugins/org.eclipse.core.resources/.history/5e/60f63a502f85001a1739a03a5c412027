@@ -1,5 +1,0 @@
-package com.policymanagement.dao;
-
-public interface PolicyDao {
-
-}

@@ -20,7 +20,7 @@
 
    </div>
 <div class="card ">
-
+<b style="color:white; background-color: black;">${message}</b>
 
  <form:form action="/admin/adminlogin" method="post" modelAttribute="adlogin" style="margin-top:50px;">
 	<table align="center" class="tables back" >
@@ -28,12 +28,12 @@
 		
 		<tr>
 			<td><i class="fas fa fa-user back" title="UserId" style="border-spacing:10px;"> UserId</i></td>
-			<td ><form:input path="adminId" required="required" placeholder="Enter your userId" title="Enter UserId"/><br>
+			<td ><form:input path="adminId"  required="required" placeholder="Enter your userId" title="Enter UserId" oninvalid="return useridv(this)"/><br>
 			</td>
 		</tr>
 		<tr>
 			<td><i class="fa fa-key" title="Password"> Password</i> </td>
-			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password"/><br>
+			<td><form:password path="password" required="required" placeholder="Enter your Password" title="Enter Password" oninvalid="return passwordv(this)"/><br>
 			</td>
 		</tr>
 		<tr align="center">
@@ -49,11 +49,39 @@
  </form:form>
  
 		
-<c:if test="${message!=null }">  
-   <script>alert('<c:out value="${message}"/>');
-	            
-				</script>  
-				</c:if>
+	<script type="text/javascript">
+	function passwordv(textbox)
+	{
+
+		if(textbox.value=='')
+			{
+			
+			/* textbox.setCustomValidity("Contact Number should not be emplty") */
+			textbox.style.border="3px solid red";
+			}
+		else {  
+	        textbox.setCustomValidity(""); 
+	        textbox.style.border=""; 
+	    } 
+			
+	}
+	function useridv(textbox)
+	{
+
+		if(textbox.value=='')
+			{
+			
+			/* textbox.setCustomValidity("Contact Number should not be emplty") */
+			textbox.style.border="3px solid red";
+			}
+		else {  
+	        textbox.setCustomValidity(""); 
+	        textbox.style.border=""; 
+	    } 
+			
+	}
+	</script>
+
 
 </div>
 <footer>

@@ -12,14 +12,7 @@
 </head>
 
 <body>
-  <!-- <div class="topnav">
-  <b class="heading">Policy Management</b>
-  <a href="/logout/" class="fas fa-power-off back">  Logout</a>
-  <a href="/policyvendor/" class="fas fa-user-plus back">  Policy Vendor</a>
-  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
-  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
-   </div> -->
-<div class="card">
+ 
 <h2> Edit Policy Form</h2>
  <form:form action="/policyvendor/addeditpolicy" method="post" modelAttribute="policy" style="margin-top:50px;margin-left:30px;">
 
@@ -53,12 +46,12 @@
 </tr>
 
 <tr>
-<td>Premium Amount :</td>
+<td>SumAssured :</td>
 <td>
 
-<form:input path="premiumAmount" class="form-control"/>
+<form:input path="sumassured" class="form-control"/>
 <br>
- <form:errors path="premiumAmount" cssClass="errors"></form:errors> 
+ <form:errors path="sumassured" cssClass="errors"></form:errors> 
 </td>
 </tr>
 <tr>

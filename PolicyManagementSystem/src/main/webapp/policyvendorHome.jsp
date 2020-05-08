@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,19 @@ if(username==null || userid==0)
   <a href="/policyvendor/addpolicy1" class="fas fa fa-plus-square back"> Add Policy</a>
   <a href="/policyvendor/listpolicies" class="fas fa-user-alt back">  MyPolicies</a>
   <a href="/policyvendor/claims" class="fas fa-user-alt back">  SeeClaims</a>
+  <div class="dropdown">
+  <button class="dropbtn "style="size: 20px;">Generate Report <i class="fas fa-caret-down"></i></button>
+  <div class="dropdown-content">
+  
+    <a href="/policyvendor/grpurchased" class="fas fa-user-circle" >No. of Policies Purchased</a>
+    <a href="/policyvendor/grclaims" class="fas fa-user-plus" >No. of claims Submitted</a>
+    <a href="/policyvendor/grclaima" class="fas fa-user-alt" >No. of claims approved</a>
+    <a href="/policyvendor/grclaimr" class="fas fa-user-alt" >No. of claims rejected</a>
+  </div>
+  </div> 
   
   <a href="/policyvendor/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
+  <a href="/policyvendor/editprofile?userid=<%=userid %>" style="float: right;"> My Profile</a>
  <a href="/policyvendorHome.jsp" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
    </div>
   
@@ -47,14 +59,14 @@ if(username==null || userid==0)
       <td><c:out value="${policyl.policyId}"></c:out></td>
        <td><c:out value="${policyl.policyName }"></c:out></td>
        <td><c:out value="${policyl.durationOfPolicy }"></c:out></td>
-       <td><c:out value="${policyl.premiumAmount }"></c:out></td>
+       <td><c:out value="${policyl.sumassured }"></c:out></td>
        <td><c:out value="${policyl.policytype }"></c:out></td>
        <td> <button><a href="/policyvendor/editpolicy?policyid=${policyl.policyId}" style="color: black;">Edit Policy</a></button> </td>
     </tr>
 </c:if>
 
 <c:if test="${claimlist!=null}">
-<tr>
+<tr >
 <td>PaymentId</td>
 <td>CustomerId</td>
 <td>PolicyName</td>
@@ -66,18 +78,122 @@ if(username==null || userid==0)
 <td><c:out value="${claimlist.userid}"></c:out></td>
 <td><c:out value="${claimlist.policyname}"></c:out></td>
 <td><c:out value="${claimlist.reasonbyc}"></c:out></td>
+<c:choose>
+<c:when test="${claimlist.cstatus== 'approved' || claimlist.cstatus== 'rejected'}">
+<td><c:out value="${fn:toUpperCase(claimlist.cstatus)}"></c:out></td>
+</c:when>
+<c:otherwise>
 <td> <button><a href="/policyvendor/acceptclaim?cid=${claimlist.claimid }" style="color: black;">Approve</a></button>
 <button><a href="/policyvendor/rejectclaim?cid=${claimlist.claimid }" style="color: black;">Reject</a></button> </td>
+</c:otherwise>
+</c:choose>
 </tr>
  
 </c:if>
+<c:if test="${message1!=null }">
+<tr>
+<td>${message1 }</td>
+</tr>
+</c:if>
+<c:if test="${paym!=null }">
+<tr><b style="font-size: x-large;">No. of Policies Purchased</b></tr>
+<tr>
+<td>PaymentId</td>
+<td>Policy Type</td>
+<td>Policy Name</td>
+<td>PolicyVendor Name</td>
+<td>CustomerId(who bought)</td>
+<td>DurationOfPolicy</td>
+</tr>
+<tr>
+
+<td><c:out value="${paym.payid}"></c:out></td>
+<td><c:out value="${poli.policytype }"></c:out></td>
+<td><c:out value="${poli.policyName }"></c:out></td>
+<td><c:out value="${vend.policyvendorname }"></c:out></td>
+<td><c:out value="${paym.userId }"></c:out></td>
+<td><c:out value="${poli.durationOfPolicy }"></c:out></td>
+</tr>
+
+</c:if>
+
+<c:if test="${claimp!=null }">
+<tr><b style="font-size: x-large;">Claims Submitted</b></tr>
+<tr>
+<td>ClaimId</td>
+<td>CustomerId</td>
+<td>PolicyId</td>
+<td>PolicyName</td>
+<td>PolicyVendorId</td>
+<td>PolicyVendorName</td>
+</tr>
+<tr>
+<td>${claimp.claimid }</td>
+<td>${claimp.userid }</td>
+<td>${payme.policyId }</td>
+<td>${policy.policyName }</td>
+<td>${policy.policyvendorId }</td>
+<td>${polve.policyvendorname }</td>
+</tr>
+
+</c:if>
+<c:if test="${claimp1!=null }">
+<tr><b style="font-size: x-large;">Claims Rejected</b></tr>
+<tr>
+<td>ClaimId</td>
+<td>CustomerId</td>
+<td>ClaimStatus</td>
+<td>PolicyId</td>
+<td>PolicyName</td>
+<td>PolicyVendorId</td>
+<td>PolicyVendorName</td>
+</tr>
+<tr>
+<td>${claimp1.claimid }</td>
+<td>${claimp1.userid }</td>
+<td style="text-transform: uppercase;">${claimp1.cstatus }</td>
+<td>${payme1.policyId }</td>
+<td>${policy1.policyName }</td>
+<td>${policy1.policyvendorId }</td>
+<td>${polve1.policyvendorname }</td>
+</tr>
+</c:if>
+
+
+<c:if test="${claimp2!=null }">
+<tr><b style="font-size: x-large;">Claims Approved</b></tr>
+<tr>
+<td>ClaimId</td>
+<td>CustomerId</td>
+<td>ClaimStatus</td>
+<td>PolicyId</td>
+<td>PolicyName</td>
+<td>PolicyVendorId</td>
+<td>PolicyVendorName</td>
+</tr>
+<tr>
+
+<td>${claimp2.claimid }</td>
+<td>${claimp2.userid }</td>
+<td style="text-transform: uppercase;">${claimp2.cstatus }</td>
+<td>${payme2.policyId }</td>
+<td>${policy2.policyName }</td>
+<td>${policy2.policyvendorId }</td>
+<td>${polve2.policyvendorname }</td>
+
+</tr>
+
+</c:if>
       </table>
- </div>
-<c:if test="${message!=null }">  
-   <script>alert('<c:out value="${message}"/>');
+     
+      <c:if test="${message!=null }">  
+   <script type="text/javascript">alert('<c:out value="${message}"/>');
 	            
 				</script>  
 				</c:if>
+ </div>
+ 
+
 <footer>
 <div class="footer">
 &copy; Copyright 2020, All Rights Reserved

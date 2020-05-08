@@ -35,6 +35,7 @@ if(username==null || userid==0)
   <div class="dropdown">
   <button class="dropbtn "style="size: 20px;">Generate Report <i class="fas fa-caret-down"></i></button>
   <div class="dropdown-content">
+  
     <a href="/admin/grpurchased" class="fas fa-user-circle" >No. of Policies Purchased</a>
     <a href="/admin/grclaims" class="fas fa-user-plus" >No. of claims Submitted</a>
     <a href="/admin/grclaima" class="fas fa-user-alt" >No. of claims approved</a>
@@ -71,9 +72,23 @@ if(username==null || userid==0)
            <td>${vendors.certificateissueddate}</td>
            <td>${vendors.certificatevaliditydate }</td>
            <td>${vendors.yearofestablishment }</td>
+           <c:if test="${vendors.status!='activate'}">
            <td> <button><a href="/admin/activate?vendorid=${vendors.vendorId}" style="color: black;">Activate</a></button> </td>
+           </c:if>
+                      <c:if test="${vendors.status=='activate'}">
+           <td> <button title="this link is disabled">Activate</button> </td>
+           </c:if>
+           <c:if test="${vendors.status!='deactivate'}">
            <td> <button><a href="/admin/deactivate?vendorid=${vendors.vendorId}" style="color: black;">Deactivate</a></button> </td>
+           </c:if>
+           <c:if test="${vendors.status=='deactivate'}">
+           <td> <button title="this link is disabled">Deactivate</button> </td>
+           </c:if>
+           
            <td><button> <a href="/admin/sendforcorrection?vendorid=${vendors.vendorId}" style="color: black;">Send for Correction</a></button> </td>
+           <c:if test="${vendors.status=='sent for verification'}">
+           <td> <button title="this link is disabled">sent for verification</button> </td>
+           </c:if>
     </tr>
 
 </c:forEach>
@@ -107,6 +122,7 @@ if(username==null || userid==0)
 </c:forEach>
 </c:if>
 <c:if test="${paym!=null }">
+<tr><b style="font-size: x-large;">No. of Policies Purchased</b></tr>
 <tr>
 <td>PaymentId</td>
 <td>Policy Type</td>
@@ -119,6 +135,7 @@ if(username==null || userid==0)
 <c:forEach items="${paym}" var="pay">
 <c:forEach items="${poli}" var="pol">
 <c:forEach items="${vend }" var="ven">
+<c:if test="${pay.policyId==pol.policyId && pol.policyvendorId==ven.vendorId}">
 <td><c:out value="${pay.payid}"></c:out></td>
 <td><c:out value="${pol.policytype }"></c:out></td>
 <td><c:out value="${pol.policyName }"></c:out></td>
@@ -126,6 +143,7 @@ if(username==null || userid==0)
 <td><c:out value="${pay.userId }"></c:out></td>
 <td><c:out value="${pol.durationOfPolicy }"></c:out></td>
 </tr>
+</c:if>
 </c:forEach>
 </c:forEach>
 </c:forEach>
@@ -197,13 +215,12 @@ if(username==null || userid==0)
 
 </c:if>
       </table>
-  <script type="text/javascript"></script>
-  <label style="color:white;font-size:large;"><c:out value="${message}"></c:out></label>  
-    
+      
  <c:if test="${message!=null }">  
-   <script>alert('<c:out value="${message}"/>');
+   <script type="text/javascript">alert('<c:out value="${message}"/>');
 	            
-				</script> </c:if>
+				</script>  
+				</c:if>
 </div>
 <footer>
 <div class="footer">

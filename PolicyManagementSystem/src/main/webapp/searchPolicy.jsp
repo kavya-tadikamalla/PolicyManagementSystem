@@ -20,7 +20,7 @@
 <table align="center" class="tables back" >
 
 <tr>
-
+<%-- 
 <td>
 <form:select path="category" class="form-control">
 <form:option value="" label="--Select Category--"/>
@@ -28,10 +28,10 @@
 <form:option value="PolicyName" label="PolicyName"/>
 
 </form:select>
-</td>
+</td> --%>
 <td>
 
-<form:input path="text" class="form-control" placeholder="enter text"/>
+<form:input path="text" class="form-control" placeholder="enter category or policy name"/>
 <br>
  <form:errors path="text" cssClass="errors"></form:errors> 
 </td>

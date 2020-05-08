@@ -22,11 +22,7 @@
    
 
 <div class="card">
-<c:if test="${message!=null }">  
-   <script>alert('<c:out value="${message}"/>');
-	            
-				</script>  
-				</c:if>
+<b style="color:white; background-color: black;">${message}</b>
 
  <form:form action="/policyvendor/policyvendorlogin" method="post" modelAttribute="policyvendor" style="margin-top:50px;">
 
@@ -36,7 +32,7 @@
 <tr>
 <td><i class="fas fa fa-user back" title="UserId" style="border-spacing:10px;"> UserId</i></td>
 <td>
-<form:input path="vendorId" class="form-control" required="required" placeholder="Enter your userId" title="Enter UserId"/><br>
+<form:input path="vendorId" class="form-control" required="required" placeholder="Enter your userId" title="Enter UserId" oninvalid="return useridv(this)"/><br>
 </td>
  <form:errors path="vendorId" cssClass="errors"></form:errors> 
 
@@ -44,7 +40,7 @@
 
 <tr>
 <td><i class="fa fa-key" title="Password"> Password</i> </td>
-<td colspan="3"><form:password path="password" class="form-control" required="required" placeholder="Enter your Password" title="Enter Password"/>
+<td colspan="3"><form:password path="password" class="form-control" required="required" placeholder="Enter your Password" title="Enter Password" oninvalid="return passwordv(this)"/>
 <br>
 
 <form:errors path="password" cssClass="errors"></form:errors>
@@ -65,7 +61,38 @@
 </table>
 </form:form>
 
+<script type="text/javascript">
+	function passwordv(textbox)
+	{
 
+		if(textbox.value=='')
+			{
+			
+			/* textbox.setCustomValidity("Contact Number should not be emplty") */
+			textbox.style.border="3px solid red";
+			}
+		else {  
+	        textbox.setCustomValidity(""); 
+	        textbox.style.border=""; 
+	    } 
+			
+	}
+	function useridv(textbox)
+	{
+
+		if(textbox.value=='')
+			{
+			
+			/* textbox.setCustomValidity("Contact Number should not be emplty") */
+			textbox.style.border="3px solid red";
+			}
+		else {  
+	        textbox.setCustomValidity(""); 
+	        textbox.style.border=""; 
+	    } 
+			
+	}
+	</script>
 
 </div>
 <footer>

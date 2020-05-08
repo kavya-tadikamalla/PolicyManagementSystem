@@ -13,8 +13,7 @@
 <!--   pay.setAmount((pay.getPaymentperiod()*pol.getSumassured())/(pol.getDurationOfPolicy()*360));
 			 pay.setTotalamount(pay.getAmount()+pay.getFineamount());
 			 System.out.println(pay); -->
-<body>
-  <%
+<%
 int pid=Integer.parseInt(request.getParameter("policyId"));
 int uid=Integer.parseInt(request.getParameter("userId"));
 double sumassured=Double.parseDouble(request.getParameter("sumassured"));
@@ -25,8 +24,8 @@ int payperiod=Integer.parseInt(request.getParameter("paymentperiod"));
 int dop=Integer.parseInt(request.getParameter("durationOfPolicy"));
 double amt=(payperiod*sumassured)/(dop*360);
 %>
-
- <form:form action="/customer/cardpayment" name="cardform" method="post" modelAttribute="payment" style="margin-top:50px;margin-left:30px;" onsubmit="return validate()">
+<body>
+ <form:form action="/customer/cardpayment" name="cardform" method="post" modelAttribute="payment" style="margin-left:30px;" onsubmit="return validate()">
 
 <table align="center" class="tables back" style="display: inline-block;float: left;margin-left: 25%;">
 <tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Policy Payment Form</td></tr>
@@ -38,6 +37,19 @@ double amt=(payperiod*sumassured)/(dop*360);
 <td>My Id  :</td>
 <td><input type="number" value=<%=uid %> name="userId" readonly="readonly"></td>
 </tr>
+<tr>
+<td>SumAssured:</td>
+<td>
+<input type="number" value=<%=sumassured %> name="sumassured" readonly="readonly">
+</td>
+</tr>
+<tr>
+<td>DurationOfPolicy:</td>
+<td>
+<input type="number" value=<%=dop %> name="durationOfPolicy" readonly="readonly">
+</td>
+</tr>
+
 <tr>
 <td>Amount:</td>
 <td><input type="number" value=<%=amt %> name="amount" readonly="readonly"></td>

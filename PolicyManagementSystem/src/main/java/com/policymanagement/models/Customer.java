@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table
@@ -27,6 +29,7 @@ public class Customer {
 	@Column
 	private String lastName;
 	@Column
+	
 	private String contactNumber;
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
