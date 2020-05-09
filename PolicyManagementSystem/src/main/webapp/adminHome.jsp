@@ -33,18 +33,18 @@ if(username==null || userid==0)
   <a href="/adminHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/admin/listvendors" class="fas fa-user-plus back"> List PolicyVendors</a>
   <div class="dropdown">
-  <button class="dropbtn "style="size: 20px;">Generate Report <i class="fas fa-caret-down"></i></button>
+  <button class="dropbtn "style="size: 20px;"><i class="fas fa-sticky-note" style="font-size:20px;"></i> Generate Report <i class="fas fa-caret-down"></i></button>
   <div class="dropdown-content">
   
-    <a href="/admin/grpurchased" class="fas fa-user-circle" >No. of Policies Purchased</a>
-    <a href="/admin/grclaims" class="fas fa-user-plus" >No. of claims Submitted</a>
-    <a href="/admin/grclaima" class="fas fa-user-alt" >No. of claims approved</a>
-    <a href="/admin/grclaimr" class="fas fa-user-alt" >No. of claims rejected</a>
+    <a href="/admin/grpurchased" class="" >No. of Policies Purchased</a>
+    <a href="/admin/grclaims" class="" >No. of claims Submitted</a>
+    <a href="/admin/grclaima" class="" >No. of claims approved</a>
+    <a href="/admin/grclaimr" class="" >No. of claims rejected</a>
   </div>
   </div> 
-  <a href="/admin/helpreq" class="fas fa-user-alt back">  Help</a>
   <a href="/admin/logout/" class="fas fa-power-off back" style="float: right;" >  Logout</a>
   <a href="/adminHome.jsp" style="float: right;">Welcome <%=username %>(<%=userid %>)</a>
+  <a href="/admin/helpreq" class="fas fa fa-wrench" style="float: right;">  Help</a>
    </div>
   
 </div>

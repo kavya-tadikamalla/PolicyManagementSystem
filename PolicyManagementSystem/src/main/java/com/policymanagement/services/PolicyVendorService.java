@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.policymanagement.models.ForgotUid;
+import com.policymanagement.models.Help;
 import com.policymanagement.models.Policy;
 import com.policymanagement.models.PolicyVendor;
 import com.policymanagement.models.PolicyVendorLogin;
@@ -27,4 +28,5 @@ public interface PolicyVendorService {
 	public List<PolicyVendor> getAll();
 	public int fid(ForgotUid fuid);
 	public boolean fpwd(ForgotUid fuid);
+	public int help(Help h);
 }

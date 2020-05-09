@@ -50,7 +50,6 @@ body {
   font-family: Times New Roman;
   overflow: hidden;
   background-color: none;
-  //position:fixed;
   background:black;
   width:99.98%;
   opacity:0.8;
@@ -64,7 +63,7 @@ body {
 {
   font-size:20px;
   float:left;
-  //display: block;
+  display: block;
   color:white;
   text-align: left;
   padding: 14px 16px;
@@ -112,7 +111,6 @@ body {
   z-index: 1;
   visibility: visible;
 }
-
 .dropdown-content a {
   float: none;
   color: white;
@@ -121,13 +119,51 @@ body {
   display: block;
   text-align: left;
 }
-
+.dropdown2 {
+  float: none;
+  overflow: hidden;
+}
+.dropdown2 .dropbtn2 {
+  cursor: pointer;
+  font-size: 20px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  font-weight:bold;
+}
+.dropdown-content2 
+{
+  display: none;
+  position: absolute;
+  background-color: black;
+  color:white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  visibility: visible;
+}
+.dropdown-content2 a {
+  float: none;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown2:hover .dropdown-content2
+{
+  display: block;
+}
 .dropdown:hover .dropdown-content
 {
   display: block;
 }
 /* Change color on hover */
-.topnav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus 
+.topnav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus , .dropdown2:hover .dropbtn2, .dropbtn2:focus 
 {
   background-color: white;
   color: black;
@@ -250,7 +286,29 @@ input:required:onsubmit:invalid{
 	border: 5px solid red !important;
 
 }
-
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+img{
+	border-radius: 25px;
+	width:100%;
+}
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.card1 {
+  padding: 0 20px;
+  margin-top: 160px;
+  margin-left:100px;
+  margin-right:100px;
+  text-align: center;
+  /* border:1px solid white; */
+}
 
 
 

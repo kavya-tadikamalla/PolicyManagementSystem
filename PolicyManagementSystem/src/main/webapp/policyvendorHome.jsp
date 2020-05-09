@@ -33,19 +33,44 @@ if(username==null || userid==0)
   <a href="/policyvendor/listpolicies" class="fas fa-user-alt back">  MyPolicies</a>
   <a href="/policyvendor/claims" class="fas fa-user-alt back">  SeeClaims</a>
   <div class="dropdown">
-  <button class="dropbtn "style="size: 20px;">Generate Report <i class="fas fa-caret-down"></i></button>
+  
+  <button class="dropbtn "style="size: 20px;"><i class="fas fa-sticky-note" style="font-size:20px;"></i> Generate Report <i class="fas fa-caret-down"></i></button>
   <div class="dropdown-content">
   
-    <a href="/policyvendor/grpurchased" class="fas fa-user-circle" >No. of Policies Purchased</a>
-    <a href="/policyvendor/grclaims" class="fas fa-user-plus" >No. of claims Submitted</a>
-    <a href="/policyvendor/grclaima" class="fas fa-user-alt" >No. of claims approved</a>
-    <a href="/policyvendor/grclaimr" class="fas fa-user-alt" >No. of claims rejected</a>
+    <a href="/policyvendor/grpurchased" class="" >No. of Policies Purchased</a>
+    <a href="/policyvendor/grclaims" class="" >No. of claims Submitted</a>
+    <a href="/policyvendor/grclaima" class="" >No. of claims approved</a>
+    <a href="/policyvendor/grclaimr" class="" >No. of claims rejected</a>
+  </div>
+  </div>
+  <a href="/policyvendor/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
+  <div class="dropdown" style="float:right;" >
+  <button class="dropbtn" style="font-size:20px;"><i class=" fa fa-headphones" style="font-size:20px;"></i>Support</button>
+  <div class="dropdown-content" >
+  <a href="/policyvendor/beforehelp" class="fas fa fa-wrench">Help</a>
+  <div class="dropdown2"  >
+  <button class="dropbtn2" style="font-size:20px;"><i class="far fa-address-book" style="font-size:20px;"></i>ContactUs</button>
+  <div class="dropdown-content2" >
+  	
+    <a class="fas fa-phone-alt" > 9876543210</a>
+    <a class="fas fa-envelope" style="font-size:16px;"> abc@pms.com</a>
   </div>
   </div> 
+  </div>
+  </div>  
+  <!-- <div class="dropdown" style="float:right;" >
   
-  <a href="/policyvendor/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
-  <a href="/policyvendor/editprofile?userid=<%=userid %>" style="float: right;"> My Profile</a>
- <a href="/policyvendorHome.jsp" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
+  <button class="dropbtn" style="font-size:20px;"><i class="far fa-address-book" style="font-size:20px;"></i>ContactUs</button>
+  <div class="dropdown-content">
+  	
+    <a class="fas fa-phone-alt" > 9876543210</a>
+    <a class="fas fa-envelope" style="font-size:16px;"> abc@pms.com</a>
+  </div>
+  </div>  -->
+  
+  <%-- <a href="/policyvendor/editprofile?userid=<%=userid %>" style="float: right;"> My Profile</a> --%>
+ <a href="/policyvendor/editprofile?userid=<%=userid %>" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
+ 
    </div>
   
     <div class="card">

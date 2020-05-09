@@ -31,10 +31,27 @@ if(username==null || userid==0)
   <a href="/customer/listofmypolicies" class="fas fa-user-circle back"> MyPolicies</a>
  <!--  <a href="/customer/notify" class="far fa-bell back">Payments </a> -->
   <a href="/customer/rminders" class="far fa-bell back">Check Notifications </a>
-  <a href="/customer/beforehelp" class="fas fa-user-alt back">Help</a>
+  
   <a href="/customer/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
   <a href="/customerHome.jsp" style="float: right;"> Welcome <%=username %>(<%=userid %>)</a>
+  <div class="dropdown" style="float:right;" >
+  <button class="dropbtn" style="font-size:20px;"><i class=" fa fa-headphones" style="font-size:20px;"></i>Support</button>
+  <div class="dropdown-content" >
+  <a href="/customer/beforehelp" class="fas fa fa-wrench">Help</a>
+  <div class="dropdown2"  >
+  <button class="dropbtn2" style="font-size:20px;"><i class="far fa-address-book" style="font-size:20px;"></i>ContactUs</button>
+  <div class="dropdown-content2" >
+  	
+    <a class="fas fa-phone-alt" > 9876543210</a>
+    <a class="fas fa-envelope" style="font-size:16px;"> abc@pms.com</a>
+  </div>
+  </div> 
+  </div>
+  </div> 
+  
+  
    <a href="/customer/searchp" class="fas fa fa-search" style="float: right;"></a>
+   
    </div>
    
     <div class="card">     

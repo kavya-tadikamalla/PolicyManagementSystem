@@ -1932,3 +1932,69 @@ org.eclipse.wst.xml.core.internal.document.StructuredDocumentRegionManagementExc
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:660)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1468)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 09:03:05.239
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.rYawMVYF
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 09:03:05.239
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.rYawMVYF
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 09:03:05.239
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 09:03:05.239
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.rYawMVYF => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:31.465
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:31.465
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@53cba89f[org.springframework.tooling.boot.ls:1.11.0.201909171347(id=632)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:31.465
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.537
+!MESSAGE Boot LS startup time from start to initialized: 11071ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.nOMkbHOmisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE subscribing to classpath changes: sts4.classpath.nOMkbHOm isBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE subsribers = {sts4.classpath.nOMkbHOm=Send Classpath Notifications(15197)}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE Sending initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE project PolicyManagementSystem ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE Sending initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE Preparing classpath changed notification PolicyManagementSystem
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.nOMkbHOm => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:42.761
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:43.463
+!MESSAGE classpath=117 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:43.479
+!MESSAGE buffering callback sts4.classpath.nOMkbHOm PolicyManagementSystem false 117
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:43.479
+!MESSAGE executing callback sts4.classpath.nOMkbHOm 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-05-09 11:15:43.601
+!MESSAGE executing callback sts4.classpath.nOMkbHOm SUCCESS [done]

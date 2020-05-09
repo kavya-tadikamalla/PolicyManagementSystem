@@ -10,10 +10,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import com.policymanagement.dao.HelpDao;
 import com.policymanagement.dao.PolicyDao;
 import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.Customer;
 import com.policymanagement.models.ForgotUid;
+import com.policymanagement.models.Help;
 import com.policymanagement.models.Policy;
 import com.policymanagement.models.PolicyVendor;
 import com.policymanagement.models.PolicyVendorLogin;
@@ -24,6 +27,8 @@ public class PolicyVendorServiceImpl implements PolicyVendorService{
 	private PolicyVendorDao policyvendordao;
 	@Autowired
 	private PolicyDao policydao;
+	@Autowired
+	private HelpDao helpdao;
 	@PostConstruct
 	public void init() {
 		long count=policyvendordao.count();
@@ -145,6 +150,16 @@ public class PolicyVendorServiceImpl implements PolicyVendorService{
 		  }
 		  return 0;
 		}
-
+	@Override
+	public int help(Help h) {
+		Help h1= helpdao.save(h);
+		if(h!=null) {
+			return 1;
+		}
+		else {
+			return 2;
+		}
+	
+	}
 
 }

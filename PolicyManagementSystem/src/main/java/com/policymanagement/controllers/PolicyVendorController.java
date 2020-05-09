@@ -24,6 +24,7 @@ import com.policymanagement.dao.PolicyVendorDao;
 import com.policymanagement.models.ClaimPolicy;
 import com.policymanagement.models.Customer;
 import com.policymanagement.models.ForgotUid;
+import com.policymanagement.models.Help;
 import com.policymanagement.models.Payments;
 import com.policymanagement.models.Policy;
 import com.policymanagement.models.PolicyVendor;
@@ -502,6 +503,30 @@ public class PolicyVendorController {
 			}
 			return "policyvendorHome";
 		}
+		@GetMapping("/beforehelp")
+		public String help(Model model) {
+			model.addAttribute("help", new Help());
+			return "policyvendorHelp";
+		}
+
+		@PostMapping("/afterhelp")
+		  public String help1(@ModelAttribute("help") Help h,BindingResult result,Model model) 
+		  {
+			  if(result.hasErrors()) {
+				  return "policyvendorHelp";
+			  }
+			  else {
+				  int status =policyvendorService.help(h);
+				  if(status==1) {
+					  model.addAttribute("message", "Your Issue is Registered");
+					  return "policyvendorHome";
+				  }
+				  else {
+					  model.addAttribute("message", "Something went wrong");
+					  return "policyvendorHelp";
+				  }
+			  }
+		  }
 	
 		@GetMapping("/logout")
 		public String logout(HttpSession session)

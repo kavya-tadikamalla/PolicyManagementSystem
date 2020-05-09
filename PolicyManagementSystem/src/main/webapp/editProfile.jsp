@@ -11,7 +11,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
- <form:form action="/policyvendor/updateprofile" method="post" modelAttribute="pvn" style="margin-top:50px;margin-left:30px;" onsubmit="return validate();">
+ <form:form action="/policyvendor/updateprofile" method="post" modelAttribute="pvn" onsubmit="return validate();">
 <table align="center" class="tables back" >
 <tr align="center">
 <td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
@@ -117,8 +117,8 @@ Edit Profile</td></tr>
 <form:input path="yearofestablishment" class="form-control" required="required" />
 
 </td></tr>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Update Profile" class="formsubmitbutton" />
+<tr align="center">
+<td colspan="4" style="text-align: center;"><input type="submit" value="Update Profile" class="formsubmitbutton" />
 </tr>
 </table>
 </form:form>
