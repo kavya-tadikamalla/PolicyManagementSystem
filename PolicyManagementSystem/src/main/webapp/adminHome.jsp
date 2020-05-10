@@ -62,10 +62,10 @@ if(username==null || userid==0)
      <c:forEach items="${vendorlist}" var="vendors">
       
     <tr style="font-size: 18px; " >
-      <td>${vendors.vendorId}</td>
-       <td>${vendors.policyvendorname}</td>
-        <td>${vendors.policyvendorregno}</td>
-         <td>${vendors.policytype}</td>
+           <td>${vendors.vendorId}</td>
+           <td>${vendors.policyvendorname}</td>
+           <td>${vendors.policyvendorregno}</td>
+           <td>${vendors.policytype}</td>
            <td>${vendors.emailaddress}</td>
            <td>${vendors.contactnumber }</td>
            <td>${vendors.website }</td>
@@ -75,19 +75,18 @@ if(username==null || userid==0)
            <c:if test="${vendors.status!='activate'}">
            <td> <button><a href="/admin/activate?vendorid=${vendors.vendorId}" style="color: black;">Activate</a></button> </td>
            </c:if>
-                      <c:if test="${vendors.status=='activate'}">
-           <td> <button title="this link is disabled">Activate</button> </td>
+           <c:if test="${vendors.status=='activate'}">
+           <td> <button title="this link is disabled" style="background-color: 'Grey'; border:none;">Activate</button> </td>
            </c:if>
            <c:if test="${vendors.status!='deactivate'}">
            <td> <button><a href="/admin/deactivate?vendorid=${vendors.vendorId}" style="color: black;">Deactivate</a></button> </td>
            </c:if>
            <c:if test="${vendors.status=='deactivate'}">
-           <td> <button title="this link is disabled">Deactivate</button> </td>
+           <td> <button title="this link is disabled" style="background-color: 'Grey'; border:none;">Deactivate</button> </td>
            </c:if>
-           
            <td><button> <a href="/admin/sendforcorrection?vendorid=${vendors.vendorId}" style="color: black;">Send for Correction</a></button> </td>
            <c:if test="${vendors.status=='sent for verification'}">
-           <td> <button title="this link is disabled">sent for verification</button> </td>
+           <td> <button title="this link is disabled" style="background-color: 'Grey'; border:none;">sent for verification</button> </td>
            </c:if>
     </tr>
 

@@ -137,9 +137,19 @@ public class PolicyVendorController {
 			}
 			else if(res==1)
 			{
-				model.addAttribute("message", policyvendor.getPolicyvendorname().toUpperCase()+"Congrats your registration is successfull\n"+policyvendor.getVendorId()+" this is your login userId \n PLEASE NOTE IT");
+				model.addAttribute("message", policyvendor.getPolicyvendorname().toUpperCase()+" registration Successfull<br><br>"+policyvendor.getVendorId()+" this is your login userId \n PLEASE NOTE IT");
 			
 			
+			}
+			else if(res==3)
+			{
+				model.addAttribute("contactN", "Contact Number already exists");
+				return "policyvendorRegistration";
+			}
+			else if(res==4)
+			{
+				model.addAttribute("emailAdd", "Email Id already exists");
+				return "policyvendorRegistration";
 			}
 			else
 			{

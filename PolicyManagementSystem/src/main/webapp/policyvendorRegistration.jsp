@@ -126,6 +126,7 @@ Registration Form</td></tr>
 <td>Email address<label style="color: red">*</label>:</td>
 <td>
 <form:input  path="emailaddress" id="emailaddress" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="email should contain '@' and '.' eg. abcd@xyz.com" required="required" oninvalid="return emailid(this)"/>
+<br><span style="font-size: small;color: red;">${emailAdd}</span>
 </td>
 </tr>
 <tr>
@@ -135,7 +136,7 @@ Registration Form</td></tr>
 <td>Contact Number<label style="color: red">*</label>:</td>
 <td>
 <form:input path="contactnumber" id="contactnumber" type="tel"  pattern="[6-9]{1}[0-9]{9}" required="required"  title="Enter a 10 digit contact number starting with [6 or 7 or 8 or 9]. e.g. 7895236419" oninvalid="contactnum(this)" />
-
+<br><span style="font-size: small;color: red;">${contactN}</span>
 </td>
 <td>Web Site:</td>
 <td>

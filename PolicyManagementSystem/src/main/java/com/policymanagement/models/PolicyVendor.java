@@ -40,9 +40,9 @@ public class PolicyVendor {
 	    @Column
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
 	    private Date dateOfBirth;
-	    @Column
+	    @Column(unique = true)
 		private String  emailaddress;
-	    @Column
+	    @Column(unique = true)
 		private String contactnumber;
 	    @Column
 	    private String website;

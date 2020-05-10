@@ -52,7 +52,16 @@ public class PolicyVendorServiceImpl implements PolicyVendorService{
 	@Override
 	public int createPolicyVendor(@Valid PolicyVendor policyvendor) {
 		PolicyVendor u=policyvendordao.findByVendorId(policyvendor.getVendorId());
-		if(u==null)
+		PolicyVendor u2=policyvendordao.findBycontactnumber(policyvendor.getContactnumber());
+		PolicyVendor u3=policyvendordao.findByemailaddress(policyvendor.getEmailaddress());
+		System.out.println(u3);
+		if(u3!=null) {
+			return 4;
+		}
+		else if(u2!=null) {
+			return 3;
+		}
+		else if(u==null)
 		{	
 			
 			PolicyVendor u1=policyvendordao.save(policyvendor);

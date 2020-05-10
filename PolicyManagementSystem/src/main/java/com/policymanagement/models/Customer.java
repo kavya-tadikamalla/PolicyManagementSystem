@@ -28,13 +28,12 @@ public class Customer {
 	private String firstName;
 	@Column
 	private String lastName;
-	@Column
-	
+	@Column(unique=true)
 	private String contactNumber;
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
-	@Column
+	@Column(unique=true)
 	private String email;
 	@Column
 	private String password;

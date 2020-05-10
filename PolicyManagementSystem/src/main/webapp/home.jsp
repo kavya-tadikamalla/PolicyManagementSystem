@@ -15,6 +15,7 @@
   <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
  <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
  <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
+ 
  <div class="dropdown" style="float:right;" >
   <button class="dropbtn" style="font-size:20px;"><i class="far fa-address-book" style="font-size:20px;"></i>ContactUs</button>
   <div class="dropdown-content">
@@ -24,25 +25,7 @@
   </div>
   </div> 
  
-  </div>
-  <div class="card1">
-  <div class="row">
-  <div class="column">
-    <img src="resources/pic1.jpg" alt="Snow" >
-  </div>
-  <div class="column">
-    <img src="resources/pic2.jpg" alt="Forest" >
-  </div>
-  <div class="column">
-    <img src="resources/pic3.jpg" alt="Mountains" >
-  </div>
-  <div class="column">
-    <img src="resources/front.jpg" alt="Mountains" style="" >
-  </div>
   
-  
-</div>
-</div>
 <footer>
 <div class="footer">
 &copy; Copyright 2020, All Rights Reserved

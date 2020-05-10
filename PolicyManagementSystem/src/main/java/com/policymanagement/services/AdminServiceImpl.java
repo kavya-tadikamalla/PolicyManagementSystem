@@ -55,7 +55,15 @@ public class AdminServiceImpl implements AdminService
 	public int createAdmin(@Valid Admin admin)
 	{
 		Admin a=admindao.findByAdminId(admin.getAdminId());
-		if(a==null)
+		Admin a1=admindao.findBycontactNumber(admin.getContactNumber());
+		Admin a2=admindao.findByEmail(admin.getEmail());
+		if(a1!=null) {
+			 return 3;
+		}
+		else if(a2!=null) {
+			return 4;
+		}
+		else if(a==null)
 		{
 			Admin ad=admindao.save(admin);
 			if(ad!=null)

@@ -30,8 +30,8 @@ if(username==null || userid==0)
  <div class="topnav">
   <a href="/policyvendorHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/policyvendor/addpolicy1" class="fas fa fa-plus-square back"> Add Policy</a>
-  <a href="/policyvendor/listpolicies" class="fas fa-user-alt back">  MyPolicies</a>
-  <a href="/policyvendor/claims" class="fas fa-user-alt back">  SeeClaims</a>
+  <a href="/policyvendor/listpolicies" class="fa fa-file back">  MyPolicies</a>
+  <a href="/policyvendor/claims" class="fa fa-file back">  SeeClaims</a>
   <div class="dropdown">
   
   <button class="dropbtn "style="size: 20px;"><i class="fas fa-sticky-note" style="font-size:20px;"></i> Generate Report <i class="fas fa-caret-down"></i></button>
@@ -97,15 +97,19 @@ if(username==null || userid==0)
 <td>PolicyName</td>
 <td>Reason for Claim</td>
 <td>Status</td>
+<td>Response to<br>Claim</td>
 </tr>
 <tr>
 <td><c:out value="${claimlist.payid}"></c:out></td>
 <td><c:out value="${claimlist.userid}"></c:out></td>
 <td><c:out value="${claimlist.policyname}"></c:out></td>
-<td><c:out value="${claimlist.reasonbyc}"></c:out></td>
+<td style="text-transform: capitalize;"><c:out value="${claimlist.reasonbyc}"></c:out></td>
+<td style="text-transform: uppercase;"><c:out value="${claimlist.cstatus}"></c:out></td>
 <c:choose>
 <c:when test="${claimlist.cstatus== 'approved' || claimlist.cstatus== 'rejected'}">
-<td><c:out value="${fn:toUpperCase(claimlist.cstatus)}"></c:out></td>
+<td><button title="this link is disabled" style="background-color: 'Grey'; border:none;">Approve</button><br>
+<button title="this link is disabled" style="background-color: 'Grey'; border:none;">Reject</button> 
+</td>
 </c:when>
 <c:otherwise>
 <td> <button><a href="/policyvendor/acceptclaim?cid=${claimlist.claimid }" style="color: black;">Approve</a></button>

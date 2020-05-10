@@ -111,8 +111,19 @@ public class CustomerController {
 			if (res == 0) {
 				model.addAttribute("message", customer.getFirstName().toUpperCase() + "You are already register");
 			} else if (res == 1) {
-				model.addAttribute("message", customer.getFirstName().toUpperCase() + "Registeration Successfull\n" +customer.getUserId()+" this is your login userId \n PLEASE NOTE IT");
-			} else if (res == 2) {
+				model.addAttribute("message", customer.getFirstName().toUpperCase() + " registeration Successfull <br><br>" +customer.getUserId()+" this is your login userId  PLEASE NOTE IT");
+			} 
+			else if(res==3)
+			{
+				model.addAttribute("contactN", "Contact Number already exists");
+				return "customerRegistration";
+			}
+			else if(res==4)
+			{
+				model.addAttribute("emailAdd", "Email Id already exists");
+				return "customerRegistration";
+			}
+			else{
 				model.addAttribute("message", "something went wrong");
 			}
 			model.addAttribute("custml", new CustomerLogin());
@@ -150,7 +161,7 @@ public class CustomerController {
 
 	@PostMapping("/searchpol")
 	public String searchpolbyc(@ModelAttribute("searchpo") SearchP search, Model model) {
-		/* String c = search.getCategory(); */
+		
 		String t = search.getText();
 		List<Policy> poli2 = custser.getAll();
 		System.out.println(poli2);
@@ -158,11 +169,11 @@ public class CustomerController {
 		for (Policy p3 : poli2) {
 
 			if (p3.getPolicytype().toLowerCase().contains(t.toLowerCase())) {
-				/* model.addAttribute("searchli", c); */
+				
 				p4.add(p3);
 				model.addAttribute("searchlist", p4);
 			} else if (p3.getPolicyName().toLowerCase().contains(t.toLowerCase())) {
-				/* model.addAttribute("searchli", c); */
+				
 				p4.add(p3);
 				model.addAttribute("searchlist", p4);
 			} else {
@@ -176,7 +187,7 @@ public class CustomerController {
 		return "customerHome";
 
 	}
-
+	
 	@GetMapping("/buypolicy")
 	public String buyPolicy(@RequestParam("policyid") int id, HttpSession session, Model model) {
 		List<Payments> pay = paydao.findAll();

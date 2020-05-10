@@ -44,7 +44,15 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public int createCustomer(Customer customer) {
 		Customer c=custdao.findByUserId(customer.getUserId());
-		if(c==null) {
+		Customer c3=custdao.findBycontactNumber(customer.getContactNumber());
+		Customer c2=custdao.findByEmail(customer.getEmail());
+		if(c3!=null) {
+			return 3;
+		}
+		else if(c2!=null) {
+			return 4;
+		}
+		else if(c==null) {
 			Customer c1=custdao.save(customer);
 			if(c1!=null)
 			{

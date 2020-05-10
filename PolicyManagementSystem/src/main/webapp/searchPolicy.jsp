@@ -13,22 +13,11 @@
 
 <body>
 
-<div class="card">
-
  <form:form action="/customer/searchpol" method="post" modelAttribute="searchpo" style="margin-top:50px;margin-left:30px;">
 
 <table align="center" class="tables back" >
 
 <tr>
-<%-- 
-<td>
-<form:select path="category" class="form-control">
-<form:option value="" label="--Select Category--"/>
-<form:option value="Policytype" label="PolicyType"/>
-<form:option value="PolicyName" label="PolicyName"/>
-
-</form:select>
-</td> --%>
 <td>
 
 <form:input path="text" class="form-control" placeholder="enter category or policy name"/>
@@ -41,8 +30,6 @@
 
 </table>
 </form:form>
-
-</div>
 
 <%
 

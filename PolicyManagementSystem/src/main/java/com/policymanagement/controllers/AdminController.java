@@ -94,23 +94,21 @@ public class AdminController
 		Admin admin=new Admin();
 		admin.setAdminId(aid+1);
 		model.addAttribute("adreg",admin);
-		//Security secure = new Security();
-		//secmodel.addAttribute("securityque", secure);
 		return "adminRegistration";
 	}
 	@PostMapping("/adminreg")
 	public String adminRegister(@Valid @ModelAttribute("adreg") Admin admin,BindingResult result,Model model)
 	{
+		List<Admin> a1=admindao.findAll();
 		if(result.hasErrors())
 		{
 			
 			return "adminRegistration";
 		}
 		
+		 
+		 
 		else {
-			//sec.setUserId(admin.getAdminId());
-			//admin.setSecurity(sec);
-	
 			model.addAttribute("adlogin",new AdminLogin());	
 			
 			int res = adminservice.createAdmin(admin);
@@ -124,9 +122,19 @@ public class AdminController
 		else if(res==1)
 		{
 			model.addAttribute("message", admin.getFirstName().toUpperCase()+
-					" Congrats your registration is successfull\n" +admin.getAdminId()+" this is your login userId \n PLEASE NOTE IT");
+					" registration Successfull<br><br>" +admin.getAdminId()+" this is your login userId \n PLEASE NOTE IT");
 		
 		
+		}
+		else if(res==3)
+		{
+			model.addAttribute("contactN", "Contact Number already exists");
+			return "adminRegistration";
+		}
+		else if(res==4)
+		{
+			model.addAttribute("emailAdd", "Email Id already exists");
+			return "adminRegistration";
 		}
 		else
 		{
@@ -135,6 +143,7 @@ public class AdminController
 		}
 		return "adminLogin";
 		}
+		
 	}
 	@GetMapping("/listvendors")
 	public String findAllVendors(HttpSession session,Model model) {

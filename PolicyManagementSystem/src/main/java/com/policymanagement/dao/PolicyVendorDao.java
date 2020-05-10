@@ -16,7 +16,7 @@ public interface PolicyVendorDao extends JpaRepository<PolicyVendor, Integer>{
 	public List<PolicyVendor> findAll();
 
 	public PolicyVendor findBycontactnumber(String contactnumber);
-	
+	public PolicyVendor findByemailaddress(String emailaddress);
 	
 	
 }

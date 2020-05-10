@@ -22,14 +22,12 @@ if(username==null || userid==0)
 }
 %>
 <div class="header"><header><b class="heading">Policy Management</b>
-
 </header>
 </div>
  <div class="topnav">
   <a href="/customerHome.jsp" class="fas fa-home back">  My Home</a>
   <a href="/customer/listofpolicies" class="fas fa-user-plus back">  List of Policies</a>
-  <a href="/customer/listofmypolicies" class="fas fa-user-circle back"> MyPolicies</a>
- <!--  <a href="/customer/notify" class="far fa-bell back">Payments </a> -->
+  <a href="/customer/listofmypolicies" class="fa fa-file back"> MyPolicies</a>
   <a href="/customer/rminders" class="far fa-bell back">Check Notifications </a>
   
   <a href="/customer/logout/" class="fas fa-power-off back" style="float: right;">  Logout</a>
@@ -97,10 +95,10 @@ if(username==null || userid==0)
  
  <label style="background-color: rgba(0,0,0, 0.9);color: #e6e6e6;font-size: x-large;border:1px solid ;">TotalAmount=PremiumAmount*fineAmount</label>
  <tr>
-       <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
-       <td>PolicyType</td><td>PremiumAmount</td><td>NextPay date</td>
+       <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td><td>Payment<br>Period</td>
+       <td>PolicyType</td><td>PremiumAmount</td><td>FineAmount</td><td>NextPay date</td>
        <td>TotalAmount</td><td>Status</td>
-       <td>Payment</td><td>Claim? just press</td>
+       <td>Payment/<br>Claim</td><!-- <td>Claim? just press</td> -->
        </tr>
        
  <c:forEach items="${mypol1}" var="mypolicy1">
@@ -110,9 +108,24 @@ if(username==null || userid==0)
  <td>${mypolicy.policyId}</td>
  <td>${mypolicy.policyName}</td>
  <td>${mypolicy.durationOfPolicy}</td>
+ <c:choose>
+ <c:when test="${mypolicy1.paymentperiod==30 }">
+ <td>Monthly</td>
+ </c:when>
+ <c:when test="${mypolicy1.paymentperiod==90 }">
+ <td>Quarterly</td>
+ </c:when>
+ <c:when test="${mypolicy1.paymentperiod==180 }">
+ <td>HalfYearly</td>
+ </c:when>
+ <c:when test="${mypolicy1.paymentperiod==360 }">
+ <td>Yearly</td>
+ </c:when>
+ </c:choose>
  <td>${mypolicy.policytype}</td>
  
  <td><fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${mypolicy1.amount}" /></td>
+ <td><fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${mypolicy1.fineamount}" /></td>
  <td>${mypolicy1.nextpayDate}</td>
  <td><fmt:formatNumber type = "number" maxFractionDigits = "2" value = "${mypolicy1.totalamount}" /></td>
  
@@ -125,25 +138,27 @@ if(username==null || userid==0)
  <c:if test="${mypolicy1.paystatus=='claimed' }">
  <td style="text-transform:uppercase;">${mypolicy1.paystatus}</td>
  </c:if>
+ <td>
  <c:choose>
  <c:when test="${mypolicy1.paystatus=='claimed' || mypolicy1.paystatus=='requested for claim' }">
- <td> <button title="this link is disabled">Pay Bill</button>  </td>
+  <button title="this link is disabled" style="background-color: 'Grey'; border:none;">Pay Bill</button> <br> <!-- </td> -->
  </c:when>
  <c:otherwise>
- <td> <button><a href="/customer/duebill?pid=${mypolicy1.payid}" style="color: black;">Pay Bill</a></button>  </td>
+ <!-- <td> --> <button><a href="/customer/duebill?pid=${mypolicy1.payid}" style="color: black;">Pay Bill</a></button> <br> <!-- </td> -->
  </c:otherwise>
  </c:choose>
  <c:choose >
  <c:when test="${mypolicy1.paystatus=='paid' || mypolicy1.paystatus=='pending'}">
- <td><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button></td>
+ <!-- <td> --><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button><!-- </td> -->
  </c:when>
  <c:when test="${mypolicy1.paystatus=='requested for claim'  }">
- <td><button title="this link is disabled" >${mypolicy1.paystatus}</button></td>
+ <!-- <td> --><button title="this link is disabled" >${mypolicy1.paystatus}</button><!-- </td> -->
  </c:when>
  <c:otherwise>
- <td><button title="this link is disabled" >Claimed</button></td>
+ <!-- <td> --><button title="this link is disabled" style="background-color: 'Grey'; border:none;" >Claim</button><!-- </td> -->
  </c:otherwise>
  </c:choose>
+ </td>
  </tr>
  </c:if>
  </c:forEach>
@@ -152,39 +167,7 @@ if(username==null || userid==0)
   </c:if>
  </c:if>
  
- <c:if test="${noofdays1!=null }">  
-   <script>alert('<c:out value="${noofdays1}"/>');
-	            window.location="/customerHome.jsp";
-				</script>  
-				</c:if>
  
-<c:if test="${notify!=null }">
- <c:if test="${notify1!=null }">
- ${noofdays}
-  
- <tr>
-       <td>PolicyId</td><td>PolicyName</td>
-       <td>PolicyType</td><td>lastpaid date</td><td>nextpay date</td>
-       <td>Total Bill Amount</td><td>Status</td><td>PayBill</td>
-       </tr>
- <c:forEach items="${ notify1}" var="notf1">
- <td>${notf1.policyId}</td>
- <td>${notf1.policyName}</td>
- <td>${notf1.policytype}</td>
-  </c:forEach>
- <c:forEach items="${notify}" var="notf">
-
- <td>${notf.lastpaid}</td>
- <td>${notf.nextpayDate}</td>
- <td>${notf.fineamount+notf.amount}</td>
- <td>${notf.paystatus }</td>
- <td> <button><a href="/customer/duebill?pid=${notf.payid}" style="color: black;">Pay Bill</a></button>  </td>
- </c:forEach>
- 
-
- 
- </c:if>
- </c:if>
 <c:if test="${rem!=null }">
 <tr>
 <td>${rem }</td>
