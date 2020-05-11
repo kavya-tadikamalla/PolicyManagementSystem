@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Reset Password</title>
+<link rel="stylesheet" type="text/css" href="/style1.css"/>
+<script type="text/javascript">
+function validate(){
+	var pwd=document.getElementById("password").value;
+	var cpwd=document.getElementById("cpassword").value;
+	 if(pwd=="" ){
+			document.getElementById("password").style.borderColor = "red";
+			alert("please update mandatory highlighted fields");
+				return false;
+			}
+	 else if(pwd!=cpwd)
+		 {
+		 document.getElementById("password").style.borderColor = "red";
+		 document.getElementById("cpassword").style.borderColor = "red";
+			alert("Password and confirm password are not same");
+				return false;
+		 }
+}
+
+</script>
+</head>
+<body>
+
+<form:form onsubmit="return validate()" action="cupdatepwd" method="post" modelAttribute="name1" style="margin-top:50px;margin-left:30px;">
+<table align="center" class="tables back" >
+<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
+Reset Password??</td></tr>
+
+<tr><td colspan="2" align="center" style="text-align: center;">${message }</td></tr>
+<tr>
+<td>
+<form:hidden path="uid"/>
+</td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><form:input path="pwd" class="formcontrol" id="password" type="password"/></td>
+</tr>
+<tr>
+<td>Confirm Password:</td>
+<td><input type="password" id="cpassword"></td>
+</tr>
+<tr><td></td>
+<td colspan="2" align="center" style="text-align: center;" > <input type="submit" value="Submit" class="formsubmitbutton" /><!-- </td> -->
+</td></tr>
+</table>
+
+</form:form>
+
+<%
+
+RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+rd.include(request, response);
+
+%>
+</body>
+</html>

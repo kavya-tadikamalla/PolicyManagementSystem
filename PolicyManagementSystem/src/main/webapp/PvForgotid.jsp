@@ -6,7 +6,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Forgot User id</title>
-<link rel="stylesheet" type="text/css" href="/style1.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script type="text/javascript">
 function validate(){
 	var qsn1=document.getElementById("qstn1").value;
@@ -59,7 +60,16 @@ function validate(){
 
 </head>
 <body>
+<div class="header"><header><b class="heading">Policy Management</b></header></div>
+<div class="topnav">
+  <a href="/" class="fas fa fa-home back" >Home</a>
+  <a href="/admin/" class="fas fa-user-circle back" >Admin</a>
+ <a href="/policyvendor/" class="fas fa-user-plus back" >Policy Vendor</a>
+ <a href="/customer/" class="fas fa-user-alt back" >Customer</a>
 
+   </div>
+ 
+<div class="card">
 <form:form onsubmit="return validate()" action="pforgotuid1" method="post" modelAttribute="name" style="margin-top:50px;margin-left:30px;">
 <table align="center" class="tables back" >
 <td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
@@ -114,21 +124,22 @@ Forgot Userid??</td></tr>
 <form:input path="ans3" id="ans3" placeholder="Answer" width="170px" />
 </td>
 </tr>
-<tr><td></td>
-<td colspan="2" align="center" style="text-align: center;" > <input type="submit" value="Submit" class="formsubmitbutton" /><!-- </td> -->
+<tr align="center">
+<td colspan="2" style="text-align: center;" > <input type="submit" value="Submit" class="formsubmitbutton" /><!-- </td> -->
+<label style="font-size: 15px;">Want to SignIn?</label><a href="/policyvendor/" style="color:white;"> Click Here</a>
 </td></tr>
 	
 </table>
 
 
 </form:form>
-
+</div><%-- 
 <%
 
 RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 rd.include(request, response);
 
 %>
-
+ --%>
 </body>
 </html>
