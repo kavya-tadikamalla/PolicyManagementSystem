@@ -12,15 +12,7 @@
 </head>
 
 <body>
-  <!-- <div class="topnav">
-  <b class="heading">Policy Management</b>
-  <a href="/logout/" class="fas fa-power-off back">  Logout</a>
-  <a href="/policyvendor/" class="fas fa-user-plus back">  Policy Vendor</a>
-  <a href="/customer/" class="fas fa-user-alt back">  Customer</a>
-  <a href="/admin/" class="fas fa-user-circle back">  Admin</a>
-   </div> -->
-<div class="card">
-
+  
  <form:form action="/customer/claimf" name="payform" method="post" modelAttribute="claimpol" style="margin-top:50px;margin-left:30px;">
 
 <table align="center" class="tables back" style="margin-bottom: 50%;" >
@@ -53,12 +45,12 @@
 <form:textarea path="reasonbyc" class="form-control"/>
 </td>
 </tr>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Request Claim" class="formsubmitbutton" />
+<tr align="center">
+<td colspan="2" style="text-align: center;"><input type="submit" value="Request Claim" class="formsubmitbutton" />
 </tr>
 </table>
 </form:form>
-</div>
+
 <%
 
 RequestDispatcher rd = request.getRequestDispatcher("customerHome.jsp");

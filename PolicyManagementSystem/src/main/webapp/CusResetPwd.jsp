@@ -50,7 +50,7 @@ Reset Password??</td></tr>
 </tr>
 <tr><td></td>
 <td colspan="2" align="center" style="text-align: center;" > <input type="submit" value="Submit" class="formsubmitbutton" /><!-- </td> -->
-<label style="font-size: 15px;">Want to login?</label><a href="/customer/" style="color:white;"> SignIn</a></td></tr>
+</td></tr>
 </table>
 
 </form:form>

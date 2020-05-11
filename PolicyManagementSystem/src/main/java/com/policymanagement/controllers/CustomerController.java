@@ -166,24 +166,23 @@ public class CustomerController {
 		List<Policy> poli2 = custser.getAll();
 		System.out.println(poli2);
 		List<Policy> p4 = new ArrayList<Policy>();
+		
 		for (Policy p3 : poli2) {
 
 			if (p3.getPolicytype().toLowerCase().contains(t.toLowerCase())) {
 				
 				p4.add(p3);
 				model.addAttribute("searchlist", p4);
-			} else if (p3.getPolicyName().toLowerCase().contains(t.toLowerCase())) {
+			} 
+			else if (p3.getPolicyName().toLowerCase().contains(t.toLowerCase())) {
 				
 				p4.add(p3);
 				model.addAttribute("searchlist", p4);
-			} else {
-				model.addAttribute("message", "no search results found");
-
-			}
-			System.out.println(p3);
+			} 
+			
 
 		}
-
+		
 		return "customerHome";
 
 	}
@@ -308,7 +307,7 @@ public class CustomerController {
 					(p.getPaystatus().equals("claimed")|| 
 							p.getPaystatus().equals("requested for claim") ||
 							p.getPaystatus().equals("paid") || 
-							p.getPaystatus().equals("pending"))) {
+							p.getPaystatus().equals("pending"))||p.getPaystatus().equals("claim rejected")) {
 				
 				
 			for (Policy p1 : pl) {
@@ -325,6 +324,12 @@ public class CustomerController {
 						if(p.getPaystatus().equals("claimed") || p.getPaystatus().equals("requested for claim")) {
 							paydao.save(p);
 						}
+						else if(p.getPaystatus().equals("claim rejected")) {
+							p.setFineamount(0);
+							p.setTotalamount(p.getAmount()+p.getFineamount());
+							paydao.save(p);
+						}
+						
 						else {
 						p.setPaystatus("pending");
 						p.setFineamount(0);
@@ -434,11 +439,13 @@ public class CustomerController {
 		  Payments pa=paydao.findByPayid(payD);
 		  Policy poli=poldao.findByPolicyId(pa.getPolicyId());
 		  int  customerid=(Integer)session.getAttribute("userId");
+		
 		  for(ClaimPolicy clp:cp) {
-			  if(clp.getPayid()==payD) {
-				  model.addAttribute("message", "You already claimed this policy and is "+clp.getCstatus());
-					return "customerHome";
-			  }
+			  
+			  if(clp.getPayid()==payD && clp.getCstatus().equals("rejectedv")) {
+		  model.addAttribute("message","You already claimed this policy and is "+clp.getCstatus());
+		  return "customerHome"; 
+		  } 
 		  }
 		  ClaimPolicy claimp=new ClaimPolicy();
 		  claimp.setPayid(payD);
@@ -498,7 +505,7 @@ public class CustomerController {
 			else
 			{
 				model.addAttribute("message", "Incorrect credentials");
-				return "CusResetPwd";
+				return "CusForgotPwd";
 			}
 		}
 		@PostMapping("/cupdatepwd")

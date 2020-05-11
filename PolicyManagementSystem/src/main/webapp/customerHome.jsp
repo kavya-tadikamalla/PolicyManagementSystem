@@ -73,6 +73,7 @@ if(username==null || userid==0)
     </tr>
     </c:forEach>
     </c:if>
+    
     <c:if test="${searchlist!=null}">
     <tr>
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
@@ -93,7 +94,7 @@ if(username==null || userid==0)
  <c:if test="${mypol!=null }">
  <c:if test="${mypol1!=null }">
  
- <label style="background-color: rgba(0,0,0, 0.9);color: #e6e6e6;font-size: x-large;border:1px solid ;">TotalAmount=PremiumAmount*fineAmount</label>
+ <label style="background-color: rgba(0,0,0, 0.9);color: #e6e6e6;font-size: x-large;border:1px solid ;">TotalAmount=PremiumAmount+fineAmount</label>
  <tr>
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td><td>Payment<br>Period</td>
        <td>PolicyType</td><td>PremiumAmount</td><td>FineAmount</td><td>NextPay date</td>
@@ -140,7 +141,7 @@ if(username==null || userid==0)
  </c:if>
  <td>
  <c:choose>
- <c:when test="${mypolicy1.paystatus=='claimed' || mypolicy1.paystatus=='requested for claim' }">
+ <c:when test="${mypolicy1.paystatus=='claimed' || mypolicy1.paystatus=='requested for claim'}">
   <button title="this link is disabled" style="background-color: 'Grey'; border:none;">Pay Bill</button> <br> <!-- </td> -->
  </c:when>
  <c:otherwise>
@@ -148,7 +149,7 @@ if(username==null || userid==0)
  </c:otherwise>
  </c:choose>
  <c:choose >
- <c:when test="${mypolicy1.paystatus=='paid' || mypolicy1.paystatus=='pending'}">
+ <c:when test="${mypolicy1.paystatus=='paid' || mypolicy1.paystatus=='pending'  || mypolicy1.paystatus=='claim rejected'}">
  <!-- <td> --><button style="color: black;"><a href="/customer/claim?payid=${mypolicy1.payid }"  style="color: black;">Claim</a></button><!-- </td> -->
  </c:when>
  <c:when test="${mypolicy1.paystatus=='requested for claim'  }">
@@ -178,6 +179,7 @@ if(username==null || userid==0)
 	            
 				</script>  
 				</c:if>
+				 
 
 </div>
 <footer>

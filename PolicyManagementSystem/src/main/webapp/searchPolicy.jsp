@@ -30,7 +30,6 @@
 
 </table>
 </form:form>
-
 <%
 
 RequestDispatcher rd = request.getRequestDispatcher("customerHome.jsp");

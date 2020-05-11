@@ -80,14 +80,18 @@ if(username==null || userid==0)
        <td>PolicyId</td><td>PolicyName</td><td>DurationOfPolicy</td>
        <td>Premium_Amount</td><td>PolicyType</td><td>Edit the Policy</td>
        </tr>
+       <c:forEach items="${policyl }" var="policyl1">
            <tr style="font-size: 18px; " >
-      <td><c:out value="${policyl.policyId}"></c:out></td>
-       <td><c:out value="${policyl.policyName }"></c:out></td>
-       <td><c:out value="${policyl.durationOfPolicy }"></c:out></td>
-       <td><c:out value="${policyl.sumassured }"></c:out></td>
-       <td><c:out value="${policyl.policytype }"></c:out></td>
-       <td> <button><a href="/policyvendor/editpolicy?policyid=${policyl.policyId}" style="color: black;">Edit Policy</a></button> </td>
+           
+      <td><c:out value="${policyl1.policyId}"></c:out></td>
+       <td><c:out value="${policyl1.policyName }"></c:out></td>
+       <td><c:out value="${policyl1.durationOfPolicy }"></c:out></td>
+       <td><c:out value="${policyl1.sumassured }"></c:out></td>
+       <td><c:out value="${policyl1.policytype }"></c:out></td>
+       <td> <button><a href="/policyvendor/editpolicy?policyid=${policyl1.policyId}" style="color: black;">Edit Policy</a></button> </td>
+    
     </tr>
+    </c:forEach>
 </c:if>
 
 <c:if test="${claimlist!=null}">

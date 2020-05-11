@@ -59,14 +59,11 @@ function validate(){
 
 </head>
 <body>
-<div class="header">
-<h1>Policy Management</h1>
-</div>
-<h2>Forgot Userid??</h2>
-<div class="formdata3">
-<div align="center">
-<form:form onsubmit="return validate()" action="forgotpwd1" method="post" modelAttribute="name1">
-<table>
+<form:form onsubmit="return validate()" action="forgotpwd1" method="post" modelAttribute="name1" style="margin-top:50px;margin-left:30px;">
+<table align="center" class="tables back" >
+<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
+Forgot Password??</td></tr>
+<tr><td colspan="2" align="center" style="text-align: center;">${message }</td></tr>
 <tr>
 <td>UserID:</td>
 <td><form:input path="uid" id="uid" type="text"/>
@@ -116,20 +113,13 @@ function validate(){
 <form:input path="ans3" id="ans3" placeholder="Answer" width="170px" />
 </td>
 </tr>
-
+<tr><td></td>
+<td colspan="2" align="center" style="text-align: center;" > <input type="submit" value="Submit" class="formsubmitbutton" /><!-- </td> -->
+</td></tr>
+	
 </table>
-<input type="submit" value ="submit" class="formsubmitbutton"/>
-
 </form:form>
-<br><br>
-${message }
-<br><br>
-Want to login?<a href="adminLogin">Click here</a>
-
-</div>
-</div>
-
-
+ 
 </body>
 <%
 

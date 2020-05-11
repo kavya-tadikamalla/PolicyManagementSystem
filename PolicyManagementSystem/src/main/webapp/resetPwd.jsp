@@ -27,15 +27,12 @@ function validate(){
 </script>
 </head>
 <body>
-<div class="header">
-<h1>Policy Management </h1>
-</div>
-<h2>Reset password</h2>
-<div class="formdata">
-<div align="center">
-<form:form onsubmit="return validate()" action="updatepwd" method="post" modelAttribute="name1">
-<table>
-<tr>
+<form:form onsubmit="return validate()" action="updatepwd" method="post" modelAttribute="name1" style="margin-top:50px;margin-left:30px;">
+<table align="center" class="tables back" >
+<td colspan="4"  align="center"style="text-align: center;text-decoration-line: underline; ">
+Reset Password??</td></tr>
+
+<tr><td colspan="2" align="center" style="text-align: center;">${message }</td></tr>
 <tr>
 <td>
 <form:hidden path="uid"/>
@@ -49,15 +46,12 @@ function validate(){
 <td>Confirm Password:</td>
 <td><input type="password" id="cpassword"></td>
 </tr>
+<tr><td></td>
+<td colspan="2" align="center" style="text-align: center;" > <input type="submit" value="Submit" class="formsubmitbutton" /><!-- </td> -->
+</td></tr>
 </table>
-<input type="submit" value="submit" class="formsubmitbutton"/>
+
 </form:form>
-Want to login?<a href="adminLogin">Click here</a>
-<br>
-<br>
-${message}
-</div>
-</div>
 </body>
 <%
 

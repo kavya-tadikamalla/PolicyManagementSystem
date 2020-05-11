@@ -1,4 +1,5 @@
 package com.policymanagement.controllers;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -192,10 +193,14 @@ public class PolicyVendorController {
 		public String listmypolicies(HttpSession session,Model model) {
 			List<Policy> policy=policyvendorService.getAllpolicies();
 			int id=(Integer)session.getAttribute("userId");
+			List<Policy> p4=new ArrayList<Policy>();
 			for(Policy p3:policy) {
 				if(p3.getPolicyvendorId()==id)
 				{
-					model.addAttribute("policyl",p3);
+					System.out.println(p3);
+					p4.add(p3);
+					System.out.println(p4);
+					model.addAttribute("policyl",p4);
 				}
 			}
 			return "policyvendorHome";
@@ -361,7 +366,7 @@ public class PolicyVendorController {
 			else
 			{
 				model.addAttribute("message", "Incorrect credentials");
-				return "CusResetPwd";
+				return "PvForgotPwd";
 			}
 		}
 		@PostMapping("/pupdatepwd")

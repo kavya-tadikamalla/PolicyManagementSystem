@@ -13,14 +13,15 @@
 
 <body>
  
-<h2> Edit Policy Form</h2>
+
  <form:form action="/policyvendor/addeditpolicy" method="post" modelAttribute="policy" style="margin-top:50px;margin-left:30px;">
 
 <table align="center" class="tables back" >
+<tr align="center"><td colspan="2" style="text-align: center;text-decoration-line: underline;">Edit Policy Form</td></tr>
 <tr>
 <td>Policy Id</td>
 <td>
-<form:input path="policyId" class="form-control"/>
+<form:input path="policyId" class="form-control" readonly="true"/>
 <br>
  <form:errors path="policyId" cssClass="errors"></form:errors> 
 </td>
@@ -29,7 +30,7 @@
 <td>Policy Name :</td>
 <td>
 
-<form:input path="policyName" class="form-control"/>
+<form:input path="policyName" class="form-control" required="required"/>
 <br>
  <form:errors path="policyName" cssClass="errors"></form:errors> 
 </td>
@@ -39,7 +40,7 @@
 <td>Duration of Policy:</td>
 <td>
 
-<form:input path="durationOfPolicy" class="form-control"/>
+<form:input path="durationOfPolicy" class="form-control" required="required"/>
 <br>
  <form:errors path="durationOfPolicy" cssClass="errors"></form:errors> 
 </td>
@@ -49,7 +50,7 @@
 <td>SumAssured :</td>
 <td>
 
-<form:input path="sumassured" class="form-control"/>
+<form:input path="sumassured" class="form-control" required="required"/>
 <br>
  <form:errors path="sumassured" cssClass="errors"></form:errors> 
 </td>
@@ -58,7 +59,7 @@
 <td>My userId :</td>
 <td>
 
-<form:input path="policyvendorId" value='<%=session.getAttribute("uservid") %>' class="form-control"/>
+<form:input path="policyvendorId" value='<%=session.getAttribute("uservid") %>' class="form-control" readonly="true"/>
 <br>
  <form:errors path="policyvendorId" cssClass="errors"></form:errors> 
 </td>
@@ -67,14 +68,14 @@
 <td>PolicyType:</td>
 <td>
 
-<form:input path="policytype" value='<%=session.getAttribute("policyty") %>' class="form-control"/>
+<form:input path="policytype" value='<%=session.getAttribute("policyty") %>' class="form-control" readonly="true" />
 <br>
  <form:errors path="policytype" cssClass="errors"></form:errors> 
 </td>
 </tr>
 
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Register Policy" class="formsubmitbutton" />
+<tr align="center">
+<td colspan="2" style="text-align: center;"><input type="submit" value="Register Policy" class="formsubmitbutton" />
 </tr>
 </table>
 </form:form>

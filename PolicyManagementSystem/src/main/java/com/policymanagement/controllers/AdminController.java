@@ -371,7 +371,7 @@ public class AdminController
 		else
 		{
 			model.addAttribute("message", "Incorrect credentials");
-			return "resetPwd";
+			return "forgotpwd";
 		}
 	}
 	@PostMapping("/updatepwd")
